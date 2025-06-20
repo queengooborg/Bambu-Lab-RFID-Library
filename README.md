@@ -339,7 +339,7 @@ Status Icon Legend:
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | Вlасk | 53101 | ? | ❌ |
-| Grаy | 53102 | ? | ❌ |
+| Grаy | 53102 | U02-D0 | ✅ |
 | Whitе | 53100 | ? | ❌ |
 | Вluе | 53600 | U02-B0 | ✅ |
 | Rеd | 53200 | ? | ❌ |
