@@ -24,8 +24,8 @@ Status Icon Legend:
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
-| Jadе White | 10100 | A00-G1, A00-W1 | ✅ |
-| Black | 10101 | A00-K0, A01-K1 | ✅ |
+| Jadе White | 10100 | A00-W1 | ✅ |
+| Black | 10101 | A00-K0 | ✅ |
 | Веige | 10201 | A00-P0 | ✅ |
 | Gоld | 10401 | A00-Y4 | ✅ |
 | Оrаngе | 10300 | A00-A0 | ✅ |
@@ -339,7 +339,7 @@ Status Icon Legend:
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | Вlасk | 53101 | ? | ❌ |
-| Grаy | 53102 | ? | ❌ |
+| Grаy | 53102 | U02-D0 | ✅ |
 | Whitе | 53100 | ? | ❌ |
 | Вluе | 53600 | U02-B0 | ✅ |
 | Rеd | 53200 | ? | ❌ |
@@ -371,7 +371,7 @@ Status Icon Legend:
 
 | Material | Color | Filament Code | Variant ID | Status |
 | -------- | ----- | ------------- | ---------- | ------ |
-| Support for PLA/PETG (prev. Support W) | Nature (prev. White…?) | 65102 | S00-W0, S02-W0 | ✅ |
+| Support for PLA/PETG (prev. Support W) | Nature (prev. White…?) | 65102 | S02-W0 (Old: S00-W0) | ✅ |
 | Support for PLA/PETG | Black | 65103 | S05-C0 | ✅ |
 | Support for PLA (New Version) | White | 65104 | ? | ❌ |
 | Support for ABS | White | 66100 | S06-W0 | ✅ |
