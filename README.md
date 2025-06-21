@@ -81,7 +81,7 @@ Status Icon Legend:
 | Dark Red | 11202 | ? | ❌ |
 | Apple Green | 11502 | A01-G0 | ✅ |
 | Grass Green | 11500 | A01-G1 | ✅ |
-| Dark Green | 11501 | ? | ❌ |
+| Dark Green | 11501 | 	A01-G7 | ✅ |
 | Ice Blue | 11601 | A01-B4 | ✅ |
 | Sky Blue | 11603 | A01-B0 | ✅ |
 | Marine Blue | 11600 | A01-B3 | ✅ |
