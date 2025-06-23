@@ -81,7 +81,7 @@ Status Icon Legend:
 | Dark Red | 11202 | ? | ❌ |
 | Apple Green | 11502 | A01-G0 | ✅ |
 | Grass Green | 11500 | A01-G1 | ✅ |
-| Dark Green | 11501 | ? | ❌ |
+| Dark Green | 11501 | 	A01-G7 | ✅ |
 | Ice Blue | 11601 | A01-B4 | ✅ |
 | Sky Blue | 11603 | A01-B0 | ✅ |
 | Marine Blue | 11600 | A01-B3 | ✅ |
@@ -161,8 +161,8 @@ Status Icon Legend:
 | Gоld | 13405 | ? | ❌ |
 | Silvеr | 13109 | ? | ❌ |
 | Тitаn Grаy | 13108 | ? | ❌ |
-| Вluе | 13604 | ? | ❌ |
-| Рurрlе | 13702 | ? (Old: A05-P5) | ⏳ |
+| Вluе | 13604 | A05-B0 | ✅ |
+| Рurрlе | 13702 | A05-P5 | ✅ |
 | Саndy Rеd | 13205 | ? | ❌ |
 | Саndy Grееn | 13506 | ? | ❌ |
 | Rоsе Gоld | 13206 | ? | ❌ |
