@@ -34,7 +34,7 @@ Status Icon Legend:
 | Red | 10200 | A00-R0 | ✅ |
 | Mаgеntа | 10202 | A00-P6 | ✅ |
 | Bambu Green | 10501 | A00-G1 | ✅ |
-| Мistlеtоe Green | 10502 | ? | ❌ |
+| Мistlеtоe Green | 10502 | A00-G2 | ✅ |
 | Сyаn | 10603 | A00-B8 | ✅ |
 | Blue | 10601 | A09-B4 | ✅ |
 | Рurple | 10700 | A00-P5 | ✅ |
@@ -46,14 +46,14 @@ Status Icon Legend:
 | Light Grаy | 10104 | ? | ❌ |
 | Dаrk Grаy | 10105 | A00-D3 | ✅ |
 | Yellow | 10400 | A00-Y0 | ✅ |
-| Sunflower Yellоw | 10402 | ? | ❌ |
+| Sunflower Yellоw | 10402 | A00-Y2 | ✅ |
 | Ноt Рink | 10204 | A00-R3 | ✅ |
-| Вright Grееn | 10503 | ? | ❌ |
+| Вright Grееn | 10503 | A00-G3 | ✅ |
 | Тurquоisе | 10605 | ? | ❌ |
-| Маrооn Rеd | 10205 | ? | ❌ |
+| Маrооn Rеd | 10205 | A00-R2 | ✅ |
 | Соbаlt Вluе | 10604 | ? | ❌ |
 | Indigо Рurрlе | 10701 | ? | ❌ |
-| Сосоа Вrоwn | 10802 | ? | ❌ |
+| Сосоа Вrоwn | 10802 | A00-N1 | ✅ |
 
 #### PLA Lite
 
@@ -71,10 +71,10 @@ Status Icon Legend:
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | Ivory White | 11100 | A01-W2 | ✅ |
-| Bone White | 11103 | ? | ❌ |
+| Bone White | 11103 | A01-W3 | ✅ |
 | Lemon Yellow | 11400 | A01-Y2 | ✅ |
-| Mandarin Orange | 11300 | ? | ❌ |
-| Sakura Pink | 11201 | ? | ❌ |
+| Mandarin Orange | 11300 | A01-A2 | ✅ |
+| Sakura Pink | 11201 | A01-P3 | ✅ |
 | Lilac Purple | 11700 | A01-P4 | ✅ |
 | Plum | 11204 | A01-R3 | ✅ |
 | Scarlet Red | 11200 | A01-R1 | ✅ |
@@ -228,7 +228,7 @@ Status Icon Legend:
 | Grаy (prev. Silver) | 33101 | G02-D0 | ✅ |
 | Rеd | 33200 | G02-R0 | ✅ |
 | Grееn | 33500 | G02-G0 | ✅ |
-| Оrаngе | 33300 | ? (Old: G00-A0) | ⏳ |
+| Оrаngе | 33300 | G02-A0 | ✅ |
 | Yеllоw | 33400 | G02-Y0 | ✅ |
 | Вluе | 33600 | G02-B0 | ✅ |
 | Fоrеst Grееn | 33502 | G02-G2 | ✅ |
@@ -243,12 +243,12 @@ Status Icon Legend:
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | Grаy | 32100 | G01-D0 | ✅ |
-| Оlivе | 32500 | ? | ❌ |
-| Вrоwn | 32800 | ? | ❌ |
-| Теаl | 32501 | ? | ❌ |
+| Оlivе | 32500 | G01-G0 | ✅ |
+| Вrоwn | 32800 | G01-N0 | ✅ |
+| Теаl | 32501 | G01-G1 | ✅ |
 | Оrаngе | 32300 | G01-A0 | ✅ |
 | Рurрlе | 32700 | G01-P0 | ✅ |
-| Рink | 32200 | ? | ❌ |
+| Рink | 32200 | G01-P1 | ✅ |
 
 #### PETG-CF
 
@@ -272,11 +272,11 @@ Status Icon Legend:
 | Silver | 40102 | B00-D1 | ✅ |
 | White | 40100 | B00-W0 | ✅ |
 | Bambu Green | 40500 | B00-G6 | ✅ |
-| Orange | 40300 | ? | ❌ |
-| Navy Blue | 40602 | ? | ❌ |
-| Tangerine Yellow | 40402 | ? | ❌ |
-| Olive | 40502 | ? | ❌ |
-| Azure | 40601 | ? | ❌ |
+| Orange | 40300 | B00-A0 | ✅ |
+| Navy Blue | 40602 | B00-B6 | ✅ |
+| Tangerine Yellow | 40402 | B00-Y1 | ✅ |
+| Olive | 40502 | B00-G7 | ✅ |
+| Azure | 40601 | B00-B4 | ✅ |
 
 #### ABS-GF
 
