@@ -1,0 +1,29 @@
+name: Lint for Non-ASCII Characters in Filenames
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint-filenames:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Find non-ASCII filenames
+        run: |
+          echo "Checking for non-ASCII characters in filenames..."
+          FAIL=0
+          while IFS= read -r file; do
+            if LC_ALL=C grep -q '[^ -~]' <<< "$file"; then
+              echo "::error file=$file::Non-ASCII characters detected"
+              FAIL=1
+            fi
+          done < <(find . -type f -o -type d)
+          if [[ $FAIL -ne 0 ]]; then
+            echo "❌ Non-ASCII filenames found!"
+            exit 1
+          else
+            echo "✅ All filenames are clean."
+          fi
