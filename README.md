@@ -219,7 +219,7 @@ Status Icon Legend:
 
 ### PETG
 
-#### PETG HF (prev. PETG Basic)
+#### PETG HF (superseded PETG Basic)
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
