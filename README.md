@@ -78,7 +78,7 @@ Status Icon Legend:
 | Lilac Purple | 11700 | A01-P4 | ✅ |
 | Plum | 11204 | A01-R3 | ✅ |
 | Scarlet Red | 11200 | A01-R1 | ✅ |
-| Dark Red | 11202 | ? | ❌ |
+| Dark Red | 11202 | A01-R4 | ✅ |
 | Apple Green | 11502 | A01-G0 | ✅ |
 | Grass Green | 11500 | A01-G1 | ✅ |
 | Dark Green | 11501 | 	A01-G7 | ✅ |
@@ -87,11 +87,11 @@ Status Icon Legend:
 | Marine Blue | 11600 | A01-B3 | ✅ |
 | Dark Blue | 11602 | A01-B6 | ✅ |
 | Desert Tan | 11401 | A01-Y3 | ✅ |
-| Latte Brown | 11800 | ? | ❌ |
-| Caramel | 11803 | A01-N3 | ❌ |
+| Latte Brown | 11800 | A01-N1 | ✅ |
+| Caramel | 11803 | A01-N3 | ✅ |
 | Terracotta | 11203 | A01-R2 | ✅ |
 | Dark Brown | 11801 | A01-N2 | ✅ |
-| Dark Chocolate | 11802 | ? | ❌ |
+| Dark Chocolate | 11802 | A01-N0 | ✅ |
 | Ash Gray | 11102 | A01-D3 | ✅ |
 | Nardo Gray | 11104 | A01-D0 | ✅ |
 | Charcoal | 11101 | A01-K1 | ✅ |
@@ -158,19 +158,19 @@ Status Icon Legend:
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
-| Gоld | 13405 | ? | ❌ |
-| Silvеr | 13109 | ? | ❌ |
-| Тitаn Grаy | 13108 | ? | ❌ |
-| Вluе | 13604 | A05-B0 | ✅ |
+| Gоld | 13405 | A06-Y1 | ✅ |
+| Silvеr | 13109 | A06-D1 | ✅ |
+| Тitаn Grаy | 13108 | A06-D0 | ✅ |
+| Вluе | 13604 | A05-B0, A06-B1 | ✅ |
 | Рurрlе | 13702 | A05-P5 | ✅ |
 | Саndy Rеd | 13205 | A06-R0 | ✅ |
 | Саndy Grееn | 13506 | A06-G0 | ✅ |
-| Rоsе Gоld | 13206 | ? | ❌ |
+| Rоsе Gоld | 13206 | A06-R1 | ✅ |
 | Ваby Вluе | 13603 | ? | ❌ |
-| Мint | 13507 | ? | ❌ |
-| Рink | 13207 | ? | ❌ |
-| Сhаmраgnе | 13404 | ? | ❌ |
-| Whitе | 13110 | ? | ❌ |
+| Мint | 13507 | A06-G1 | ✅ |
+| Рink | 13207 | A06-R2 | ✅ |
+| Сhаmраgnе | 13404 | A06-Y0 | ✅ |
+| Whitе | 13110 | A06-W0 | ✅ |
 
 #### PLA Silk Multi-Color (prev. Silk Dual Color)
 
@@ -189,10 +189,10 @@ Status Icon Legend:
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
-| Рurрlе | 13602 | ? | ❌ |
-| Grееn | 13503 | ? | ❌ |
+| Рurрlе | 13602 | A15-B0 | ✅ |
+| Grееn | 13503 | A15-G0 | ✅ |
 | Nеbulае | 13504 | A15-G1 | ✅ |
-| Вrоwn | 13203 | ? | ❌ |
+| Вrоwn | 13203 | A15-R0 | ✅ |
 
 #### PLA Wood
 
