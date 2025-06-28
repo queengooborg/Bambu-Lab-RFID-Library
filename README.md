@@ -63,13 +63,8 @@ Status Icon Legend:
 | Gray | 16101 | ? | ❌ |
 | White | 16103 | A18-W0 | ✅ |
 | Red | 16200 | ? | ❌ |
-| Orange | 16301 | ? | ❌ |
-| Yellow | 16400 | ? | ❌ |
-| Orangey Yellow | 16401 | ? | ❌ |
-| Green | 16501 | ? | ❌ |
-| Sky Blue | 16600 | ? | ❌ |
-| Blue | 16601 | ? | ❌ |
-| Matte Beige | 16700 | A18-P0 | ✅ |
+| Yellow | 16101 | ? | ❌ |
+| Sky Blue | 16101 | ? | ❌ |
 
 #### PLA Matte
 
@@ -106,13 +101,13 @@ Status Icon Legend:
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | Arctic Whisper | 10900 | A00-M0 | ✅ |
-| Solar Breeze | 10901 | ? | ❌ |
-| Ocean to Meadow | 10902 | ? | ❌ |
-| Cotton Candy Cloud | 10907 | ? | ❌ |
-| Blueberry Bubblegum | 10905 | ? | ❌ |
-| Mint Lime | 10904 | ? | ❌ |
+| Solar Breeze | 10901 | A00-M1 | ✅ |
+| Ocean to Meadow | 10902 | A00-M2 | ✅ |
+| Cotton Candy Cloud | 10907 | A00-M7 | ✅ |
+| Blueberry Bubblegum | 10905 | A00-M5 | ✅ |
+| Mint Lime | 10904 | A00-M4 | ✅ |
 | Pink Citrus | 10903 | A00-M3 | ✅ |
-| Dusk Glare | 10906 | ? | ❌ |
+| Dusk Glare | 10906 | A00-M6 | ✅ |
 
 #### PLA Glow
 
@@ -159,15 +154,15 @@ Status Icon Legend:
 | Соbаlt Вluе Меtаlliс | 13600 | ? | ❌ |
 | Iridium Gоld Меtаlliс | 13400 | ? | ❌ |
 
-#### PLA Silk+ (superseded PLA Silk)
+#### PLA Silk+ (prev. PLA Silk)
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | Gоld | 13405 | A06-Y1 | ✅ |
 | Silvеr | 13109 | A06-D1 | ✅ |
 | Тitаn Grаy | 13108 | A06-D0 | ✅ |
-| Вluе | 13604 | A06-B1 | ✅ |
-| Рurрlе | 13702 | ? (Old: A05-P5) | ⏳ |
+| Вluе | 13604 | A06-B1 (old A05-B0) | ✅ |
+| Рurрlе | 13702 | A05-P5 | ⏳ |
 | Саndy Rеd | 13205 | A06-R0 | ✅ |
 | Саndy Grееn | 13506 | A06-G0 | ✅ |
 | Rоsе Gоld | 13206 | A06-R1 | ✅ |
@@ -204,7 +199,7 @@ Status Icon Legend:
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | Вlасk Wаlnut | 13107 | A16-K0 | ✅ |
-| Rоsеwооd | 13204 | ? | ❌ |
+| Rоsеwооd | 13204 | A16-R0 | ✅ |
 | Сlаy Вrоwn | 13801 | A16-N0 | ✅ |
 | Сlаssiс Вirсh | 13505 | A16-G0 | ✅ |
 | Whitе Оаk | 13106 | A16-W0 | ✅ |
@@ -363,14 +358,14 @@ Status Icon Legend:
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
-| Blue | 72600 | N08-K0 | ✅ |
+| Blue | 72600 | ? | ❌ |
 | Orange | 72200 | ? | ❌ |
 | Yellow | 72400 | ? | ❌ |
 | Lime | 72500 | ? | ❌ |
 | Brown | 72800 | ? | ❌ |
 | White | 72102 | ? | ❌ |
 | Gray | 72103 | ? | ❌ |
-| Black | 72104 | ? | ❌ |
+| Black | 72104 | N08-K0 | ✅ |
 
 ### Support Material
 
