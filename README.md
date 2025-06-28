@@ -63,8 +63,13 @@ Status Icon Legend:
 | Gray | 16101 | ? | ❌ |
 | White | 16103 | A18-W0 | ✅ |
 | Red | 16200 | ? | ❌ |
-| Yellow | 16101 | ? | ❌ |
-| Sky Blue | 16101 | ? | ❌ |
+| Orange | 16301 | ? | ❌ |
+| Yellow | 16400 | ? | ❌ |
+| Orangey Yellow | 16401 | ? | ❌ |
+| Green | 16501 | ? | ❌ |
+| Sky Blue | 16600 | ? | ❌ |
+| Blue | 16601 | ? | ❌ |
+| Matte Beige | 16700 | A18-P0 | ✅ |
 
 #### PLA Matte
 
@@ -154,15 +159,15 @@ Status Icon Legend:
 | Соbаlt Вluе Меtаlliс | 13600 | ? | ❌ |
 | Iridium Gоld Меtаlliс | 13400 | ? | ❌ |
 
-#### PLA Silk+ (prev. PLA Silk)
+#### PLA Silk+ (superseded PLA Silk)
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | Gоld | 13405 | A06-Y1 | ✅ |
 | Silvеr | 13109 | A06-D1 | ✅ |
 | Тitаn Grаy | 13108 | A06-D0 | ✅ |
-| Вluе | 13604 | A06-B1 (old A05-B0) | ✅ |
-| Рurрlе | 13702 | A05-P5 | ⏳ |
+| Вluе | 13604 | A06-B1 | ✅ |
+| Рurрlе | 13702 | ? (Old: A05-P5) | ⏳ |
 | Саndy Rеd | 13205 | A06-R0 | ✅ |
 | Саndy Grееn | 13506 | A06-G0 | ✅ |
 | Rоsе Gоld | 13206 | A06-R1 | ✅ |
@@ -198,12 +203,12 @@ Status Icon Legend:
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
-| Вlасk Wаlnut | 13107 | ? | ❌ |
+| Вlасk Wаlnut | 13107 | A16-K0 | ✅ |
 | Rоsеwооd | 13204 | ? | ❌ |
-| Сlаy Вrоwn | 13801 | ? | ❌ |
-| Сlаssiс Вirсh | 13505 | ? | ❌ |
-| Whitе Оаk | 13106 | ? | ❌ |
-| Осhrе Yеllоw | 13403 | ? | ❌ |
+| Сlаy Вrоwn | 13801 | A16-N0 | ✅ |
+| Сlаssiс Вirсh | 13505 | A16-G0 | ✅ |
+| Whitе Оаk | 13106 | A16-W0 | ✅ |
+| Осhrе Yеllоw | 13403 | A16-Y0 | ✅ |
 
 #### PLA-CF (prev. PLA Tough...?)
 
@@ -358,7 +363,7 @@ Status Icon Legend:
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
-| Blue | 72600 | ? | ❌ |
+| Blue | 72600 | N08-K0 | ✅ |
 | Orange | 72200 | ? | ❌ |
 | Yellow | 72400 | ? | ❌ |
 | Lime | 72500 | ? | ❌ |
