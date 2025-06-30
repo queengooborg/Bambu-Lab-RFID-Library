@@ -49,7 +49,7 @@ Status Icon Legend:
 | Sunflower Yellоw | 10402 | A00-Y2 | ✅ |
 | Ноt Рink | 10204 | A00-R3 | ✅ |
 | Вright Grееn | 10503 | A00-G3 | ✅ |
-| Тurquоisе | 10605 | ? | ❌ |
+| Тurquоisе | 10605 | A00-B5 | ✅ |
 | Маrооn Rеd | 10205 | A00-R2 | ✅ |
 | Соbаlt Вluе | 10604 | A00-B3 | ✅ |
 | Indigо Рurрlе | 10701 | A00-P2 | ✅ |
