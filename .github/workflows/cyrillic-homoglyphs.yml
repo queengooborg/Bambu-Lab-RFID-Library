@@ -1,0 +1,32 @@
+name: Detect Cyrillic Homoglyphs
+
+on:
+  push:
+    paths:
+      - '**/*.md'
+      - '**/*.txt'
+      - '**/*.csv'
+  pull_request:
+    paths:
+      - '**/*.md'
+      - '**/*.txt'
+      - '**/*.csv'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Scan for Cyrillic homoglyphs
+        run: |
+          echo "Scanning for Cyrillic homoglyphs..."
+          found=0
+          grep -P --color=always '[\u0400-\u04FF]' $(find . -type f \( -name '*.md' -o -name '*.txt' -o -name '*.csv' \)) || found=$?
+          if [ "$found" -eq 0 ]; then
+            echo "❌ Cyrillic homoglyphs detected. Please replace with Latin characters."
+            exit 1
+          else
+            echo "✅ No Cyrillic homoglyphs found."
+          fi
