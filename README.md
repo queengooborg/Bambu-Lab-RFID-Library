@@ -102,13 +102,13 @@ Status Icon Legend:
 | Color               | Filament Code | Variant ID | Status |
 | ------------------- | ------------- | ---------- | ------ |
 | Pink Citrus         | 10903         | A00-M3     | ✅     |
-| Dusk Glare          | 10906         | A00-M6     | ❌     |
+| Dusk Glare          | 10906         | A00-M6     | ✅     |
 | Arctic Whisper      | 10900         | A00-M0     | ✅     |
-| Solar Breeze        | 10901         | A00-M1     | ❌     |
-| Blueberry Bubblegum | 10905         | A00-M5     | ❌     |
-| Mint Lime           | 10904         | A00-M4     | ❌     |
-| Ocean to Meadow     | 10902         | A00-M2     | ❌     |
-| Cotton Candy Cloud  | 10907         | A00-M7     | ❌     |
+| Solar Breeze        | 10901         | A00-M1     | ✅     |
+| Blueberry Bubblegum | 10905         | A00-M5     | ✅     |
+| Mint Lime           | 10904         | A00-M4     | ✅     |
+| Ocean to Meadow     | 10902         | A00-M2     | ✅     |
+| Cotton Candy Cloud  | 10907         | A00-M7     | ✅     |
 
 #### PLA Glow
 
