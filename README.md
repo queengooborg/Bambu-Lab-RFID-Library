@@ -58,14 +58,16 @@ Status Icon Legend:
 
 #### PLA Lite
 
-| Color    | Filament Code | Variant ID | Status |
-| -------- | ------------- | ---------- | ------ |
-| Black    | 16100         | ?          | ❌     |
-| Gray     | 16101         | ?          | ❌     |
-| White    | 16103         | A18-W0     | ✅     |
-| Red      | 16200         | ?          | ❌     |
-| Yellow   | 16400         | ?          | ❌     |
-| Sky Blue | 16102         | ?          | ❌     |
+| Color      | Filament Code | Variant ID | Status |
+| ---------- | ------------- | ---------- | ------ |
+| Black      | 16100         | A18-K0     | ✅     |
+| Gray       | 16101         | A18-D0     | ✅     |
+| White      | 16103         | A18-W0     | ✅     |
+| Red        | 16200         | A18-R0     | ✅	   |
+| Yellow     | 16400         | A18-Y0     | ✅     |
+| Cyan       | 16600         | A18-B0     | ✅     |
+| Blue       | 16601         | A18-B1     | ✅     |
+| Matte Beige| 16601         | A18-P0     | ✅     |
 
 #### PLA Matte
 
