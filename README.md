@@ -127,7 +127,7 @@ Status Icon Legend:
 | Color        | Filament Code | Variant ID | Status |
 | ------------ | ------------- | ---------- | ------ |
 | Red Granite  | 13201         | A07-R5     | ✅     |
-| White Marble | 13103         | ?          | ❌     |
+| White Marble | 13103         | A07-D4     | ✅     |
 
 #### PLA Aero
 
@@ -180,9 +180,9 @@ Status Icon Legend:
 
 | Color                      | Filament Code | Variant ID | Status |
 | -------------------------- | ------------- | ---------- | ------ |
-| Dawn Radiance              | 13912         | ?          | ❌     |
+| Dawn Radiance              | 13912         | A05-M8     | ✅     |
 | Aurora Purple              | 13909         | ?          | ❌     |
-| South Beach                | 13906         | ?          | ❌     |
+| South Beach                | 13906         | A05-M1     | ✅     |
 | Neon City (Blue-Magenta)   | 13903         | A05-T3     | ✅     |
 | Midnight Blaze (Blue-Red)  | 13902         | A05-T2     | ✅     |
 | Gilded Rose (Pink-Gold)    | 13901         | A05-T1     | ✅     |
