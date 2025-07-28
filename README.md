@@ -58,14 +58,16 @@ Status Icon Legend:
 
 #### PLA Lite
 
-| Color    | Filament Code | Variant ID | Status |
-| -------- | ------------- | ---------- | ------ |
-| Black    | 16100         | ?          | ❌     |
-| Gray     | 16101         | ?          | ❌     |
-| White    | 16103         | A18-W0     | ✅     |
-| Red      | 16200         | ?          | ❌     |
-| Yellow   | 16400         | ?          | ❌     |
-| Sky Blue | 16102         | ?          | ❌     |
+| Color       | Filament Code | Variant ID | Status |
+| ----------- | ------------- | ---------- | ------ |
+| Black       | 16100         | A18-K0     | ✅     |
+| Gray        | 16101         | A18-D0     | ✅     |
+| White       | 16103         | A18-W0     | ✅     |
+| Red         | 16200         | A18-R0     | ✅     |
+| Yellow      | 16400         | A18-Y0     | ✅     |
+| Blue        | 16601         | A18-B1     | ✅     |
+| Blue        | 16600         | A18-B0     | ✅     |
+| Matte Beige | 16700         | A18-P0     | ✅     |
 
 #### PLA Matte
 
@@ -115,9 +117,9 @@ Status Icon Legend:
 | Color  | Filament Code | Variant ID | Status |
 | ------ | ------------- | ---------- | ------ |
 | Green  | 15500         | A12-G0     | ✅     |
-| Pink   | 15200         | ?          | ❌     |
-| Orange | 15300         | ?          | ❌     |
-| Yellow | 15400         | ?          | ❌     |
+| Pink   | 15200         | A12-R0     | ✅     |
+| Orange | 15300         | A12-A0     | ✅     |
+| Yellow | 15400         | A12-Y0     | ✅     |
 | Blue   | 15600         | A12-B0     | ✅     |
 
 #### PLA Marble
@@ -125,7 +127,7 @@ Status Icon Legend:
 | Color        | Filament Code | Variant ID | Status |
 | ------------ | ------------- | ---------- | ------ |
 | Red Granite  | 13201         | A07-R5     | ✅     |
-| White Marble | 13103         | ?          | ❌     |
+| White Marble | 13103         | A07-D4     | ✅     |
 
 #### PLA Aero
 
@@ -139,12 +141,12 @@ Status Icon Legend:
 
 | Color                | Filament Code | Variant ID | Status |
 | -------------------- | ------------- | ---------- | ------ |
-| Alpine Green Sparkle | 13501         | ?          | ❌     |
-| Slate Gray Sparkle   | 13102         | ?          | ❌     |
+| Alpine Green Sparkle | 13501         | A08-G3     | ✅     |
+| Slate Gray Sparkle   | 13102         | A08-D5     | ✅     |
 | Royal Purple Sparkle | 13700         | A08-B7     | ✅     |
-| Crimson Red Sparkle  | 13200         | ?          | ❌     |
+| Crimson Red Sparkle  | 13200         | A08-R2     | ✅     |
 | Onyx Black Sparkle   | 13101         | ?          | ❌     |
-| Classic Gold Sparkle | 13402         | ?          | ❌     |
+| Classic Gold Sparkle | 13402         | A08-Y1     | ✅     |
 
 #### PLA Metal
 
@@ -178,9 +180,9 @@ Status Icon Legend:
 
 | Color                      | Filament Code | Variant ID | Status |
 | -------------------------- | ------------- | ---------- | ------ |
-| Dawn Radiance              | 13912         | ?          | ❌     |
+| Dawn Radiance              | 13912         | A05-M8     | ✅     |
 | Aurora Purple              | 13909         | ?          | ❌     |
-| South Beach                | 13906         | ?          | ❌     |
+| South Beach                | 13906         | A05-M1     | ✅     |
 | Neon City (Blue-Magenta)   | 13903         | A05-T3     | ✅     |
 | Midnight Blaze (Blue-Red)  | 13902         | A05-T2     | ✅     |
 | Gilded Rose (Pink-Gold)    | 13901         | A05-T1     | ✅     |
