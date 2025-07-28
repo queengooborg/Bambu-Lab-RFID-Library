@@ -141,12 +141,12 @@ Status Icon Legend:
 
 | Color                | Filament Code | Variant ID | Status |
 | -------------------- | ------------- | ---------- | ------ |
-| Alpine Green Sparkle | 13501         | ?          | ❌     |
-| Slate Gray Sparkle   | 13102         | ?          | ❌     |
+| Alpine Green Sparkle | 13501         | A08-G3     | ✅     |
+| Slate Gray Sparkle   | 13102         | A08-D5     | ✅     |
 | Royal Purple Sparkle | 13700         | A08-B7     | ✅     |
-| Crimson Red Sparkle  | 13200         | ?          | ❌     |
+| Crimson Red Sparkle  | 13200         | A08-R2     | ✅     |
 | Onyx Black Sparkle   | 13101         | ?          | ❌     |
-| Classic Gold Sparkle | 13402         | ?          | ❌     |
+| Classic Gold Sparkle | 13402         | A08-Y1     | ✅     |
 
 #### PLA Metal
 
