@@ -117,9 +117,9 @@ Status Icon Legend:
 | Color  | Filament Code | Variant ID | Status |
 | ------ | ------------- | ---------- | ------ |
 | Green  | 15500         | A12-G0     | ✅     |
-| Pink   | 15200         | ?          | ❌     |
-| Orange | 15300         | ?          | ❌     |
-| Yellow | 15400         | ?          | ❌     |
+| Pink   | 15200         | A12-R0     | ✅     |
+| Orange | 15300         | A12-A0     | ✅     |
+| Yellow | 15400         | A12-Y0     | ✅     |
 | Blue   | 15600         | A12-B0     | ✅     |
 
 #### PLA Marble
