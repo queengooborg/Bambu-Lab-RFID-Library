@@ -65,9 +65,9 @@ Status Icon Legend:
 | White       | 16103         | A18-W0     | ✅     |
 | Red         | 16200         | A18-R0     | ✅     |
 | Yellow      | 16400         | A18-Y0     | ✅     |
+| Cyan        | 16600         | A18-B0     | ✅     |
 | Blue        | 16601         | A18-B1     | ✅     |
-| Blue        | 16600         | A18-B0     | ✅     |
-| Matte Beige | 16700         | A18-P0     | ✅     |
+| Matte Beige | 16602         | A18-P0     | ✅     |
 
 #### PLA Matte
 
@@ -145,7 +145,7 @@ Status Icon Legend:
 | Slate Gray Sparkle   | 13102         | A08-D5     | ✅     |
 | Royal Purple Sparkle | 13700         | A08-B7     | ✅     |
 | Crimson Red Sparkle  | 13200         | A08-R2     | ✅     |
-| Onyx Black Sparkle   | 13101         | ?          | ❌     |
+| Onyx Black Sparkle   | 13101         | A08-K2     | ✅     |
 | Classic Gold Sparkle | 13402         | A08-Y1     | ✅     |
 
 #### PLA Metal
@@ -169,7 +169,7 @@ Status Icon Legend:
 | Candy Red   | 13205         | A06-R0          | ✅     |
 | Candy Green | 13506         | A06-G0          | ✅     |
 | Rose Gold   | 13206         | A06-R1          | ✅     |
-| Baby Blue   | 13603         | ?               | ❌     |
+| Baby Blue   | 13603         | A06-B0          | ✅     |
 | Mint        | 13507         | A06-G1          | ✅     |
 | Champagne   | 13404         | A06-Y0          | ✅     |
 | White       | 13110         | A06-W0          | ✅     |
@@ -220,6 +220,18 @@ Status Icon Legend:
 | Black        | 14100         | A50-K0     | ✅     |
 | Royal Blue   | 14601         | ?          | ❌     |
 | Iris Purple  | 14700         | ?          | ❌     |
+
+#### PLA Tough+
+
+| Color  | Filament Code | Variant ID | Status |
+| ------ | ------------- | ---------- | ------ |
+| Yellow | 12401         | ?          | ❌     |
+| White  | 12107         | ?          | ❌     |
+| Orange | 12301         | ?          | ❌     |
+| Gray   | 12105         | ?          | ❌     |
+| Silver | 12106         | ?          | ❌     |
+| Cyan   | 12601         | ?          | ❌     |
+| Black  | 12104         | ?          | ❌     |
 
 ### PETG
 
@@ -388,27 +400,27 @@ Status Icon Legend:
 
 #### Support for PLA (New Version)
 
-| Color | Filament Code | Variant ID           | Status |
-| ----- | ------------- | -------------------- | ------ |
-| White | 65104         | ?                    | ❌     |
+| Color | Filament Code | Variant ID | Status |
+| ----- | ------------- | ---------- | ------ |
+| White | 65104         | ?          | ❌     |
 
 #### Support for ABS
 
-| Color | Filament Code | Variant ID           | Status |
-| ----- | ------------- | -------------------- | ------ |
-| White | 66100         | S06-W0               | ✅     |
+| Color | Filament Code | Variant ID | Status |
+| ----- | ------------- | ---------- | ------ |
+| White | 66100         | S06-W0     | ✅     |
 
 #### Support for PA/PET
 
-| Color | Filament Code | Variant ID           | Status |
-| ----- | ------------- | -------------------- | ------ |
-| Green | 65500         | ?                    | ❌     |
+| Color | Filament Code | Variant ID | Status |
+| ----- | ------------- | ---------- | ------ |
+| Green | 65500         | ?          | ❌     |
 
 #### PVA
 
-| Color | Filament Code | Variant ID           | Status |
-| ----- | ------------- | -------------------- | ------ |
-| Clear | 66400         | S04-Y0               | ✅     |
+| Color | Filament Code | Variant ID | Status |
+| ----- | ------------- | ---------- | ------ |
+| Clear | 66400         | S04-Y0     | ✅     |
 
 ## History
 
