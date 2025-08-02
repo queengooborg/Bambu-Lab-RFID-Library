@@ -145,7 +145,7 @@ Status Icon Legend:
 | Slate Gray Sparkle   | 13102         | A08-D5     | ✅     |
 | Royal Purple Sparkle | 13700         | A08-B7     | ✅     |
 | Crimson Red Sparkle  | 13200         | A08-R2     | ✅     |
-| Onyx Black Sparkle   | 13101         | ?          | ❌     |
+| Onyx Black Sparkle   | 13101         | A08-K2     | ✅     |
 | Classic Gold Sparkle | 13402         | A08-Y1     | ✅     |
 
 #### PLA Metal
@@ -169,7 +169,7 @@ Status Icon Legend:
 | Candy Red   | 13205         | A06-R0          | ✅     |
 | Candy Green | 13506         | A06-G0          | ✅     |
 | Rose Gold   | 13206         | A06-R1          | ✅     |
-| Baby Blue   | 13603         | ?               | ❌     |
+| Baby Blue   | 13603         | A06-B0          | ✅     |
 | Mint        | 13507         | A06-G1          | ✅     |
 | Champagne   | 13404         | A06-Y0          | ✅     |
 | White       | 13110         | A06-W0          | ✅     |
