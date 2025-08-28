@@ -158,9 +158,9 @@ Status Icon Legend:
 | --------------------- | ------------- | ---------- | ------ |
 | Cobalt Blue Metallic  | 13600         | A02-B2     | ✅     |
 | Oxide Green Metallic  | 13500         | ?          | ❌     |
-| Iridium Gold Metallic | 13400         | ?          | ❌     |
+| Iridium Gold Metallic | 13400         | A02-Y1     | ❌     |
 | Copper Brown Metallic | 13800         | ?          | ❌     |
-| Iron Gray Metallic    | 13100         | ?          | ❌     |
+| Iron Gray Metallic    | 13100         | A02-D2     | ❌     |
 
 #### PLA Silk+
 
@@ -219,10 +219,10 @@ Status Icon Legend:
 | ------------ | ------------- | ---------- | ------ |
 | Burgundy Red | 14200         | ?          | ❌     |
 | Matcha Green | 14500         | ?          | ❌     |
-| Lava Gray    | 14101         | ?          | ❌     |
+| Lava Gray    | 14101         | A50-D6     | ❌     |
 | Jeans Blue   | 14600         | ?          | ❌     |
 | Black        | 14100         | A50-K0     | ✅     |
-| Royal Blue   | 14601         | ?          | ❌     |
+| Royal Blue   | 14601         | A50-B6     | ❌     |
 | Iris Purple  | 14700         | ?          | ❌     |
 
 #### PLA Tough+
@@ -306,13 +306,13 @@ Status Icon Legend:
 | Color  | Filament Code | Variant ID | Status |
 | ------ | ------------- | ---------- | ------ |
 | Orange | 41300         | B50-A0     | ✅     |
-| Green  | 41500         | ?          | ❌     |
-| Red    | 41200         | ?          | ❌     |
+| Green  | 41500         | B50-G0     | ❌     |
+| Red    | 41200         | B50-R0     | ❌     |
 | Yellow | 41400         | ?          | ❌     |
 | Blue   | 41600         | ?          | ❌     |
-| White  | 41100         | ?          | ❌     |
+| White  | 41100         | B50-W0     | ❌     |
 | Gray   | 41102         | ?          | ❌     |
-| Black  | 41101         | ?          | ❌     |
+| Black  | 41101         | B50-K0     | ❌     |
 
 ### ASA
 
