@@ -138,7 +138,7 @@ Status Icon Legend:
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | White | 14102         | A11-W0     | ✅     |
-| Gray  | 14104         | ?          | ❌     |
+| Gray  | 14104         | A11-D0     | ❌     |
 | Black | 14103         | A11-K0     | ✅     |
 
 #### PLA Sparkle
@@ -157,10 +157,10 @@ Status Icon Legend:
 | Color                 | Filament Code | Variant ID | Status |
 | --------------------- | ------------- | ---------- | ------ |
 | Cobalt Blue Metallic  | 13600         | A02-B2     | ✅     |
-| Oxide Green Metallic  | 13500         | ?          | ❌     |
-| Iridium Gold Metallic | 13400         | ?          | ❌     |
-| Copper Brown Metallic | 13800         | ?          | ❌     |
-| Iron Gray Metallic    | 13100         | ?          | ❌     |
+| Oxide Green Metallic  | 13500         | A02-G1     | ❌     |
+| Iridium Gold Metallic | 13400         | A02-Y1     | ❌     |
+| Copper Brown Metallic | 13800         | A02-N1     | ❌     |
+| Iron Gray Metallic    | 13100         | A02-D2     | ❌     |
 
 #### PLA Silk+
 
@@ -169,7 +169,7 @@ Status Icon Legend:
 | Pink        | 13207         | A06-R2          | ✅     |
 | Titan Gray  | 13108         | A06-D0          | ✅     |
 | Blue        | 13604         | A06-B1          | ✅     |
-| Purple      | 13702         | ? (Old: A05-P5) | ⏳     |
+| Purple      | 13702         | A06-P0          | ❌     |
 | Candy Red   | 13205         | A06-R0          | ✅     |
 | Candy Green | 13506         | A06-G0          | ✅     |
 | Rose Gold   | 13206         | A06-R1          | ✅     |
@@ -185,7 +185,7 @@ Status Icon Legend:
 | Color                      | Filament Code | Variant ID | Status |
 | -------------------------- | ------------- | ---------- | ------ |
 | Dawn Radiance              | 13912         | A05-M8     | ✅     |
-| Aurora Purple              | 13909         | ?          | ❌     |
+| Aurora Purple              | 13909         | A05-M9     | ❌     |
 | South Beach                | 13906         | A05-M1     | ✅     |
 | Neon City (Blue-Magenta)   | 13903         | A05-T3     | ✅     |
 | Midnight Blaze (Blue-Red)  | 13902         | A05-T2     | ✅     |
@@ -217,13 +217,13 @@ Status Icon Legend:
 
 | Color        | Filament Code | Variant ID | Status |
 | ------------ | ------------- | ---------- | ------ |
-| Burgundy Red | 14200         | ?          | ❌     |
-| Matcha Green | 14500         | ?          | ❌     |
-| Lava Gray    | 14101         | ?          | ❌     |
-| Jeans Blue   | 14600         | ?          | ❌     |
+| Burgundy Red | 14200         | A50-R1     | ❌     |
+| Matcha Green | 14500         | A50-G1     | ❌     |
+| Lava Gray    | 14101         | A50-D6     | ❌     |
+| Jeans Blue   | 14600         | A50-B1     | ❌     |
 | Black        | 14100         | A50-K0     | ✅     |
-| Royal Blue   | 14601         | ?          | ❌     |
-| Iris Purple  | 14700         | ?          | ❌     |
+| Royal Blue   | 14601         | A50-B6     | ❌     |
+| Iris Purple  | 14700         | A50-P1     | ❌     |
 
 #### PLA Tough+
 
@@ -276,10 +276,10 @@ Status Icon Legend:
 
 | Color           | Filament Code | Variant ID | Status |
 | --------------- | ------------- | ---------- | ------ |
-| Indigo Blue     | 31600         | ?          | ❌     |
-| Malachite Green | 31500         | ?          | ❌     |
-| Titan Gray      | 31101         | ?          | ❌     |
-| Brick Red       | 31200         | ?          | ❌     |
+| Indigo Blue     | 31600         | G50-B6     | ❌     |
+| Malachite Green | 31500         | G50-G1     | ❌     |
+| Titan Gray      | 31101         | G50-D1     | ❌     |
+| Brick Red       | 31200         | G50-R1     | ❌     |
 | Violet Purple   | 31700         | G50-P7     | ✅     |
 | Black           | 31100         | G50-K0     | ✅     |
 
@@ -306,13 +306,13 @@ Status Icon Legend:
 | Color  | Filament Code | Variant ID | Status |
 | ------ | ------------- | ---------- | ------ |
 | Orange | 41300         | B50-A0     | ✅     |
-| Green  | 41500         | ?          | ❌     |
-| Red    | 41200         | ?          | ❌     |
-| Yellow | 41400         | ?          | ❌     |
-| Blue   | 41600         | ?          | ❌     |
-| White  | 41100         | ?          | ❌     |
-| Gray   | 41102         | ?          | ❌     |
-| Black  | 41101         | ?          | ❌     |
+| Green  | 41500         | B50-G1     | ❌     |
+| Red    | 41200         | B50-R1     | ❌     |
+| Yellow | 41400         | B50-Y1     | ❌     |
+| Blue   | 41600         | B50-B1     | ❌     |
+| White  | 41100         | B50-W1     | ❌     |
+| Gray   | 41102         | B50-D1     | ❌     |
+| Black  | 41101         | B50-K1     | ❌     |
 
 ### ASA
 
@@ -321,11 +321,11 @@ Status Icon Legend:
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | White | 45100         | B01-W0     | ✅     |
-| Green | 45500         | ?          | ❌     |
+| Green | 45500         | B01-G0     | ❌     |
 | Black | 45101         | B01-K0     | ✅     |
 | Gray  | 45102         | B01-D0     | ✅     |
-| Red   | 45200         | ?          | ❌     |
-| Blue  | 45600         | ?          | ❌     |
+| Red   | 45200         | B01-R0     | ❌     |
+| Blue  | 45600         | B01-B0     | ❌     |
 
 #### ASA Aero
 
@@ -345,8 +345,8 @@ Status Icon Legend:
 
 | Color       | Filament Code | Variant ID | Status |
 | ----------- | ------------- | ---------- | ------ |
-| Transparent | 60103         | ?          | ❌     |
-| Clear Black | 60102         | ?          | ❌     |
+| Transparent | 60103         | C00-C1     | ❌     |
+| Clear Black | 60102         | C00-K1     | ❌     |
 | Black       | 60101         | C00-K0     | ✅     |
 | White       | 60100         | C00-W0     | ✅     |
 
@@ -384,13 +384,13 @@ Status Icon Legend:
 
 | Color  | Filament Code | Variant ID | Status |
 | ------ | ------------- | ---------- | ------ |
-| Blue   | 72600         | ?          | ❌     |
-| Orange | 72200         | ?          | ❌     |
-| Yellow | 72400         | ?          | ❌     |
-| Lime   | 72500         | ?          | ❌     |
-| Brown  | 72800         | ?          | ❌     |
-| White  | 72102         | ?          | ❌     |
-| Gray   | 72103         | ?          | ❌     |
+| Blue   | 72600         | N08-B1     | ❌     |
+| Orange | 72200         | N08-A1     | ❌     |
+| Yellow | 72400         | N08-Y1     | ❌     |
+| Lime   | 72500         | N08-G2     | ❌     |
+| Brown  | 72800         | N08-N1     | ❌     |
+| White  | 72102         | N08-W1     | ❌     |
+| Gray   | 72103         | N08-D1     | ❌     |
 | Black  | 72104         | N08-K0     | ✅     |
 
 ### Support Material
