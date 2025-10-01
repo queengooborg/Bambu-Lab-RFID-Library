@@ -158,7 +158,7 @@ Status Icon Legend:
 | --------------------- | ------------- | ---------- | ------ |
 | Cobalt Blue Metallic  | 13600         | A02-B2     | ✅     |
 | Oxide Green Metallic  | 13500         | ?          | ❌     |
-| Iridium Gold Metallic | 13400         | A02-Y1     | ❌     |
+| Iridium Gold Metallic | 13400         | A02-Y1     | ✅     |
 | Copper Brown Metallic | 13800         | ?          | ❌     |
 | Iron Gray Metallic    | 13100         | A02-D2     | ❌     |
 
