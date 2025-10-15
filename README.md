@@ -169,7 +169,7 @@ Status Icon Legend:
 | Pink        | 13207         | A06-R2          | ✅     |
 | Titan Gray  | 13108         | A06-D0          | ✅     |
 | Blue        | 13604         | A06-B1          | ✅     |
-| Purple      | 13702         | ? (Old: A05-P5) | ⏳     |
+| Purple      | 13702         | A06-P0 | ⏳     | ✅     |
 | Candy Red   | 13205         | A06-R0          | ✅     |
 | Candy Green | 13506         | A06-G0          | ✅     |
 | Rose Gold   | 13206         | A06-R1          | ✅     |
