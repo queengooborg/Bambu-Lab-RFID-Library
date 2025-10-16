@@ -162,23 +162,38 @@ Status Icon Legend:
 | Copper Brown Metallic | 13800         | ?          | ❌     |
 | Iron Gray Metallic    | 13100         | A02-D2     | ❌     |
 
+#### PLA Translucent
+
+| Color         | Filament Code | Variant ID | Status |
+| ------------- | ------------- | ---------- | ------ |
+| Teal          | 13612         | ?          | ❌     |
+| Blue          | 13611         | ?          | ❌     |
+| Orange        | 13301         | ?          | ❌     |
+| Purple        | 13710         | ?          | ❌     |
+| Red           | 13210         | ?          | ❌     |
+| Light Jade    | 13510         | ?          | ❌     |
+| Mellow Yellow | 13410         | ?          | ❌     |
+| Cherry Pink   | 13211         | ?          | ❌     |
+| Ice Blue      | 13610         | ?          | ❌     |
+| Lavender      | 13711         | ?          | ❌     |
+
 #### PLA Silk+
 
 | Color       | Filament Code | Variant ID      | Status |
 | ----------- | ------------- | --------------- | ------ |
-| Pink        | 13207         | A06-R2          | ✅     |
+| Gold        | 13405         | A06-Y1          | ✅     |
 | Titan Gray  | 13108         | A06-D0          | ✅     |
-| Blue        | 13604         | A06-B1          | ✅     |
-| Purple      | 13702         | A06-P0          | ✅     |
+| Silver      | 13109         | A06-D1          | ✅     |
+| White       | 13110         | A06-W0          | ✅     |
 | Candy Red   | 13205         | A06-R0          | ✅     |
 | Candy Green | 13506         | A06-G0          | ✅     |
-| Rose Gold   | 13206         | A06-R1          | ✅     |
-| Baby Blue   | 13603         | A06-B0          | ✅     |
 | Mint        | 13507         | A06-G1          | ✅     |
+| Blue        | 13604         | A06-B1          | ✅     |
+| Baby Blue   | 13603         | A06-B0          | ✅     |
+| Purple      | 13702         | A06-P0          | ✅     |
+| Rose Gold   | 13206         | A06-R1          | ✅     |
+| Pink        | 13207         | A06-R2          | ✅     |
 | Champagne   | 13404         | A06-Y0          | ✅     |
-| White       | 13110         | A06-W0          | ✅     |
-| Silver      | 13109         | A06-D1          | ✅     |
-| Gold        | 13405         | A06-Y1          | ✅     |
 
 #### PLA Silk Multi-Color
 
@@ -243,20 +258,20 @@ Status Icon Legend:
 
 | Color        | Filament Code | Variant ID | Status |
 | ------------ | ------------- | ---------- | ------ |
-| Red          | 33200         | G02-R0     | ✅     |
-| Blue         | 33600         | G02-B0     | ✅     |
 | Black        | 33102         | G02-K0     | ✅     |
 | White        | 33100         | G02-W0     | ✅     |
+| Red          | 33200         | G02-R0     | ✅     |
 | Gray         | 33101         | G02-D0     | ✅     |
-| Yellow       | 33400         | G02-Y0     | ✅     |
-| Orange       | 33300         | G02-A0     | ✅     |
-| Green        | 33500         | G02-G0     | ✅     |
-| Forest Green | 33502         | G02-G2     | ✅     |
-| Peanut Brown | 33801         | G02-N1     | ✅     |
 | Dark Gray    | 33103         | G02-D1     | ✅     |
 | Cream        | 33401         | G02-Y1     | ✅     |
+| Yellow       | 33400         | G02-Y0     | ✅     |
+| Orange       | 33300         | G02-A0     | ✅     |
+| Peanut Brown | 33801         | G02-N1     | ✅     |
 | Lime Green   | 33501         | G02-G1     | ✅     |
+| Green        | 33500         | G02-G0     | ✅     |
+| Forest Green | 33502         | G02-G2     | ✅     |
 | Lake Blue    | 33601         | G02-B1     | ✅     |
+| Blue         | 33600         | G02-B0     | ✅     |
 
 #### PETG Translucent
 
@@ -265,12 +280,12 @@ Status Icon Legend:
 | Translucent Teal       | 32501         | G01-G1     | ✅     |
 | Translucent Light Blue | 32600         | G01-B0     | ✅     |
 | Clear                  | 32101         | G01-C0     | ✅     |
-| Translucent Olive      | 32500         | G01-G0     | ✅     |
-| Translucent Orange     | 32300         | G01-A0     | ✅     |
-| Translucent Purple     | 32700         | G01-P0     | ✅     |
-| Translucent Pink       | 32200         | G01-P1     | ✅     |
-| Translucent Brown      | 32800         | G01-N0     | ✅     |
 | Translucent Gray       | 32100         | G01-D0     | ✅     |
+| Translucent Olive      | 32500         | G01-G0     | ✅     |
+| Translucent Brown      | 32800         | G01-N0     | ✅     |
+| Translucent Orange     | 32300         | G01-A0     | ✅     |
+| Translucent Pink       | 32200         | G01-P1     | ✅     |
+| Translucent Purple     | 32700         | G01-P0     | ✅     |
 
 #### PETG-CF
 
@@ -292,14 +307,14 @@ Status Icon Legend:
 | Silver           | 40102         | B00-D1     | ✅     |
 | Black            | 40101         | B00-K0     | ✅     |
 | White            | 40100         | B00-W0     | ✅     |
-| Red              | 40200         | B00-R0     | ✅     |
 | Bambu Green      | 40500         | B00-G6     | ✅     |
-| Orange           | 40300         | B00-A0     | ✅     |
-| Navy Blue        | 40602         | B00-B6     | ✅     |
-| Tangerine Yellow | 40402         | B00-Y1     | ✅     |
-| Blue             | 40600         | B00-B0     | ✅     |
 | Olive            | 40502         | B00-G7     | ✅     |
+| Tangerine Yellow | 40402         | B00-Y1     | ✅     |
+| Orange           | 40300         | B00-A0     | ✅     |
+| Red              | 40200         | B00-R0     | ✅     |
 | Azure            | 40601         | B00-B4     | ✅     |
+| Blue             | 40600         | B00-B0     | ✅     |
+| Navy Blue        | 40602         | B00-B6     | ✅     |
 
 #### ABS-GF
 
