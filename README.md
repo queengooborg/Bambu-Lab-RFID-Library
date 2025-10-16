@@ -99,7 +99,7 @@ Status Icon Legend:
 | Terracotta      | 11203         | A01-R2     | ✅     |
 | Dark Brown      | 11801         | A01-N2     | ✅     |
 | Dark Chocolate  | 11802         | A01-N0     | ✅     |
-| Ash Grey        | 11102         | A01-D3     | ✅     |
+| Ash Gray        | 11102         | A01-D3     | ✅     |
 | Nardo Gray      | 11104         | A01-D0     | ✅     |
 | Charcoal        | 11101         | A01-K1     | ✅     |
 
@@ -197,16 +197,16 @@ Status Icon Legend:
 
 #### PLA Silk Multi-Color
 
-| Color                      | Filament Code | Variant ID | Status |
-| -------------------------- | ------------- | ---------- | ------ |
-| Dawn Radiance              | 13912         | A05-M8     | ✅     |
-| Aurora Purple              | 13909         | ?          | ❌     |
-| South Beach                | 13906         | A05-M1     | ✅     |
-| Neon City (Blue-Magenta)   | 13903         | A05-T3     | ✅     |
-| Midnight Blaze (Blue-Red)  | 13902         | A05-T2     | ✅     |
-| Gilded Rose (Pink-Gold)    | 13901         | A05-T1     | ✅     |
-| Blue Hawaii (Blue-Green)   | 13904         | A05-T4     | ✅     |
-| Velvet Eclipse (Black-Red) | 13905         | A05-T5     | ✅     |
+| Color          | Filament Code | Variant ID | Status |
+| -------------- | ------------- | ---------- | ------ |
+| Dawn Radiance  | 13912         | A05-M8     | ✅     |
+| Aurora Purple  | 13909         | ?          | ❌     |
+| South Beach    | 13906         | A05-M1     | ✅     |
+| Neon City      | 13903         | A05-T3     | ✅     |
+| Midnight Blaze | 13902         | A05-T2     | ✅     |
+| Gilded Rose    | 13901         | A05-T1     | ✅     |
+| Blue Hawaii    | 13904         | A05-T4     | ✅     |
+| Velvet Eclipse | 13905         | A05-T5     | ✅     |
 
 #### PLA Galaxy
 
