@@ -369,7 +369,7 @@ Status Icon Legend:
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
-| Black | 63100         | ?          | ❌     |
+| Black | 63100         | C01-K0     | ✅     |
 | White | 63101         | ?          | ❌     |
 | Gray  | 63102         | ?          | ❌     |
 
