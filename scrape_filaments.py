@@ -7,6 +7,8 @@
 import time
 import csv
 import re
+import traceback
+import logging
 from datetime import timedelta
 from pathlib import Path
 from prettytable import PrettyTable, TableStyle
@@ -32,6 +34,7 @@ CATEGORIES = {
         "PLA Aero",
         "PLA Sparkle",
         "PLA Metal",
+        "PLA Translucent",
         "PLA Silk+",
         "PLA Silk Multi-Color",
         "PLA Galaxy",
@@ -162,18 +165,22 @@ def get_products():
     print("Getting products from Bambu Lab, this may take a while...")
     soup = get_page(f"{BASE_URL}/collections/bambu-lab-3d-printer-filament?Compatibility=Compatible+with+AMS")
 
-    product_links = list(filter(lambda a: 'Bundle' not in a, soup.select("a.ProductItem__ImageWrapper")))
+    product_links = list(filter(lambda a: not any(s in a.get('bl-m-value') for s in ['Bundle', 'Pack']), soup.select("a.ProductItem__ImageWrapper")))
 
     products = []
     i = 1
     for a in product_links:
-        print(f"Getting product {i} of {len(product_links)}...")
-        href = a.get("href")
-        if href and "/products/" in href:
-            product = get_product(BASE_URL + href)
-            if product:
-                products.append(product)
-            i += 1
+        try:
+            print(f"Getting product {i} of {len(product_links)}...")
+            href = a.get("href")
+            if href and "/products/" in href:
+                product = get_product(BASE_URL + href)
+                if product:
+                    products.append(product)
+                i += 1
+        except Exception as e:
+            print(f"Failed on {a.get("href")}")
+            logging.error(traceback.format_exc())
     
     return products
 
