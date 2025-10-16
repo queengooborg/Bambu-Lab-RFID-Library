@@ -169,7 +169,7 @@ Status Icon Legend:
 | Teal          | 13612         | ?          | ❌     |
 | Blue          | 13611         | ?          | ❌     |
 | Orange        | 13301         | ?          | ❌     |
-| Purple        | 13710         | ?          | ❌     |
+| Purple        | 13710         | A17-P0     | ✅     |
 | Red           | 13210         | ?          | ❌     |
 | Light Jade    | 13510         | ?          | ❌     |
 | Mellow Yellow | 13410         | ?          | ❌     |
