@@ -169,7 +169,7 @@ Status Icon Legend:
 | Teal          | 13612         | ?          | ❌     |
 | Blue          | 13611         | ?          | ❌     |
 | Orange        | 13301         | ?          | ❌     |
-| Purple        | 13710         | ?          | ❌     |
+| Purple        | 13710         | A17-P0     | ✅     |
 | Red           | 13210         | ?          | ❌     |
 | Light Jade    | 13510         | ?          | ❌     |
 | Mellow Yellow | 13410         | ?          | ❌     |
@@ -251,21 +251,6 @@ Status Icon Legend:
 | Silver | 12106         | ?          | ❌     |
 | Cyan   | 12601         | ?          | ❌     |
 | Black  | 12104         | ?          | ❌     |
-
-#### PLA Translucent
-
-| Color         | Filament Code | Variant ID | Status |
-| ------------- | ------------- | ---------- | ------ |
-| Teal          | 13612         | ?          | ❌     |
-| Blue          | 13611         | ?          | ❌     |
-| Purple        | 13710         | A17-P0     | ✅     |
-| Orange        | 13301         | ?          | ❌     |
-| Red           | 13210         | ?          | ❌     |
-| Light Jade    | 13510         | ?          | ❌     |
-| Mellow Yellow | 13410         | ?          | ❌     |
-| Cherry Pink   | 13211         | ?          | ❌     |
-| Ice Blue      | 13610         | ?          | ❌     |
-| Lavender      | 13711         | ?          | ❌     |
 
 ### PETG
 
