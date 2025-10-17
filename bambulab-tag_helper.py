@@ -31,17 +31,17 @@ BYTES_PER_BLOCK: int = 16
 
 
 class LoggerMixin:
-    
+
     @property
     def logger(self) -> logging.Logger:
-        if not hasattr(self, '_logger'):
+        if not hasattr(self, "_logger"):
             self._logger = logging.getLogger(self.__class__.__name__)
         return self._logger
 
 
 @dataclass
 class Config:
-    
+
     PM3_SEARCH_PATHS: ClassVar[List[str]] = [
         "/opt/proxmark3/pm3",
         "/usr/local/bin/pm3",
@@ -50,53 +50,50 @@ class Config:
         "C:/Program Files/proxmark3/pm3.exe",
         os.path.expanduser("~/proxmark3/pm3"),
     ]
-    
+
     pm3_path: Optional[Path] = None
     dump_base_dir: Path = field(default_factory=lambda: Path.cwd())
-    
+
     def __post_init__(self):
         if self.pm3_path is None:
             self.pm3_path = self._find_proxmark3()
-        
+
         env_pm3 = os.environ.get("PM3_PATH")
         if env_pm3:
             self.pm3_path = Path(env_pm3)
-        
+
         env_dump = os.environ.get("DUMP_BASE_DIR")
         if env_dump:
             self.dump_base_dir = Path(env_dump)
-        
+
         self._normalize_paths()
-    
+
     def _find_proxmark3(self) -> Path:
         """Cross-platform search for proxmark3 binary."""
         system = platform.system()
-        
+
         for path_str in self.PM3_SEARCH_PATHS:
             path = Path(path_str).expanduser()
-            
+
             if system == "Windows":
-                if not str(path).endswith('.exe'):
-                    path = path.with_suffix('.exe')
-            
+                if not str(path).endswith(".exe"):
+                    path = path.with_suffix(".exe")
+
             if path.is_file() and os.access(path, os.X_OK):
                 return path
-        
-        raise RuntimeError(
-            f"proxmark3 not found. Searched: {', '.join(self.PM3_SEARCH_PATHS)}\n"
-            f"Set PM3_PATH environment variable or install proxmark3."
-        )
-    
+
+        raise RuntimeError(f"proxmark3 not found. Searched: {', '.join(self.PM3_SEARCH_PATHS)}\n" f"Set PM3_PATH environment variable or install proxmark3.")
+
     def _normalize_paths(self):
         """Normalize paths for cross-platform compatibility."""
         self.pm3_path = self.pm3_path.resolve()
         self.dump_base_dir = self.dump_base_dir.resolve()
-    
+
     def validate(self):
         """Validate configuration."""
         if not self.pm3_path.is_file():
             raise RuntimeError(f"proxmark3 not found: {self.pm3_path}")
-        
+
         if not os.access(self.pm3_path, os.X_OK):
             raise RuntimeError(f"proxmark3 not executable: {self.pm3_path}")
 
@@ -104,366 +101,332 @@ class Config:
 @dataclass(frozen=True)
 class TagInfo:
     """Immutable tag information with computed properties."""
-    
+
     uid: str
     filament_type: str
     detailed_filament_type: str
     color_hex: str
-    
+
     @property
     def color_name(self) -> str:
         return ColorConverter.hex_to_name(self.color_hex)
-    
+
     @property
     def detailed_type(self) -> str:
         return self.detailed_filament_type or self.filament_type
-    
+
     def get_path(self, base_dir: Path) -> Path:
         """Generate cross-platform path for tag storage."""
         path = base_dir / self.filament_type / self.detailed_type / self.color_name / self.uid
         return path.resolve()
-    
+
     def __str__(self) -> str:
-        return (
-            f"UID: {self.uid}\n"
-            f"Type: {self.filament_type} / {self.detailed_type}\n"
-            f"Color: {self.color_name} (#{self.color_hex})"
-        )
+        return f"UID: {self.uid}\n" f"Type: {self.filament_type} / {self.detailed_type}\n" f"Color: {self.color_name} (#{self.color_hex})"
 
 
 @dataclass
 class TagFiles:
     """Container for tag file pairs with validation."""
-    
+
     dump_file: Path
     key_file: Path
     tag_id: str
-    
+
     @classmethod
-    def from_directory(cls, directory: Path) -> 'TagFiles':
+    def from_directory(cls, directory: Path) -> "TagFiles":
         """Factory method to discover tag files in directory."""
         if not directory.is_dir():
             raise NotADirectoryError(f"not a directory: {directory}")
-        
-        dump_files = list(directory.glob('hf-mf-*-dump.bin'))
-        
+
+        dump_files = list(directory.glob("hf-mf-*-dump.bin"))
+
         if not dump_files:
             raise FileNotFoundError(f"no dump file found in: {directory}")
-        
+
         dump_file = dump_files[0]
-        tag_id = dump_file.stem.split('-')[2]
-        
-        key_candidates = list(directory.glob(f'hf-mf-{tag_id}-key*.bin'))
+        tag_id = dump_file.stem.split("-")[2]
+
+        key_candidates = list(directory.glob(f"hf-mf-{tag_id}-key*.bin"))
         if not key_candidates:
             raise FileNotFoundError(f"matching key file not found for tag {tag_id}")
-        
+
         return cls(dump_file=dump_file, key_file=key_candidates[0], tag_id=tag_id)
 
 
 class ColorConverter:
     """Static color conversion utilities."""
-    
+
     @staticmethod
     def hex_to_name(hex_color: str) -> str:
         """Convert hex color to nearest CSS3 color name."""
         hex_color = hex_color[:6] if len(hex_color) == 8 else hex_color
-        
+
         try:
-            return webcolors.hex_to_name(f'#{hex_color}').capitalize()
+            return webcolors.hex_to_name(f"#{hex_color}").capitalize()
         except ValueError:
-            rgb = tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
-            closest = min(
-                webcolors.CSS3_HEX_TO_NAMES.items(),
-                key=lambda item: sum((a - b) ** 2 for a, b in zip(rgb, webcolors.hex_to_rgb(item[0])))
-            )
+            rgb = tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
+            closest = min(webcolors.CSS3_HEX_TO_NAMES.items(), key=lambda item: sum((a - b) ** 2 for a, b in zip(rgb, webcolors.hex_to_rgb(item[0]))))
             return closest[1].capitalize()
 
 
 class TagParser:
     """Parser for Bambulab RFID tag binary data."""
-    
+
     @staticmethod
     def bytes_to_string(data: bytes) -> str:
         """Convert bytes to ASCII string, removing nulls."""
-        return data.decode('ascii', errors='ignore').replace('\x00', ' ').strip()
-    
+        return data.decode("ascii", errors="ignore").replace("\x00", " ").strip()
+
     @staticmethod
     def bytes_to_hex(data: bytes) -> str:
         """Convert bytes to uppercase hex string."""
         return data.hex().upper()
-    
+
     @classmethod
     def parse(cls, data: bytes) -> TagInfo:
         """Parse binary tag data into TagInfo object."""
-        blocks = [data[i:i+BYTES_PER_BLOCK] for i in range(0, len(data), BYTES_PER_BLOCK)]
-        
+        blocks = [data[i : i + BYTES_PER_BLOCK] for i in range(0, len(data), BYTES_PER_BLOCK)]
+
         if len(blocks) < 6:
             raise ValueError(f"insufficient data blocks: {len(blocks)}")
-        
-        return TagInfo(
-            uid=cls.bytes_to_hex(blocks[0][0:4]),
-            filament_type=cls.bytes_to_string(blocks[2]),
-            detailed_filament_type=cls.bytes_to_string(blocks[4]),
-            color_hex=cls.bytes_to_hex(blocks[5][0:4])
-        )
+
+        return TagInfo(uid=cls.bytes_to_hex(blocks[0][0:4]), filament_type=cls.bytes_to_string(blocks[2]), detailed_filament_type=cls.bytes_to_string(blocks[4]), color_hex=cls.bytes_to_hex(blocks[5][0:4]))
 
 
 class Proxmark3(LoggerMixin):
     """Proxmark3 hardware interface with cross-platform support."""
-    
+
     def __init__(self, config: Config):
         self.config = config
-    
+
     def _path_for_pm3(self, path: Path) -> str:
         """Convert Path to string suitable for proxmark3 command line.
-        
+
         Proxmark3 handles forward slashes on all platforms, so we use as_posix()
         which provides a consistent forward-slash path string representation.
         """
         return path.as_posix()
-    
+
     def _run(self, cmd: str, capture: bool = False) -> subprocess.CompletedProcess:
         """Execute proxmark3 command with proper quoting for cross-platform."""
         full_cmd = [str(self.config.pm3_path), "-c", cmd]
         self.logger.debug(f"Executing: {' '.join(repr(c) for c in full_cmd)}")
-        
+
         try:
-            return subprocess.run(
-                full_cmd,
-                capture_output=True,
-                text=True,
-                timeout=30,
-                shell=False
-            ) if capture else subprocess.run(
-                full_cmd, 
-                stderr=subprocess.STDOUT, 
-                timeout=30, 
-                shell=False
-            )
+            return subprocess.run(full_cmd, capture_output=True, text=True, timeout=30, shell=False) if capture else subprocess.run(full_cmd, stderr=subprocess.STDOUT, timeout=30, shell=False)
         except subprocess.TimeoutExpired:
             raise RuntimeError("proxmark3 command timed out")
-    
+
     def check_tag(self) -> Optional[str]:
         """Check for tag presence and return full UID."""
         self.logger.info("Checking for tag presence...")
         result = self._run("hf mf info", capture=True)
         output = result.stdout + result.stderr
-        
+
         self.logger.debug(f"hf mf info output:\n{output}")
-        
+
         if result.returncode != 0:
             raise RuntimeError("failed to read tag - check tag position")
-        
+
         # Extract full UID from the output - it's shown in hex format
         uid = None
-        for line in output.split('\n'):
-            if 'UID' in line or 'uid' in line.lower():
+        for line in output.split("\n"):
+            if "UID" in line or "uid" in line.lower():
                 # Look for hex pattern after UID label
                 parts = line.split()
                 for i, part in enumerate(parts):
-                    if part.upper() in ['UID', 'UID:']:
+                    if part.upper() in ["UID", "UID:"]:
                         # Collect hex bytes after the label
                         hex_bytes = []
                         for j in range(i + 1, len(parts)):
                             # Check if it looks like a hex byte (2 chars, hexadecimal)
-                            if len(parts[j]) == 2 and all(c in '0123456789ABCDEFabcdef' for c in parts[j]):
+                            if len(parts[j]) == 2 and all(c in "0123456789ABCDEFabcdef" for c in parts[j]):
                                 hex_bytes.append(parts[j])
                             else:
                                 break
                         if hex_bytes:
-                            uid = ''.join(hex_bytes).upper()
+                            uid = "".join(hex_bytes).upper()
                             break
                 if uid:
                     break
-        
+
         self.logger.info(f"Tag detected with UID: {uid}")
         return uid
-    
+
     def get_tag_type(self) -> str:
         """Identify magic tag type (FUID vs UFUID)."""
         self.logger.info("Identifying tag type...")
         result = self._run("hf mf info", capture=True)
         output = result.stdout + result.stderr
-        
+
         self.logger.debug(f"hf mf info output:\n{output}")
-        
-        if 'iso14443a card select failed' in output.lower():
+
+        if "iso14443a card select failed" in output.lower():
             raise RuntimeError("Tag not found or is wrong type")
-        
+
         # Look for Magic Tag Information section
         magic_section_found = False
         capabilities = []
-        
-        for line in output.split('\n'):
-            if '--- Magic Tag Information' in line:
+
+        for line in output.split("\n"):
+            if "--- Magic Tag Information" in line:
                 magic_section_found = True
                 continue
-            
+
             if magic_section_found:
-                if line.startswith('[=] ---'):
+                if line.startswith("[=] ---"):
                     break
-                
-                if '[=] <n/a>' in line:
+
+                if "[=] <n/a>" in line:
                     raise RuntimeError("Tag is not a compatible magic type, or has already been locked")
-                
-                if 'Magic capabilities' in line:
+
+                if "Magic capabilities" in line:
                     capabilities.append(line)
-        
+
         if not magic_section_found:
             raise RuntimeError("Could not obtain magic tag information")
-        
+
         if not capabilities:
             raise RuntimeError("Tag is not a compatible magic type (must be Gen 4 FUID or UFUID)")
-        
+
         # Determine tag type based on capabilities
-        caps_str = '\n'.join(capabilities)
-        
-        if 'Gen 4 GDM / USCUID ( ZUID Gen1 Magic Wakeup )' in caps_str:
+        caps_str = "\n".join(capabilities)
+
+        if "Gen 4 GDM / USCUID ( ZUID Gen1 Magic Wakeup )" in caps_str:
             self.logger.info("Detected: Gen 4 UFUID")
             return "UFUID"
-        elif 'Gen 4 GDM / USCUID ( Gen4 Magic Wakeup )' in caps_str:
+        elif "Gen 4 GDM / USCUID ( Gen4 Magic Wakeup )" in caps_str:
             self.logger.info("Detected: Gen 4 FUID")
             return "FUID"
-        elif 'Write Once / FUID' in caps_str:
+        elif "Write Once / FUID" in caps_str:
             self.logger.info("Write Once / FUID capability detected, falling back to Gen 2 FUID")
             return "FUID"
-        
+
         raise RuntimeError("Tag is not a compatible type (must be Gen 4 FUID or UFUID)")
-    
+
     def read_keys(self, tmp_dir: Path) -> str:
         """Read Bambulab keys from tag."""
         self.logger.info("Reading Bambulab keys from tag...")
         result = self._run("hf mf bambukeys -r -d", capture=True)
         output = result.stdout + result.stderr
-        
+
         self.logger.debug(f"hf mf bambukeys output:\n{output}")
-        
+
         if result.returncode != 0:
             raise RuntimeError("failed to read tag keys")
-        
-        key_file_path = next(
-            (line[line.find('`')+1:line.rfind('`')] 
-             for line in output.split('\n') 
-             if 'Saved' in line and 'binary file' in line and '`' in line),
-            None
-        )
-        
+
+        key_file_path = next((line[line.find("`") + 1 : line.rfind("`")] for line in output.split("\n") if "Saved" in line and "binary file" in line and "`" in line), None)
+
         if not key_file_path:
             raise RuntimeError("no key file in output")
-        
+
         key_file = Path(key_file_path)
         if not key_file.exists():
             raise RuntimeError(f"key file not found: {key_file}")
-        
+
         dest = tmp_dir / key_file.name
         shutil.move(str(key_file), str(dest))
         self.logger.info(f"Keys saved to: {dest.name}")
         return key_file.name
-    
+
     def dump_tag(self, key_file: str, tmp_dir: Path) -> str:
         """Dump tag contents using extracted keys."""
-        uid = key_file[key_file.find('hf-mf-')+6:key_file.find('-key')]
+        uid = key_file[key_file.find("hf-mf-") + 6 : key_file.find("-key")]
         if not uid:
             raise RuntimeError(f"cannot extract UID from key file: {key_file}")
-        
+
         dump_file = f"hf-mf-{uid}-dump.bin"
         key_path = (tmp_dir / key_file).resolve()
         dump_path = (tmp_dir / dump_file).resolve()
-        
+
         self.logger.info(f"Dumping tag contents for UID: {uid}")
-        
+
         cmd = f'hf mf dump -k "{self._path_for_pm3(key_path)}" -f "{self._path_for_pm3(dump_path)}"'
         result = self._run(cmd, capture=True)
-        
+
         self.logger.debug(f"hf mf dump output:\n{result.stdout + result.stderr}")
-        
+
         if result.returncode != 0 or not dump_path.exists():
             raise RuntimeError("dump failed")
-        
+
         self.logger.info(f"Dump saved to: {dump_file}")
         return dump_file
-    
+
     def write_tag(self, tag_files: TagFiles, tag_type: str) -> bool:
         """Write tag data to FUID/UFUID clone tag."""
         self.logger.info(f"Writing tag data for UID: {tag_files.tag_id} (type: {tag_type})")
-        
+
         dump_path = tag_files.dump_file.resolve()
         key_path = tag_files.key_file.resolve()
-        
+
         if tag_type == "FUID":
             cmd = f'hf mf restore --force -f "{self._path_for_pm3(dump_path)}" -k "{self._path_for_pm3(key_path)}"'
             result = self._run(cmd, capture=True)
-            
+
         elif tag_type == "UFUID":
             self.logger.info("Using UFUID write sequence (cload + seal)")
-            cmd = (
-                f'hf mf cload -f "{self._path_for_pm3(dump_path)}"; '
-                f'hf 14a raw -a -k -b 7 40; '
-                f'hf 14a raw -k 43; '
-                f'hf 14a raw -k -c e100; '
-                f'hf 14a raw -c 85000000000000000000000000000008'
-            )
+            cmd = f'hf mf cload -f "{self._path_for_pm3(dump_path)}"; ' f"hf 14a raw -a -k -b 7 40; " f"hf 14a raw -k 43; " f"hf 14a raw -k -c e100; " f"hf 14a raw -c 85000000000000000000000000000008"
             result = self._run(cmd, capture=True)
-            
+
         else:
             raise RuntimeError(f"unsupported tag type: {tag_type}")
-        
+
         self.logger.debug(f"write output:\n{result.stdout + result.stderr}")
-        
+
         if result.returncode != 0:
             raise RuntimeError("write failed")
-        
+
         self.logger.info("Write operation completed")
         return True
 
 
 class BaseOperation(ABC, LoggerMixin):
     """Abstract base class for RFID operations."""
-    
+
     def __init__(self, config: Config):
         self.config = config
         self.pm3 = Proxmark3(config)
-    
+
     @abstractmethod
     def run(self, *args, **kwargs):
         """Execute the operation."""
         pass
 
 
-class RFIDIdentifier(BaseOperation):
+class RFIDTyper(BaseOperation):
     """RFID tag identification operation - check tag type without writing."""
-    
+
     def run(self):
         """Execute identification - just show tag type."""
         input("Place tag on antenna, press Enter...")
-        
+
         uid = self.pm3.check_tag()
         tag_type = self.pm3.get_tag_type()
-        
+
         self.logger.info("Tag Identification:")
         self.logger.info(f"  UID: {uid}")
-        self.logger.info(f"  Type: Gen 4 {tag_type}")
+        self.logger.info(f"  Type: {tag_type}")
 
 
 class RFIDReader(BaseOperation):
     """RFID tag reading operation without saving files."""
-    
+
     def run(self):
         """Execute read operation - just display tag info."""
         input("Place tag on antenna, press Enter...")
-        
+
         uid = self.pm3.check_tag()
-        
+
         self.logger.info("Reading tag data...")
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_dir = Path(tmpdir).resolve()
-            
+
             key_file = self.pm3.read_keys(tmp_dir)
             dump_file = self.pm3.dump_tag(key_file, tmp_dir)
-            
-            with open(tmp_dir / dump_file, 'rb') as f:
+
+            with open(tmp_dir / dump_file, "rb") as f:
                 tag_info = TagParser.parse(f.read())
-            
+
             self.logger.info("Tag Information:")
             self.logger.info(f"  UID: {tag_info.uid}")
             self.logger.info(f"  Type: {tag_info.filament_type} / {tag_info.detailed_type}")
@@ -472,46 +435,46 @@ class RFIDReader(BaseOperation):
 
 class RFIDVerifier(BaseOperation):
     """RFID tag verification operation."""
-    
+
     def run(self, directory: Path):
         """Execute verification - compare physical tag to stored data."""
         tag_files = TagFiles.from_directory(directory)
-        
-        with open(tag_files.dump_file, 'rb') as f:
+
+        with open(tag_files.dump_file, "rb") as f:
             expected_info = TagParser.parse(f.read())
-        
+
         self.logger.info("Expected tag data (from file):")
         self.logger.info(f"  UID: {expected_info.uid}")
         self.logger.info(f"  Type: {expected_info.filament_type} / {expected_info.detailed_type}")
         self.logger.info(f"  Color: {expected_info.color_name} (#{expected_info.color_hex})")
-        
+
         input("\nPlace tag on antenna, press Enter...")
-        
+
         self.logger.info("Reading physical tag...")
         physical_uid = self.pm3.check_tag()
-        
+
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_dir = Path(tmpdir).resolve()
-            
+
             try:
                 key_file = self.pm3.read_keys(tmp_dir)
                 dump_file = self.pm3.dump_tag(key_file, tmp_dir)
-                
-                with open(tmp_dir / dump_file, 'rb') as f:
+
+                with open(tmp_dir / dump_file, "rb") as f:
                     physical_info = TagParser.parse(f.read())
-                
+
                 self.logger.info("Physical tag data (from reader):")
                 self.logger.info(f"  UID: {physical_info.uid}")
                 self.logger.info(f"  Type: {physical_info.filament_type} / {physical_info.detailed_type}")
                 self.logger.info(f"  Color: {physical_info.color_name} (#{physical_info.color_hex})")
-                
+
                 checks = [
                     ("UID", expected_info.uid, physical_info.uid),
                     ("Filament Type", expected_info.filament_type, physical_info.filament_type),
                     ("Detailed Type", expected_info.detailed_filament_type, physical_info.detailed_filament_type),
                     ("Color Hex", expected_info.color_hex, physical_info.color_hex),
                 ]
-                
+
                 self.logger.info("Verification results:")
                 all_match = True
                 for field, expected, actual in checks:
@@ -519,12 +482,12 @@ class RFIDVerifier(BaseOperation):
                     all_match = all_match and match
                     status = "MATCH" if match else "MISMATCH"
                     self.logger.info(f"  {field}: {status} (expected: {expected}, actual: {actual})")
-                
+
                 if all_match:
                     self.logger.info("Verification PASSED - all fields match")
                 else:
                     self.logger.warning("Verification FAILED - mismatch detected")
-                
+
             except Exception as e:
                 self.logger.error(f"Failed to read physical tag: {e}")
                 raise
@@ -532,7 +495,7 @@ class RFIDVerifier(BaseOperation):
 
 class RFIDDumper(BaseOperation):
     """RFID tag dumping operation."""
-    
+
     def _confirm_write(self, tag_info: TagInfo, target_dir: Path) -> bool:
         """Prompt user for confirmation before writing files."""
         self.logger.info("Tag parsed successfully")
@@ -540,29 +503,29 @@ class RFIDDumper(BaseOperation):
         self.logger.info(f"  Type: {tag_info.filament_type} / {tag_info.detailed_type}")
         self.logger.info(f"  Color: {tag_info.color_name} (#{tag_info.color_hex})")
         self.logger.info(f"Target directory: {target_dir}")
-        
+
         response = input("\nWrite files to this location? [Y/n]: ")
-        return response.lower() not in ('n', 'no')
-    
+        return response.lower() not in ("n", "no")
+
     def _organize_files(self, dump_file: str, tmp_dir: Path) -> Path:
         """Parse tag and organize files into directory structure."""
-        with open(tmp_dir / dump_file, 'rb') as f:
+        with open(tmp_dir / dump_file, "rb") as f:
             tag_info = TagParser.parse(f.read())
-        
+
         target_dir = tag_info.get_path(self.config.dump_base_dir)
-        
+
         if not self._confirm_write(tag_info, target_dir):
             raise RuntimeError("aborted by user")
-        
+
         target_dir.mkdir(parents=True, exist_ok=True)
-        
+
         for item in tmp_dir.iterdir():
             dest = target_dir / item.name
             shutil.move(str(item), str(dest))
             self.logger.debug(f"Moved: {item.name} -> {dest}")
-        
+
         return target_dir
-    
+
     @contextmanager
     def _temp_directory(self):
         """Context manager for temporary directory."""
@@ -570,17 +533,17 @@ class RFIDDumper(BaseOperation):
             tmp_path = Path(tmpdir).resolve()
             self.logger.debug(f"Created temporary directory: {tmp_path}")
             yield tmp_path
-    
+
     def run(self):
         """Execute dump operation."""
         with self._temp_directory() as tmp_dir:
             input("Place tag on antenna, press Enter...")
-            
+
             self.pm3.check_tag()
             key_file = self.pm3.read_keys(tmp_dir)
             dump_file = self.pm3.dump_tag(key_file, tmp_dir)
             target_dir = self._organize_files(dump_file, tmp_dir)
-            
+
             self.logger.info(f"Successfully saved to: {target_dir}")
             for item in sorted(target_dir.iterdir()):
                 self.logger.info(f"  {item.name} ({item.stat().st_size} bytes)")
@@ -588,7 +551,7 @@ class RFIDDumper(BaseOperation):
 
 class RFIDWriter(BaseOperation):
     """RFID tag writing/cloning operation."""
-    
+
     def _display_tag_info(self, tag_info: TagInfo, tag_files: TagFiles):
         """Display tag information before writing."""
         self.logger.info("Tag information:")
@@ -599,17 +562,17 @@ class RFIDWriter(BaseOperation):
         self.logger.info(f"  Dump: {tag_files.dump_file}")
         self.logger.info(f"  Keys: {tag_files.key_file}")
         self.logger.info(f"  Tag ID: {tag_files.tag_id}")
-    
+
     def _confirm_write(self) -> bool:
         """Prompt user for confirmation before writing to tag."""
         response = input("\nWrite to tag? [y/N]: ")
-        return response.lower() in ('y', 'yes')
-    
+        return response.lower() in ("y", "yes")
+
     def _verify_write(self, expected_uid: str):
         """Verify UID was written correctly."""
         self.logger.info("Verifying UID write...")
         written_uid = self.pm3.check_tag()
-        
+
         if written_uid:
             if written_uid == expected_uid:
                 self.logger.info(f"Success! UID {expected_uid} is now locked in.")
@@ -617,85 +580,87 @@ class RFIDWriter(BaseOperation):
                 self.logger.warning(f"UID mismatch. Expected {expected_uid}, got {written_uid}")
         else:
             self.logger.warning("Could not extract UID from verification read")
-    
+
     def run(self, directory: Path):
         """Execute write/clone operation."""
         tag_files = TagFiles.from_directory(directory)
-        
-        with open(tag_files.dump_file, 'rb') as f:
+
+        with open(tag_files.dump_file, "rb") as f:
             tag_info = TagParser.parse(f.read())
-        
+
         self._display_tag_info(tag_info, tag_files)
-        
+
         self.logger.info("Checking for blank tag...")
         self.pm3.check_tag()
-        
+
         # Identify tag type before writing
         tag_type = self.pm3.get_tag_type()
-        
+
         if not self._confirm_write():
             raise RuntimeError("aborted by user")
-        
+
         self.logger.info(f"Writing to tag ({tag_type} mode)...")
         self.pm3.write_tag(tag_files, tag_type)
-        
+
         self._verify_write(tag_info.uid)
 
 
 class CLIApplication(LoggerMixin):
     """Main CLI application orchestrator."""
-    
+
     MODES = {
-        'dump': ('Read and dump RFID tag to organized directory structure', RFIDDumper),
-        'read': ('Read and display RFID tag information without saving', RFIDReader),
-        'id': ('Identify blank magic tag type (FUID vs UFUID)', RFIDIdentifier),
-        'write': ('Write/clone tag data from directory to FUID tag', RFIDWriter),
-        'clone': ('Alias for write mode', RFIDWriter),
-        'verify': ('Verify physical tag matches stored tag data', RFIDVerifier),
+        "read": ("Read and display RFID tag information without saving", RFIDReader),
+        "dump": ("Read and dump RFID tag to organized directory structure", RFIDDumper),
+
+        "type": ("Identify blank magic tag type (FUID vs UFUID)", RFIDTyper),
+        "write": ("Write/clone tag data from directory to FUID tag", RFIDWriter),
+        "clone": ("Alias for write mode", RFIDWriter),
+        
+        "verify": ("Verify physical tag matches stored tag data", RFIDVerifier),
     }
-    
+
     def __init__(self):
         self._setup_logging()
-    
+
     def _show_disclaimer(self):
         """Display brief warning disclaimer."""
-        print("\n⚠️  WARNING: Experimental software. No liability for damages. Use at own risk.")
+        print("\n⚠️ WARNING: Experimental software. No liability for damages. Use at own risk.")
         response = input("Accept? [y/N]: ")
-        if response.lower() not in ('y', 'yes'):
+        if response.lower() not in ("y", "yes"):
             print("Aborted.")
             sys.exit(0)
         print()
-    
+
     def _setup_logging(self):
         """Configure logging based on environment."""
-        level = logging.DEBUG if os.environ.get('DEBUG') or os.environ.get('VERBOSE') else logging.INFO
-        
+        level = logging.DEBUG if os.environ.get("DEBUG") or os.environ.get("VERBOSE") else logging.INFO
+
         class CustomFormatter(logging.Formatter):
             """Custom formatter with status symbols."""
-            
+
             FORMATS = {
-                logging.DEBUG: '[d]',
-                logging.INFO: '[i]',
-                logging.WARNING: '[!]',
-                logging.ERROR: '[x]',
-                logging.CRITICAL: '[X]',
+                logging.DEBUG: "[d]",
+                logging.INFO: "[i]",
+                logging.WARNING: "[!]",
+                logging.ERROR: "[x]",
+                logging.CRITICAL: "[X]",
             }
-            
+
             def format(self, record):
-                status = self.FORMATS.get(record.levelno, '[?]')
-                date_str = self.formatTime(record, '%Y-%b-%d')
+                status = self.FORMATS.get(record.levelno, "[?]")
+                date_str = self.formatTime(record, "%Y-%b-%d")
                 return f"{status}[{date_str}][{record.name}]: {record.getMessage()}"
-        
+
         handler = logging.StreamHandler()
         handler.setFormatter(CustomFormatter())
-        
+
         logging.root.handlers = []
         logging.root.addHandler(handler)
         logging.root.setLevel(level)
-    
+
     def _print_usage(self):
         """Print usage information."""
-        print("Usage: python3 bambu_rfid.py <mode> [arguments] [options]")
+        print("Usage: python3 bambulab-tag_helper.py <mode> [arguments] [options]")
         print("\nModes:")
         for mode, (description, _) in self.MODES.items():
             print(f"  {mode:10s} {description}")
@@ -703,11 +668,11 @@ class CLIApplication(LoggerMixin):
         print("  --accept-eula    Skip EULA prompt")
         print("  --verbose, -v    Enable verbose debug logging")
         print("\nExamples:")
-        print("  python3 bambu_rfid.py id")
-        print("  python3 bambu_rfid.py read")
-        print("  python3 bambu_rfid.py dump --accept-eula --verbose")
-        print('  python3 bambu_rfid.py write "/path/to/PETG/PETG HF/White/E3D1DC36"')
-        print('  python3 bambu_rfid.py verify "/path/to/tag" --accept-eula -v')
+        print("  python3 bambulab-tag_helper.py id")
+        print("  python3 bambulab-tag_helper.py read")
+        print("  python3 bambulab-tag_helper.py dump --accept-eula --verbose")
+        print('  python3 bambulab-tag_helper.py write "/path/to/PETG/PETG HF/White/E3D1DC36"')
+        print('  python3 bambulab-tag_helper.py verify "/path/to/tag" --accept-eula -v')
         print("\nEnvironment Variables:")
         print("  PM3_PATH          Path to proxmark3 binary")
         print("  DUMP_BASE_DIR     Base directory for tag storage (default: current directory)")
@@ -716,52 +681,52 @@ class CLIApplication(LoggerMixin):
         print("  Linux:   export PM3_PATH=/opt/proxmark3/pm3")
         print("  macOS:   export PM3_PATH=/usr/local/bin/pm3")
         print("  Windows: set PM3_PATH=C:\\opt\\proxmark3\\pm3.exe")
-        print("           or: $env:PM3_PATH=\"C:\\Program Files\\proxmark3\\pm3.exe\"")
+        print('           or: $env:PM3_PATH="C:\\Program Files\\proxmark3\\pm3.exe"')
         print("\nNote: Paths with spaces must be quoted on all platforms.")
-    
+
     def run(self, args: List[str]):
         """Execute application with given arguments."""
-        accept_eula = '--accept-eula' in args
-        verbose = '--verbose' in args or '-v' in args
-        
-        args = [arg for arg in args if arg not in ('--accept-eula', '--verbose', '-v')]
-        
+        accept_eula = "--accept-eula" in args
+        verbose = "--verbose" in args or "-v" in args
+
+        args = [arg for arg in args if arg not in ("--accept-eula", "--verbose", "-v")]
+
         if verbose:
-            os.environ['VERBOSE'] = '1'
+            os.environ["VERBOSE"] = "1"
             logging.getLogger().setLevel(logging.DEBUG)
-        
+
         if len(args) < 1:
             self._print_usage()
             sys.exit(1)
-        
+
         mode = args[0].lower()
-        
+
         if mode not in self.MODES:
             self.logger.error(f"Unknown mode: {mode}")
             self._print_usage()
             sys.exit(1)
-        
+
         if not accept_eula:
             self._show_disclaimer()
-        
+
         try:
             config = Config()
             config.validate()
-            
+
             _, operation_class = self.MODES[mode]
             operation = operation_class(config)
-            
-            if mode in ('write', 'clone', 'verify'):
+
+            if mode in ("write", "clone", "verify"):
                 if len(args) != 2:
                     raise RuntimeError(f"{mode} mode requires directory path")
-                
+
                 directory = Path(args[1]).resolve()
                 operation.run(directory)
-            elif mode == 'id':
+            elif mode == "id":
                 operation.run()
             else:
                 operation.run()
-                
+
         except (RuntimeError, FileNotFoundError, NotADirectoryError, KeyboardInterrupt) as e:
             self.logger.error(str(e))
             sys.exit(1)
