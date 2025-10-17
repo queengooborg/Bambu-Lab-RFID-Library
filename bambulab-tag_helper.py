@@ -5,7 +5,7 @@ Bambulab RFID Tag Reader/Writer Tool
 
 WARNING: This is experimental software. Authors and distributors are NOT liable
 for any damages, data loss, or hardware issues. Use at your own risk.
-See full readme: https://github.com/queengooborg/Bambu-Lab-RFID-Library/blob/main/README.md
+See full readme: https://github.com/queengooborg/Bambu-Lab-RFID-Library/README.md
 """
 
 import os
@@ -31,7 +31,6 @@ BYTES_PER_BLOCK: int = 16
 
 
 class LoggerMixin:
-    """Mixin to provide logging capabilities to any class."""
     
     @property
     def logger(self) -> logging.Logger:
@@ -42,7 +41,6 @@ class LoggerMixin:
 
 @dataclass
 class Config:
-    """Configuration with cross-platform path resolution."""
     
     PM3_SEARCH_PATHS: ClassVar[List[str]] = [
         "/opt/proxmark3/pm3",
@@ -251,6 +249,8 @@ class Proxmark3(LoggerMixin):
         result = self._run("hf mf info", capture=True)
         output = result.stdout + result.stderr
         
+        self.logger.debug(f"hf mf info output:\n{output}")
+        
         if result.returncode != 0:
             raise RuntimeError("failed to read tag - check tag position")
         
@@ -279,11 +279,64 @@ class Proxmark3(LoggerMixin):
         self.logger.info(f"Tag detected with UID: {uid}")
         return uid
     
+    def get_tag_type(self) -> str:
+        """Identify magic tag type (FUID vs UFUID)."""
+        self.logger.info("Identifying tag type...")
+        result = self._run("hf mf info", capture=True)
+        output = result.stdout + result.stderr
+        
+        self.logger.debug(f"hf mf info output:\n{output}")
+        
+        if 'iso14443a card select failed' in output.lower():
+            raise RuntimeError("Tag not found or is wrong type")
+        
+        # Look for Magic Tag Information section
+        magic_section_found = False
+        capabilities = []
+        
+        for line in output.split('\n'):
+            if '--- Magic Tag Information' in line:
+                magic_section_found = True
+                continue
+            
+            if magic_section_found:
+                if line.startswith('[=] ---'):
+                    break
+                
+                if '[=] <n/a>' in line:
+                    raise RuntimeError("Tag is not a compatible magic type, or has already been locked")
+                
+                if 'Magic capabilities' in line:
+                    capabilities.append(line)
+        
+        if not magic_section_found:
+            raise RuntimeError("Could not obtain magic tag information")
+        
+        if not capabilities:
+            raise RuntimeError("Tag is not a compatible magic type (must be Gen 4 FUID or UFUID)")
+        
+        # Determine tag type based on capabilities
+        caps_str = '\n'.join(capabilities)
+        
+        if 'Gen 4 GDM / USCUID ( ZUID Gen1 Magic Wakeup )' in caps_str:
+            self.logger.info("Detected: Gen 4 UFUID")
+            return "UFUID"
+        elif 'Gen 4 GDM / USCUID ( Gen4 Magic Wakeup )' in caps_str:
+            self.logger.info("Detected: Gen 4 FUID")
+            return "FUID"
+        elif 'Write Once / FUID' in caps_str:
+            self.logger.info("Write Once / FUID capability detected, falling back to Gen 2 FUID")
+            return "FUID"
+        
+        raise RuntimeError("Tag is not a compatible type (must be Gen 4 FUID or UFUID)")
+    
     def read_keys(self, tmp_dir: Path) -> str:
         """Read Bambulab keys from tag."""
         self.logger.info("Reading Bambulab keys from tag...")
         result = self._run("hf mf bambukeys -r -d", capture=True)
         output = result.stdout + result.stderr
+        
+        self.logger.debug(f"hf mf bambukeys output:\n{output}")
         
         if result.returncode != 0:
             raise RuntimeError("failed to read tag keys")
@@ -320,7 +373,9 @@ class Proxmark3(LoggerMixin):
         self.logger.info(f"Dumping tag contents for UID: {uid}")
         
         cmd = f'hf mf dump -k "{self._path_for_pm3(key_path)}" -f "{self._path_for_pm3(dump_path)}"'
-        result = self._run(cmd)
+        result = self._run(cmd, capture=True)
+        
+        self.logger.debug(f"hf mf dump output:\n{result.stdout + result.stderr}")
         
         if result.returncode != 0 or not dump_path.exists():
             raise RuntimeError("dump failed")
@@ -328,15 +383,32 @@ class Proxmark3(LoggerMixin):
         self.logger.info(f"Dump saved to: {dump_file}")
         return dump_file
     
-    def write_tag(self, tag_files: TagFiles) -> bool:
-        """Write tag data to FUID/clone tag."""
-        self.logger.info(f"Writing tag data for UID: {tag_files.tag_id}")
+    def write_tag(self, tag_files: TagFiles, tag_type: str) -> bool:
+        """Write tag data to FUID/UFUID clone tag."""
+        self.logger.info(f"Writing tag data for UID: {tag_files.tag_id} (type: {tag_type})")
         
         dump_path = tag_files.dump_file.resolve()
         key_path = tag_files.key_file.resolve()
         
-        cmd = f'hf mf restore --force -f "{self._path_for_pm3(dump_path)}" -k "{self._path_for_pm3(key_path)}"'
-        result = self._run(cmd)
+        if tag_type == "FUID":
+            cmd = f'hf mf restore --force -f "{self._path_for_pm3(dump_path)}" -k "{self._path_for_pm3(key_path)}"'
+            result = self._run(cmd, capture=True)
+            
+        elif tag_type == "UFUID":
+            self.logger.info("Using UFUID write sequence (cload + seal)")
+            cmd = (
+                f'hf mf cload -f "{self._path_for_pm3(dump_path)}"; '
+                f'hf 14a raw -a -k -b 7 40; '
+                f'hf 14a raw -k 43; '
+                f'hf 14a raw -k -c e100; '
+                f'hf 14a raw -c 85000000000000000000000000000008'
+            )
+            result = self._run(cmd, capture=True)
+            
+        else:
+            raise RuntimeError(f"unsupported tag type: {tag_type}")
+        
+        self.logger.debug(f"write output:\n{result.stdout + result.stderr}")
         
         if result.returncode != 0:
             raise RuntimeError("write failed")
@@ -356,6 +428,21 @@ class BaseOperation(ABC, LoggerMixin):
     def run(self, *args, **kwargs):
         """Execute the operation."""
         pass
+
+
+class RFIDIdentifier(BaseOperation):
+    """RFID tag identification operation - check tag type without writing."""
+    
+    def run(self):
+        """Execute identification - just show tag type."""
+        input("Place tag on antenna, press Enter...")
+        
+        uid = self.pm3.check_tag()
+        tag_type = self.pm3.get_tag_type()
+        
+        self.logger.info("Tag Identification:")
+        self.logger.info(f"  UID: {uid}")
+        self.logger.info(f"  Type: Gen 4 {tag_type}")
 
 
 class RFIDReader(BaseOperation):
@@ -543,11 +630,14 @@ class RFIDWriter(BaseOperation):
         self.logger.info("Checking for blank tag...")
         self.pm3.check_tag()
         
+        # Identify tag type before writing
+        tag_type = self.pm3.get_tag_type()
+        
         if not self._confirm_write():
             raise RuntimeError("aborted by user")
         
-        self.logger.info("Writing to tag (FUID/clone mode)...")
-        self.pm3.write_tag(tag_files)
+        self.logger.info(f"Writing to tag ({tag_type} mode)...")
+        self.pm3.write_tag(tag_files, tag_type)
         
         self._verify_write(tag_info.uid)
 
@@ -558,6 +648,7 @@ class CLIApplication(LoggerMixin):
     MODES = {
         'dump': ('Read and dump RFID tag to organized directory structure', RFIDDumper),
         'read': ('Read and display RFID tag information without saving', RFIDReader),
+        'id': ('Identify blank magic tag type (FUID vs UFUID)', RFIDIdentifier),
         'write': ('Write/clone tag data from directory to FUID tag', RFIDWriter),
         'clone': ('Alias for write mode', RFIDWriter),
         'verify': ('Verify physical tag matches stored tag data', RFIDVerifier),
@@ -609,9 +700,10 @@ class CLIApplication(LoggerMixin):
         for mode, (description, _) in self.MODES.items():
             print(f"  {mode:10s} {description}")
         print("\nOptions:")
-        print("  --accept-eula    Accept EULA prompt")
+        print("  --accept-eula    Skip EULA prompt")
         print("  --verbose, -v    Enable verbose debug logging")
         print("\nExamples:")
+        print("  python3 bambu_rfid.py id")
         print("  python3 bambu_rfid.py read")
         print("  python3 bambu_rfid.py dump --accept-eula --verbose")
         print('  python3 bambu_rfid.py write "/path/to/PETG/PETG HF/White/E3D1DC36"')
@@ -665,6 +757,8 @@ class CLIApplication(LoggerMixin):
                 
                 directory = Path(args[1]).resolve()
                 operation.run(directory)
+            elif mode == 'id':
+                operation.run()
             else:
                 operation.run()
                 
