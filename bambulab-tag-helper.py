@@ -627,11 +627,11 @@ class CLIApplication(LoggerMixin):
         class CustomFormatter(logging.Formatter):
             
             FORMATS = {
-                logging.DEBUG: '[d]',
+                logging.DEBUG: '[?]',
                 logging.INFO: '[i]',
                 logging.WARNING: '[!]',
-                logging.ERROR: '[x]',
-                logging.CRITICAL: '[X]',
+                logging.ERROR: '[e]',
+                logging.CRITICAL: '[c]',
             }
             
             def format(self, record):
