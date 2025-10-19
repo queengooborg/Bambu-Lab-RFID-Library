@@ -181,30 +181,12 @@ class FilesystemScanner(LoggerMixin):
         return "❌"
 
 
-class ReadmeParser(LoggerMixin):
-    """Parses existing README.md to extract status information."""
-    
-    def __init__(self):
-        self.table_row_pattern = re.compile(
-            r'^\|\s+(?P<color>.+?)\s+\|\s+(?P<filament_code>\d{5}|\?)\s+\|\s+(?P<fila_color>[^|]+)\s+\|\s+(?P<variant_id>[^|]+)\s+\|\s+(?P<status>✅|❌|⚠️|⏳)\s+\|',
-            re.MULTILINE
-        )
-    
-    def parse(self, readme_content: str) -> Dict[str, Dict[str, str]]:
-        """Parse README and return mapping of filament_code -> row data."""
-        return {
-            match.group("filament_code"): match.groupdict() 
-            for match in self.table_row_pattern.finditer(readme_content)
-        }
-
-
 class TableGenerator(LoggerMixin):
     """Generates markdown tables from filament data."""
     
     def __init__(self, color_loader: ColorDataLoader, scanner: Optional[FilesystemScanner] = None):
         self.color_loader = color_loader
         self.scanner = scanner
-        self.readme_parser = ReadmeParser()
     
     def generate_table_from_json(self, existing_data: Optional[Dict] = None) -> str:
         """Generate complete markdown output from JSON data."""
