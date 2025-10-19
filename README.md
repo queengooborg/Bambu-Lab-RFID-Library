@@ -14,14 +14,10 @@ The best way to contribute is to provide data for Bambu Lab RFID tags. Not sure 
 
 Tags are stored in the following folder structure: `Material Category` > `Material Name` > `Color Name` > `Tag UID` > `Tag Files`
 
-## List of Bambu Lab Materials + Colors
+## Filament Data
 
-Status Icon Legend:
+See the complete [Bambu Lab Filament DataSheet](./bambulab_filament_datasheet.md) for all filament codes, colors, and variant IDs.
 
-- ✅: Have tag data
-- ❌: No tag scanned
-- ⚠️: See notes
-- ⏳: Tag data is for an older version of material
 
 ### PLA
 
