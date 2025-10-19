@@ -614,7 +614,7 @@ class CLIApplication(LoggerMixin):
         self._setup_logging()
     
     def _show_disclaimer(self):
-        print("\n⚠️  WARNING: Experimental software. No liability for damages. Use at own risk.")
+        print("WARNING: Experimental software. No liability for damages. Use at own risk.")
         response = input("Accept? [y/N]: ")
         if response.lower() not in ('y', 'yes'):
             print("Aborted.")
@@ -647,7 +647,7 @@ class CLIApplication(LoggerMixin):
         logging.root.setLevel(level)
     
     def _print_usage(self):
-        print("Usage: python3 bambu_rfid.py <mode> [arguments] [options]")
+        print("Usage: python3 bambu-tag-helper.py <mode> [arguments] [options]")
         print("\nModes:")
         for mode, (description, _) in self.MODES.items():
             print(f"  {mode:10s} {description}")
@@ -655,11 +655,11 @@ class CLIApplication(LoggerMixin):
         print("  --accept-eula    Skip EULA prompt")
         print("  --verbose, -v    Enable verbose debug logging")
         print("\nExamples:")
-        print("  python3 bambu_rfid.py id")
-        print("  python3 bambu_rfid.py read")
-        print("  python3 bambu_rfid.py dump --accept-eula --verbose")
-        print('  python3 bambu_rfid.py write "/path/to/PETG/PETG HF/White/E3D1DC36"')
-        print('  python3 bambu_rfid.py verify "/path/to/tag" --accept-eula -v')
+        print("  python3 bambu-tag-helper.py id")
+        print("  python3 bambu-tag-helper.py read")
+        print("  python3 bambu-tag-helper.py dump --accept-eula --verbose")
+        print('  python3 bambu-tag-helper.py write "/path/to/PETG/PETG HF/White/E3D1DC36"')
+        print('  python3 bambu-tag-helper.py verify "/path/to/tag" --accept-eula -v')
         print("\nEnvironment Variables:")
         print("  PM3_PATH          Path to proxmark3 binary")
         print("  DUMP_BASE_DIR     Base directory for tag storage (default: current directory)")

@@ -79,7 +79,7 @@ class ColorDataLoader(LoggerMixin):
                         'fila_id': item.get('fila_id', ''),
                         'fila_color_name': item.get('fila_color_name', {}),
                     }
-            
+
             self.logger.info(f"Loaded {len(self.color_data)} filament entries from: {color_file}")
         
         except Exception as e:
@@ -119,6 +119,68 @@ class ColorDataLoader(LoggerMixin):
         return filament_types
 
 
+class FilesystemScanner(LoggerMixin):
+    """Scans filesystem for dumped RFID tags to determine status."""
+    
+    def __init__(self, base_path: Path):
+        self.base_path = base_path
+        self.tag_cache = {}
+        self._scan_tags()
+    
+    def _scan_tags(self):
+        """Scan for hf-mf-*-dump.bin and hf-mf-*-key*.bin pairs."""
+        self.logger.info(f"Scanning for tag dumps in: {self.base_path}")
+        
+        for dump_file in self.base_path.rglob('hf-mf-*-dump.bin'):
+            uid = dump_file.stem.split('-')[2]
+            
+            key_files = list(dump_file.parent.glob(f'hf-mf-{uid}-key*.bin'))
+            
+            if key_files:
+                parts = dump_file.relative_to(self.base_path).parts
+                
+                if len(parts) >= 4:
+                    filament_category = parts[0]
+                    detailed_type = parts[1]
+                    color = parts[2]
+                    
+                    self.tag_cache[uid] = {
+                        'category': filament_category,
+                        'detailed_type': detailed_type,
+                        'color': color,
+                        'path': dump_file.parent,
+                        'has_complete_data': True
+                    }
+                    
+                    self.logger.debug(f"Found tag: {uid} at {dump_file.parent}")
+        
+        self.logger.info(f"Found {len(self.tag_cache)} complete tag dumps")
+    
+    def get_status(self, filament_type: str, color_name: str) -> str:
+        """Determine status icon for a filament type and color."""
+        filament_type_norm = filament_type.replace('/', '-').strip()
+        category = re.split(r'[\s-]+', filament_type_norm)[0] if filament_type_norm else ''
+
+        mapping = {
+            'PVA': 'Support',
+            'PA6': 'PA',
+        }
+
+        ft_upper = filament_type_norm.upper()
+        for k, v in mapping.items():
+            if ft_upper.startswith(k):
+                category = v
+                break
+        
+        for uid, tag_data in self.tag_cache.items():
+            if (tag_data['category'] == category and 
+                tag_data['detailed_type'] == filament_type_norm and
+                tag_data['color'] == color_name):
+                return "✅"
+        
+        return "❌"
+
+
 class ReadmeParser(LoggerMixin):
     """Parses existing README.md to extract status information."""
     
@@ -139,23 +201,17 @@ class ReadmeParser(LoggerMixin):
 class TableGenerator(LoggerMixin):
     """Generates markdown tables from filament data."""
     
-    def __init__(self, color_loader: ColorDataLoader):
+    def __init__(self, color_loader: ColorDataLoader, scanner: Optional[FilesystemScanner] = None):
         self.color_loader = color_loader
+        self.scanner = scanner
         self.readme_parser = ReadmeParser()
     
     def generate_table_from_json(self, existing_data: Optional[Dict] = None) -> str:
         """Generate complete markdown output from JSON data."""
-        output = "## List of Bambu Lab Materials + Colors\n"
-        output += "\n"
-        output += "### Notes: \n"
-        output += "- Some entries do NOT have corresponding RFID tags provided by BambuLabs.\n"
-        output += "\n"
-        output += "### Status Icon Legend:\n"
+        output = "## List of Bambu Lab Materials + Colors\n\n"
+        output += "Status Icon Legend:\n"
         output += "- ✅: Have tag data\n"
-        output += "- ❌: No tag scanned\n"
-        output += "- ⚠️: See notes\n"
-        output += "- ⏳: Tag data is for an older version of material\n"
-        output += "\n"
+        output += "- ❌: No tag scanned\n\n"
         
         filament_types = self.color_loader.get_all_by_type()
         
@@ -172,10 +228,14 @@ class TableGenerator(LoggerMixin):
                 filament_code = item.get('fila_color_code', '?')
                 fila_color = item.get('fila_color', ['?'])[0]
                 variant_id = item.get('fila_id', '?')
-                
-                status = "❌"
-                if existing_data and filament_code in existing_data:
+                filament_type = item.get('fila_type', '')
+
+                if self.scanner:
+                    status = self.scanner.get_status(filament_type, color_name)
+                elif existing_data and filament_code in existing_data:
                     status = existing_data[filament_code].get('status', '❌')
+                else:
+                    status = "❌"
                 
                 table.add_row([color_name, filament_code, fila_color, variant_id, status])
             
@@ -185,16 +245,8 @@ class TableGenerator(LoggerMixin):
         return output
     
     def update_readme(self, readme_path: Path, dry_run: bool = False) -> str:
-        """Update datasheet with new filament data, preserving existing status."""
-        if not readme_path.exists():
-            self.logger.warning(f"Datasheet not found: {readme_path}, creating new output")
-            existing_data = {}
-        else:
-            readme_content = readme_path.read_text(encoding='utf-8')
-            existing_data = self.readme_parser.parse(readme_content)
-            self.logger.info(f"Parsed {len(existing_data)} existing entries from datasheet")
-        
-        output = self.generate_table_from_json(existing_data)
+        """Update datasheet with new filament data, determining status from filesystem."""
+        output = self.generate_table_from_json()
         
         if not dry_run:
             readme_path.write_text(output, encoding='utf-8')
@@ -240,15 +292,22 @@ class CLIApplication(LoggerMixin):
         print("Usage: python3 bambu_filament_data.py [options]")
         print("\nOptions:")
         print("  --json <path>       Use custom JSON file path")
-        print("  --datasheet <path>  Datasheet file to update (default: ./BambuLab_Filament_DataSheet.md)")
+        print("  --scan <path>       Base directory to scan for tag dumps (default: current directory)")
+        print("  --datasheet <path>  Datasheet file to update (default: ./bambulab_filament_datasheet.md)")
         print("  --output <path>     Write output to file instead of updating datasheet")
         print("  --dry-run           Show what would be written without actually writing")
         print("  --verbose, -v       Enable verbose debug logging")
         print("\nExamples:")
         print("  python3 bambu_filament_data.py")
         print('  python3 bambu_filament_data.py --json "/path/to/filaments_color_codes.json"')
-        print('  python3 bambu_filament_data.py --datasheet "./BambuLab_Filament_DataSheet.md" --dry-run')
-        print('  python3 bambu_filament_data.py --output "./filament_data.md" --verbose')
+        print('  python3 bambu_filament_data.py --scan "./tags" --datasheet "./bambulab_filament_datasheet.md"')
+        print('  python3 bambu_filament_data.py --output "./filament_data.md" --verbose --dry-run')
+        print("\nJSON File Locations (searched in order):")
+        print("  1. Custom path via --json")
+        print("  2. Platform-specific BambuStudio location")
+        print("  3. Fallback: ./filaments_color_codes.json (with warning)")
+        print("\nEnvironment Variables:")
+        print("  DEBUG/VERBOSE       Enable debug logging --verbose")
         print("\nJSON File Locations (searched in order):")
         print("  1. Custom path via --json")
         print("  2. Platform-specific BambuStudio location")
@@ -266,13 +325,17 @@ class CLIApplication(LoggerMixin):
             logging.getLogger().setLevel(logging.DEBUG)
         
         custom_json_path = None
-        datasheet_path = Path("./BambuLab_Filament_DataSheet.md")
+        scan_path = Path.cwd()
+        datasheet_path = Path("./bambulab_filament_datasheet.md")
         output_path = None
         
         i = 0
         while i < len(args):
             if args[i] == '--json' and i + 1 < len(args):
                 custom_json_path = Path(args[i + 1])
+                i += 2
+            elif args[i] == '--scan' and i + 1 < len(args):
+                scan_path = Path(args[i + 1])
                 i += 2
             elif args[i] == '--datasheet' and i + 1 < len(args):
                 datasheet_path = Path(args[i + 1])
@@ -292,8 +355,11 @@ class CLIApplication(LoggerMixin):
             self.logger.info("Loading filament color data...")
             color_loader = ColorDataLoader(custom_json_path)
             
+            self.logger.info("Scanning filesystem for tag dumps...")
+            scanner = FilesystemScanner(scan_path)
+            
             self.logger.info("Generating table...")
-            generator = TableGenerator(color_loader)
+            generator = TableGenerator(color_loader, scanner)
             
             if output_path:
                 output = generator.generate_table_from_json()
