@@ -152,6 +152,7 @@ class FilesystemScanner(LoggerMixin):
 
     def get_status(self, filament_type: str, color_name: str) -> str:
         """Determine status icon for a filament type and color."""
+        # TODO: We've hacked this pretty poorly, but it passes the vibe check. Eventually, we need to actually handle the match and mapping elsewhere.
         filament_type_norm = filament_type.replace("/", "-").strip()
         category = re.split(r"[\s-]+", filament_type_norm)[0] if filament_type_norm else ""
 
@@ -186,6 +187,7 @@ class TableGenerator(LoggerMixin):
         output += "Status Icon Legend:\n"
         output += "- ✅: Have tag data\n"
         output += "- ❌: No tag scanned\n\n"
+        # TODO: Add a new glyph for "non-compliance" and file population of the folder. I don't want to get involved with fixes but this would at least point out what doesn't comply to pm3 standardization.
 
         filament_types = self.color_loader.get_all_by_type()
 
