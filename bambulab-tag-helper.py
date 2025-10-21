@@ -22,7 +22,7 @@ from typing import Optional, List, ClassVar
 from contextlib import contextmanager
 
 try:
-    import webcolors
+    import webcolors # TODO: We're going to drop this in favor of utilizing `filaments_color_codes.json` (either local copy or installed on host)
 except ImportError:
     logging.critical("webcolors module not found (pip install webcolors)")
     sys.exit(1)

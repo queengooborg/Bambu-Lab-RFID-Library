@@ -1,16 +1,18 @@
 ## List of Bambu Lab Materials + Colors
 
 Status Icon Legend:
-- ✅: Have tag data
+- ✅: Have complete tag data
 - ❌: No tag scanned
+- ⚠️: Folder exists with files but ALL UIDs missing proper PM3 tag structure
+- 👀: Folder has at least one compliant UID but also has non-compliant UIDs
 
 ### ABS
 
 | Color            | Filament Code | Color Hex | Variant ID | Status |
 | ---------------- | ------------- | --------- | ---------- | ------ |
-| White            | 40100         | #FFFFFFFF | GFB00      | ✅     |
+| White            | 40100         | #FFFFFFFF | GFB00      | 👀     |
 | Black            | 40101         | #000000FF | GFB00      | ✅     |
-| Silver           | 40102         | #87909AFF | GFB00      | ✅     |
+| Silver           | 40102         | #87909AFF | GFB00      | 👀     |
 | Red              | 40200         | #D32941FF | GFB00      | ✅     |
 | Orange           | 40300         | #FF6A13FF | GFB00      | ✅     |
 | Yellow           | 40400         | #FCE900FF | GFB00      | ❌     |
@@ -33,7 +35,7 @@ Status Icon Legend:
 | Black  | 41101         | #000000FF | GFB50      | ❌     |
 | Gray   | 41102         | #C6C6C6FF | GFB50      | ❌     |
 | Red    | 41200         | #E83100FF | GFB50      | ❌     |
-| Orange | 41300         | #F48438FF | GFB50      | ❌     |
+| Orange | 41300         | #F48438FF | GFB50      | ⚠️      |
 | Yellow | 41400         | #FFE133FF | GFB50      | ❌     |
 | Green  | 41500         | #61BF36FF | GFB50      | ❌     |
 | Blue   | 41600         | #0C3B95FF | GFB50      | ❌     |
@@ -44,7 +46,7 @@ Status Icon Legend:
 | ----- | ------------- | --------- | ---------- | ------ |
 | White | 45100         | #FFFAF2FF | GFB01      | ✅     |
 | Black | 45101         | #000000FF | GFB01      | ✅     |
-| Gray  | 45102         | #8A949EFF | GFB01      | ❌     |
+| Gray  | 45102         | #8A949EFF | GFB01      | ⚠️      |
 | Red   | 45200         | #E02928FF | GFB01      | ❌     |
 | Green | 45500         | #00A6A0FF | GFB01      | ❌     |
 | Blue  | 45600         | #2140B4FF | GFB01      | ❌     |
@@ -73,7 +75,7 @@ Status Icon Legend:
 | ------ | ------------- | --------- | ---------- | ------ |
 | White  | 72102         | #EAEAE4FF | GFN08      | ❌     |
 | Gray   | 72103         | #353533FF | GFN08      | ❌     |
-| Black  | 72104         | #000000FF | GFN08      | ❌     |
+| Black  | 72104         | #000000FF | GFN08      | ⚠️      |
 | Orange | 72200         | #FF4800FF | GFN08      | ❌     |
 | Yellow | 72400         | #FFCE00FF | GFN08      | ❌     |
 | Lime   | 72500         | #C5ED48FF | GFN08      | ❌     |
@@ -90,7 +92,7 @@ Status Icon Legend:
 
 | Color       | Filament Code | Color Hex | Variant ID | Status |
 | ----------- | ------------- | --------- | ---------- | ------ |
-| White       | 60100         | #FFFFFFFF | GFC00      | ❌     |
+| White       | 60100         | #FFFFFFFF | GFC00      | ⚠️      |
 | Black       | 60101         | #686865FF | GFC00      | ✅     |
 | Clear Black | 60102         | #00000080 | GFC00      | ❌     |
 | Transparent | 60103         | #FFFFFF00 | GFC00      | ❌     |
@@ -115,10 +117,10 @@ Status Icon Legend:
 | ----------- | ------------- | --------- | ---------- | ------ |
 | White       | 30100         | #FFFFFFFF | GFG00      | ✅     |
 | Black       | 30101         | #000000FF | GFG00      | ✅     |
-| Gray        | 30102         | #9EA2A2FF | GFG00      | ❌     |
+| Gray        | 30102         | #9EA2A2FF | GFG00      | ⚠️      |
 | Transparent | 30103         | #FFFFFF00 | GFG00      | ❌     |
 | Nature      | 30104         | #F9F7F2FF | GFG00      | ❌     |
-| Red         | 30200         | #D6001CFF | GFG00      | ❌     |
+| Red         | 30200         | #D6001CFF | GFG00      | ⚠️      |
 | Orange      | 30300         | #FF671FFF | GFG00      | ✅     |
 | Yellow      | 30400         | #FCE300FF | GFG00      | ❌     |
 | Gold        | 30401         | #B28B33FF | GFG00      | ❌     |
@@ -133,18 +135,18 @@ Status Icon Legend:
 
 | Color        | Filament Code | Color Hex | Variant ID | Status |
 | ------------ | ------------- | --------- | ---------- | ------ |
-| White        | 33100         | #FFFFFFFF | GFG02      | ❌     |
-| Gray         | 33101         | #ADB1B2FF | GFG02      | ✅     |
-| Black        | 33102         | #000000FF | GFG02      | ❌     |
+| White        | 33100         | #FFFFFFFF | GFG02      | ⚠️      |
+| Gray         | 33101         | #ADB1B2FF | GFG02      | 👀     |
+| Black        | 33102         | #000000FF | GFG02      | ⚠️      |
 | Dark Gray    | 33103         | #515151FF | GFG02      | ✅     |
-| Red          | 33200         | #BC0900FF | GFG02      | ✅     |
+| Red          | 33200         | #BC0900FF | GFG02      | 👀     |
 | Orange       | 33300         | #F75403FF | GFG02      | ✅     |
 | Yellow       | 33400         | #FFD00BFF | GFG02      | ✅     |
 | Cream        | 33401         | #F9DFB9FF | GFG02      | ✅     |
 | Green        | 33500         | #00AE42FF | GFG02      | ✅     |
 | Lime Green   | 33501         | #6EE53CFF | GFG02      | ✅     |
 | Forest Green | 33502         | #39541AFF | GFG02      | ✅     |
-| Blue         | 33600         | #002E96FF | GFG02      | ✅     |
+| Blue         | 33600         | #002E96FF | GFG02      | 👀     |
 | Lake Blue    | 33601         | #1F79E5FF | GFG02      | ✅     |
 | Peanut Brown | 33801         | #875718FF | GFG02      | ✅     |
 
@@ -155,11 +157,11 @@ Status Icon Legend:
 | Translucent Gray       | 32100         | #8E8E8E80 | GFG01      | ✅     |
 | Clear                  | 32101         | #FFFFFF00 | GFG01      | ✅     |
 | Translucent Pink       | 32200         | #F9C1BD80 | GFG01      | ✅     |
-| Translucent Orange     | 32300         | #FF911A80 | GFG01      | ❌     |
+| Translucent Orange     | 32300         | #FF911A80 | GFG01      | ⚠️      |
 | Translucent Olive      | 32500         | #748C4580 | GFG01      | ✅     |
 | Translucent Teal       | 32501         | #77EDD780 | GFG01      | ✅     |
 | Translucent Light Blue | 32600         | #61B0FF80 | GFG01      | ✅     |
-| Translucent Purple     | 32700         | #D6ABFF80 | GFG01      | ❌     |
+| Translucent Purple     | 32700         | #D6ABFF80 | GFG01      | ⚠️      |
 | Translucent Brown      | 32800         | #C9A38180 | GFG01      | ✅     |
 
 ### PETG-CF
@@ -177,44 +179,44 @@ Status Icon Legend:
 
 | Color | Filament Code | Color Hex | Variant ID | Status |
 | ----- | ------------- | --------- | ---------- | ------ |
-| White | 14102         | #FFFFFFFF | GFA11      | ❌     |
-| Black | 14103         | #000000FF | GFA11      | ❌     |
+| White | 14102         | #FFFFFFFF | GFA11      | ⚠️      |
+| Black | 14103         | #000000FF | GFA11      | ⚠️      |
 | Gray  | 14104         | #CDCECAFF | GFA11      | ❌     |
 
 ### PLA Basic
 
 | Color               | Filament Code | Color Hex | Variant ID | Status |
 | ------------------- | ------------- | --------- | ---------- | ------ |
-| Jade White          | 10100         | #FFFFFFFF | GFA00      | ✅     |
-| Black               | 10101         | #000000FF | GFA00      | ✅     |
-| Silver              | 10102         | #A6A9AAFF | GFA00      | ❌     |
-| Gray                | 10103         | #8E9089FF | GFA00      | ✅     |
+| Jade White          | 10100         | #FFFFFFFF | GFA00      | 👀     |
+| Black               | 10101         | #000000FF | GFA00      | 👀     |
+| Silver              | 10102         | #A6A9AAFF | GFA00      | ⚠️      |
+| Gray                | 10103         | #8E9089FF | GFA00      | 👀     |
 | Light Gray          | 10104         | #D1D3D5FF | GFA00      | ✅     |
 | Dark Gray           | 10105         | #545454FF | GFA00      | ✅     |
-| Red                 | 10200         | #C12E1FFF | GFA00      | ❌     |
+| Red                 | 10200         | #C12E1FFF | GFA00      | ⚠️      |
 | Beige               | 10201         | #F7E6DEFF | GFA00      | ✅     |
 | Magenta             | 10202         | #EC008CFF | GFA00      | ✅     |
-| Pink                | 10203         | #F55A74FF | GFA00      | ❌     |
+| Pink                | 10203         | #F55A74FF | GFA00      | ⚠️      |
 | Hot Pink            | 10204         | #F5547CFF | GFA00      | ✅     |
 | Maroon Red          | 10205         | #9D2235FF | GFA00      | ✅     |
-| Orange              | 10300         | #FF6A13FF | GFA00      | ✅     |
+| Orange              | 10300         | #FF6A13FF | GFA00      | 👀     |
 | Pumpkin Orange      | 10301         | #FF9016FF | GFA00      | ✅     |
 | Yellow              | 10400         | #F4EE2AFF | GFA00      | ✅     |
-| Gold                | 10401         | #E4BD68FF | GFA00      | ❌     |
+| Gold                | 10401         | #E4BD68FF | GFA00      | ⚠️      |
 | Sunflower Yellow    | 10402         | #FEC600FF | GFA00      | ✅     |
 | Green               | 10500         | #164B35FF | GFA00      | ❌     |
-| Bambu Green         | 10501         | #00AE42FF | GFA00      | ✅     |
+| Bambu Green         | 10501         | #00AE42FF | GFA00      | 👀     |
 | Mistletoe Green     | 10502         | #3F8E43FF | GFA00      | ✅     |
 | Bright Green        | 10503         | #BECF00FF | GFA00      | ✅     |
-| Blue                | 10601         | #0A2989FF | GFA00      | ❌     |
+| Blue                | 10601         | #0A2989FF | GFA00      | ⚠️      |
 | Blue Gray           | 10602         | #5B6579FF | GFA00      | ❌     |
 | Cyan                | 10603         | #0086D6FF | GFA00      | ✅     |
 | Cobalt Blue         | 10604         | #0056B8FF | GFA00      | ✅     |
 | Turquoise           | 10605         | #00B1B7FF | GFA00      | ✅     |
-| Purple              | 10700         | #5E43B7FF | GFA00      | ✅     |
+| Purple              | 10700         | #5E43B7FF | GFA00      | 👀     |
 | Indigo Purple       | 10701         | #482960FF | GFA00      | ✅     |
 | Brown               | 10800         | #9D432CFF | GFA00      | ✅     |
-| Bronze              | 10801         | #847D48FF | GFA00      | ✅     |
+| Bronze              | 10801         | #847D48FF | GFA00      | 👀     |
 | Cocoa Brown         | 10802         | #6F5034FF | GFA00      | ✅     |
 | Arctic Whisper      | 10900         | #FFFFFFFF | GFA00      | ❌     |
 | Solar Breeze        | 10901         | #E94B3CFF | GFA00      | ❌     |
@@ -237,7 +239,7 @@ Status Icon Legend:
 | ------- | ------------- | --------- | ---------- | ------ |
 | Brown   | 13203         | #684A43FF | GFA15      | ✅     |
 | Green   | 13503         | #3B665EFF | GFA15      | ✅     |
-| Nebulae | 13504         | #424379FF | GFA15      | ✅     |
+| Nebulae | 13504         | #424379FF | GFA15      | 👀     |
 | Purple  | 13602         | #594177FF | GFA15      | ✅     |
 
 ### PLA Glow
@@ -276,29 +278,29 @@ Status Icon Legend:
 
 | Color           | Filament Code | Color Hex | Variant ID | Status |
 | --------------- | ------------- | --------- | ---------- | ------ |
-| Ivory White     | 11100         | #FFFFFFFF | GFA01      | ✅     |
-| Charcoal        | 11101         | #000000FF | GFA01      | ✅     |
+| Ivory White     | 11100         | #FFFFFFFF | GFA01      | 👀     |
+| Charcoal        | 11101         | #000000FF | GFA01      | 👀     |
 | Ash Gray        | 11102         | #9B9EA0FF | GFA01      | ✅     |
 | Bone White      | 11103         | #CBC6B8FF | GFA01      | ✅     |
 | Nardo Gray      | 11104         | #757575FF | GFA01      | ✅     |
-| Scarlet Red     | 11200         | #DE4343FF | GFA01      | ✅     |
+| Scarlet Red     | 11200         | #DE4343FF | GFA01      | 👀     |
 | Sakura Pink     | 11201         | #E8AFCFFF | GFA01      | ✅     |
 | Dark Red        | 11202         | #BB3D43FF | GFA01      | ✅     |
-| Terracotta      | 11203         | #B15533FF | GFA01      | ❌     |
+| Terracotta      | 11203         | #B15533FF | GFA01      | ⚠️      |
 | Plum            | 11204         | #950051FF | GFA01      | ✅     |
 | Mandarin Orange | 11300         | #F99963FF | GFA01      | ✅     |
-| Lemon Yellow    | 11400         | #F7D959FF | GFA01      | ✅     |
+| Lemon Yellow    | 11400         | #F7D959FF | GFA01      | 👀     |
 | Desert Tan      | 11401         | #E8DBB7FF | GFA01      | ✅     |
 | Grass Green     | 11500         | #61C680FF | GFA01      | ✅     |
 | Dark Green      | 11501         | #68724DFF | GFA01      | ✅     |
 | Apple Green     | 11502         | #C2E189FF | GFA01      | ✅     |
-| Marine Blue     | 11600         | #0078BFFF | GFA01      | ✅     |
+| Marine Blue     | 11600         | #0078BFFF | GFA01      | 👀     |
 | Ice Blue        | 11601         | #A3D8E1FF | GFA01      | ✅     |
-| Dark Blue       | 11602         | #042F56FF | GFA01      | ❌     |
+| Dark Blue       | 11602         | #042F56FF | GFA01      | ⚠️      |
 | Sky Blue        | 11603         | #56B7E6FF | GFA01      | ✅     |
 | Lilac Purple    | 11700         | #AE96D4FF | GFA01      | ✅     |
 | Latte Brown     | 11800         | #D3B7A7FF | GFA01      | ✅     |
-| Dark Brown      | 11801         | #7D6556FF | GFA01      | ✅     |
+| Dark Brown      | 11801         | #7D6556FF | GFA01      | 👀     |
 | Dark Chocolate  | 11802         | #4D3324FF | GFA01      | ✅     |
 | Caramel         | 11803         | #AE835BFF | GFA01      | ✅     |
 
@@ -309,7 +311,7 @@ Status Icon Legend:
 | Iron Gray Metallic    | 13100         | #43403DFF | GFA02      | ❌     |
 | Iridium Gold Metallic | 13400         | #B39B84FF | GFA02      | ✅     |
 | Oxide Green Metallic  | 13500         | #1D7C6AFF | GFA02      | ✅     |
-| Cobalt Blue Metallic  | 13600         | #39699EFF | GFA02      | ✅     |
+| Cobalt Blue Metallic  | 13600         | #39699EFF | GFA02      | ⚠️      |
 | Copper Brown Metallic | 13800         | #AA6443FF | GFA02      | ❌     |
 
 ### PLA Silk
@@ -326,7 +328,7 @@ Status Icon Legend:
 | Purple                     | 13701         | #854CE4FF | GFA05      | ✅     |
 | Gilded Rose                | 13901         | #FF9425FF | GFA05      | ✅     |
 | Midnight Blaze             | 13902         | #0047BBFF | GFA05      | ✅     |
-| Neon City                  | 13903         | #BB22A3FF | GFA05      | ✅     |
+| Neon City                  | 13903         | #BB22A3FF | GFA05      | 👀     |
 | Blue Hawaii                | 13904         | #70C884FF | GFA05      | ✅     |
 | Velvet Eclipse (Black-Red) | 13905         | #000000FF | GFA05      | ✅     |
 | South Beach                | 13906         | #00918BFF | GFA05      | ✅     |
@@ -408,18 +410,18 @@ Status Icon Legend:
 
 | Color         | Filament Code | Color Hex | Variant ID | Status |
 | ------------- | ------------- | --------- | ---------- | ------ |
-| White Oak     | 13106         | #D6CCA3FF | GFA16      | ❌     |
-| Black Walnut  | 13107         | #4F3F24FF | GFA16      | ❌     |
-| Rosewood      | 13204         | #4C241CFF | GFA16      | ✅     |
-| Ochre Yellow  | 13403         | #C98935FF | GFA16      | ❌     |
-| Classic Birch | 13505         | #918669FF | GFA16      | ❌     |
-| Clay Brown    | 13801         | #995F11FF | GFA16      | ❌     |
+| White Oak     | 13106         | #D6CCA3FF | GFA16      | ⚠️      |
+| Black Walnut  | 13107         | #4F3F24FF | GFA16      | ⚠️      |
+| Rosewood      | 13204         | #4C241CFF | GFA16      | 👀     |
+| Ochre Yellow  | 13403         | #C98935FF | GFA16      | ⚠️      |
+| Classic Birch | 13505         | #918669FF | GFA16      | ⚠️      |
+| Clay Brown    | 13801         | #995F11FF | GFA16      | ⚠️      |
 
 ### PLA-CF
 
 | Color        | Filament Code | Color Hex | Variant ID | Status |
 | ------------ | ------------- | --------- | ---------- | ------ |
-| Black        | 14100         | #000000FF | GFA50      | ✅     |
+| Black        | 14100         | #000000FF | GFA50      | 👀     |
 | Lava Gray    | 14101         | #4d5054FF | GFA50      | ❌     |
 | Burgundy Red | 14200         | #951e23FF | GFA50      | ❌     |
 | Matcha Green | 14500         | #5c9748FF | GFA50      | ❌     |
@@ -461,16 +463,16 @@ Status Icon Legend:
 
 | Color | Filament Code | Color Hex | Variant ID | Status |
 | ----- | ------------- | --------- | ---------- | ------ |
-| White | 65100         | #FFFFFFFF | GFS02      | ✅     |
+| White | 65100         | #FFFFFFFF | GFS02      | 👀     |
 | Black | 65101         | #000000FF | GFS02      | ❌     |
-| White | 65104         | #FFFFFFFF | GFS02      | ✅     |
+| White | 65104         | #FFFFFFFF | GFS02      | 👀     |
 
 ### Support for PLA/PETG
 
 | Color  | Filament Code | Color Hex | Variant ID | Status |
 | ------ | ------------- | --------- | ---------- | ------ |
 | Nature | 65102         | #00000000 | GFS05      | ❌     |
-| Black  | 65103         | #000000FF | GFS05      | ❌     |
+| Black  | 65103         | #000000FF | GFS05      | ⚠️      |
 
 ### TPU 85A
 
@@ -516,5 +518,5 @@ Status Icon Legend:
 | Red        | 53200         | #ED0000FF | GFU02      | ❌     |
 | Yellow     | 53400         | #F9EF41FF | GFU02      | ❌     |
 | Neon Green | 53500         | #90FF1AFF | GFU02      | ❌     |
-| Blue       | 53600         | #5898DDFF | GFU02      | ❌     |
+| Blue       | 53600         | #5898DDFF | GFU02      | ⚠️      |
 

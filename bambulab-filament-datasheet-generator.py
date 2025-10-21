@@ -36,6 +36,11 @@ class ColorDataLoader(LoggerMixin):
         "Linux": Path.home() / ".config" / "BambuStudio" / "system" / "BBL" / "filament" / "filaments_color_codes.json",
     }
 
+    FILAMENT_TYPE_MAPPING = {
+        "PVA": "Support",
+        "PA6": "PA",
+    }
+
     def __init__(self, custom_path: Optional[Path] = None):
         self.color_data = {}
         self.filament_data = []
@@ -86,6 +91,35 @@ class ColorDataLoader(LoggerMixin):
             self.logger.error(f"Failed to load color data: {e}")
             raise
 
+    def normalize_filament_type(self, filament_type: str) -> str:
+        """Normalize filament type string for filesystem usage."""
+        return filament_type.replace("/", "-").strip()
+
+    def get_filament_category(self, filament_type: str) -> str:
+        """Extract the category from a filament type, applying mapping rules."""
+        normalized = self.normalize_filament_type(filament_type)
+        category = re.split(r"[\s-]+", normalized)[0] if normalized else ""
+
+        ft_upper = normalized.upper()
+        for pattern, mapped_category in self.FILAMENT_TYPE_MAPPING.items():
+            if ft_upper.startswith(pattern):
+                return mapped_category
+
+        return category
+
+    def find_by_type_and_color(self, filament_type: str, color_name: str) -> Optional[Dict]:
+        """Find filament data by type and color name."""
+        normalized_type = self.normalize_filament_type(filament_type)
+
+        for item in self.filament_data:
+            item_type = self.normalize_filament_type(item.get("fila_type", ""))
+            item_color = item.get("fila_color_name", {}).get("en", "")
+
+            if item_type == normalized_type and item_color == color_name:
+                return item
+
+        return None
+
     def get_color_hex(self, filament_code: str) -> Optional[str]:
         """Get the hex color code for a filament code."""
         item = self.color_data.get(filament_code, {})
@@ -122,9 +156,12 @@ class ColorDataLoader(LoggerMixin):
 class FilesystemScanner(LoggerMixin):
     """Scans filesystem for dumped RFID tags to determine status."""
 
-    def __init__(self, base_path: Path):
+    def __init__(self, base_path: Path, color_loader: ColorDataLoader):
         self.base_path = base_path
+        self.color_loader = color_loader
         self.tag_cache = {}
+        self.non_compliant_folders = set()
+        self.partial_folders = set()
         self._scan_tags()
 
     def _scan_tags(self):
@@ -132,8 +169,11 @@ class FilesystemScanner(LoggerMixin):
         self.logger.info(f"Scanning for tag dumps in: {self.base_path}")
 
         for dump_file in self.base_path.rglob("hf-mf-*-dump.bin"):
-            uid = dump_file.stem.split("-")[2]
+            uid_match = re.search(r"hf-mf-([A-F0-9]+)-dump", dump_file.name)
+            if not uid_match:
+                continue
 
+            uid = uid_match.group(1)
             key_files = list(dump_file.parent.glob(f"hf-mf-{uid}-key*.bin"))
 
             if key_files:
@@ -143,32 +183,83 @@ class FilesystemScanner(LoggerMixin):
                     filament_category = parts[0]
                     detailed_type = parts[1]
                     color = parts[2]
+                    uid_folder = parts[3]
 
-                    self.tag_cache[uid] = {"category": filament_category, "detailed_type": detailed_type, "color": color, "path": dump_file.parent, "has_complete_data": True}
+                    self.tag_cache[uid] = {"category": filament_category, "detailed_type": detailed_type, "color": color, "uid_folder": uid_folder, "path": dump_file.parent, "has_complete_data": True}
 
-                    self.logger.debug(f"Found tag: {uid} at {dump_file.parent}")
+                    self.logger.debug(f"Found tag: {uid} ({filament_category}/{detailed_type}/{color}/{uid_folder})")
 
+        self._scan_non_compliant_folders()
         self.logger.info(f"Found {len(self.tag_cache)} complete tag dumps")
+        if self.tag_cache:
+            self.logger.debug("Tag cache entries:")
+            for uid, data in self.tag_cache.items():
+                self.logger.debug(f"  {uid}: {data['category']}/{data['detailed_type']}/{data['color']}/{data['uid_folder']}")
+        self.logger.info(f"Found {len(self.non_compliant_folders)} non-compliant folders")
+        self.logger.info(f"Found {len(self.partial_folders)} partially populated folders")
+
+    def _scan_non_compliant_folders(self):
+        """Scan for folders with files but missing proper PM3 tag structure."""
+        if not self.base_path.exists():
+            return
+
+        color_folder_status = {}
+
+        for item in self.base_path.rglob("*"):
+            if not item.is_dir():
+                continue
+
+            files = [f for f in item.iterdir() if f.is_file()]
+            if not files:
+                continue
+
+            parts = item.relative_to(self.base_path).parts
+            if len(parts) != 4:
+                continue
+
+            category = parts[0]
+            detailed_type = parts[1]
+            color = parts[2]
+            uid_folder = parts[3]
+
+            color_key = (category, detailed_type, color)
+
+            has_dump = any(f.name == f"hf-mf-{uid_folder}-dump.bin" for f in files)
+            has_key = any(f.name.startswith(f"hf-mf-{uid_folder}-key") and f.name.endswith(".bin") for f in files)
+
+            if color_key not in color_folder_status:
+                color_folder_status[color_key] = {"compliant": 0, "non_compliant": 0}
+
+            if has_dump and has_key:
+                color_folder_status[color_key]["compliant"] += 1
+            else:
+                color_folder_status[color_key]["non_compliant"] += 1
+
+        for color_key, status in color_folder_status.items():
+            if status["compliant"] == 0 and status["non_compliant"] > 0:
+                self.non_compliant_folders.add(color_key)
+            elif status["compliant"] > 0 and status["non_compliant"] > 0:
+                self.partial_folders.add(color_key)
 
     def get_status(self, filament_type: str, color_name: str) -> str:
         """Determine status icon for a filament type and color."""
-        # TODO: We've hacked this pretty poorly, but it passes the vibe check. Eventually, we need to actually handle the match and mapping elsewhere.
-        filament_type_norm = filament_type.replace("/", "-").strip()
-        category = re.split(r"[\s-]+", filament_type_norm)[0] if filament_type_norm else ""
+        normalized_type = self.color_loader.normalize_filament_type(filament_type)
+        category = self.color_loader.get_filament_category(filament_type)
 
-        mapping = {
-            "PVA": "Support",
-            "PA6": "PA",
-        }
+        self.logger.debug(f"Checking status for: type='{filament_type}' -> normalized='{normalized_type}', category='{category}', color='{color_name}'")
 
-        ft_upper = filament_type_norm.upper()
-        for k, v in mapping.items():
-            if ft_upper.startswith(k):
-                category = v
-                break
+        color_key = (category, normalized_type, color_name)
+
+        if color_key in self.non_compliant_folders:
+            return "⚠️"
+
+        if color_key in self.partial_folders:
+            return "👀"
 
         for uid, tag_data in self.tag_cache.items():
-            if tag_data["category"] == category and tag_data["detailed_type"] == filament_type_norm and tag_data["color"] == color_name:
+            self.logger.debug(f"  Comparing with tag {uid}: cat={tag_data['category']}, type={tag_data['detailed_type']}, color={tag_data['color']}")
+            if tag_data["category"] == category and tag_data["detailed_type"] == normalized_type and tag_data["color"] == color_name:
+                self.logger.debug(f"  ✅ MATCH found for {uid}")
                 return "✅"
 
         return "❌"
@@ -185,9 +276,10 @@ class TableGenerator(LoggerMixin):
         """Generate complete markdown output from JSON data."""
         output = "## List of Bambu Lab Materials + Colors\n\n"
         output += "Status Icon Legend:\n"
-        output += "- ✅: Have tag data\n"
-        output += "- ❌: No tag scanned\n\n"
-        # TODO: Add a new glyph for "non-compliance" and file population of the folder. I don't want to get involved with fixes but this would at least point out what doesn't comply to pm3 standardization.
+        output += "- ✅: Have complete tag data\n"
+        output += "- ❌: No tag scanned\n"
+        output += "- ⚠️: Folder exists with files but ALL UIDs missing proper PM3 tag structure\n"
+        output += "- 👀: Folder has at least one compliant UID but also has non-compliant UIDs\n\n"
 
         filament_types = self.color_loader.get_all_by_type()
 
@@ -332,7 +424,7 @@ class CLIApplication(LoggerMixin):
             color_loader = ColorDataLoader(custom_json_path)
 
             self.logger.info("Scanning filesystem for tag dumps...")
-            scanner = FilesystemScanner(scan_path)
+            scanner = FilesystemScanner(scan_path, color_loader)
 
             self.logger.info("Generating table...")
             generator = TableGenerator(color_loader, scanner)
