@@ -3,8 +3,8 @@
 Status Icon Legend:
 - ✅: Have complete tag data
 - ❌: No tag scanned
-- ⚠️: Folder exists with files but ALL UIDs missing proper PM3 tag structure
 - 👀: Folder has at least one compliant UID but also has non-compliant UIDs
+- ⚠️: Folder exists with files but ALL UIDs missing proper PM3 tag structure
 
 ### ABS
 
@@ -135,9 +135,9 @@ Status Icon Legend:
 
 | Color        | Filament Code | Color Hex | Variant ID | Status |
 | ------------ | ------------- | --------- | ---------- | ------ |
-| White        | 33100         | #FFFFFFFF | GFG02      | ⚠️      |
+| White        | 33100         | #FFFFFFFF | GFG02      | ⚠️     |
 | Gray         | 33101         | #ADB1B2FF | GFG02      | 👀     |
-| Black        | 33102         | #000000FF | GFG02      | ⚠️      |
+| Black        | 33102         | #000000FF | GFG02      | ⚠️     |
 | Dark Gray    | 33103         | #515151FF | GFG02      | ✅     |
 | Red          | 33200         | #BC0900FF | GFG02      | 👀     |
 | Orange       | 33300         | #F75403FF | GFG02      | ✅     |

@@ -9,7 +9,9 @@ See full readme: https://github.com/queengooborg/Bambu-Lab-RFID-Library/README.m
 """
 
 import os
+import re
 import sys
+import json
 import shutil
 import tempfile
 import logging
@@ -18,13 +20,13 @@ import subprocess
 from pathlib import Path
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Optional, List, ClassVar
+from typing import Dict, List, Optional, ClassVar
 from contextlib import contextmanager
 
 try:
-    import webcolors # TODO: We're going to drop this in favor of utilizing `filaments_color_codes.json` (either local copy or installed on host)
+    from prettytable import PrettyTable, TableStyle
 except ImportError:
-    logging.critical("webcolors module not found (pip install webcolors)")
+    logging.critical("prettytable module not found (pip install prettytable)")
     sys.exit(1)
 
 BYTES_PER_BLOCK: int = 16
@@ -95,6 +97,351 @@ class Config:
             raise RuntimeError(f"proxmark3 not executable: {self.pm3_path}")
 
 
+class ColorDataLoader(LoggerMixin):
+    """Loads and provides access to Bambu Studio filament color data."""
+
+    COLOR_DATA_PATHS = {
+        "Windows": Path(os.environ.get("APPDATA", "")) / "BambuStudio" / "system" / "BBL" / "filament" / "filaments_color_codes.json",
+        "Darwin": Path.home() / "Library" / "Application Support" / "BambuStudio" / "system" / "BBL" / "filament" / "filaments_color_codes.json",
+        "Linux": Path.home() / ".config" / "BambuStudio" / "system" / "BBL" / "filament" / "filaments_color_codes.json",
+    }
+
+    FILAMENT_TYPE_MAPPING = {
+        "PVA": "Support",
+        "PA6": "PA",
+    }
+
+    def __init__(self, custom_path: Optional[Path] = None):
+        self.color_data = {}
+        self.filament_data = []
+        self.color_hex_to_name = {}
+        self._load_color_data(custom_path)
+
+    def _get_color_data_path(self) -> Path:
+        system = platform.system()
+        path = self.COLOR_DATA_PATHS.get(system)
+
+        if not path:
+            raise RuntimeError(f"unsupported platform: {system}")
+
+        return path
+
+    def _load_color_data(self, custom_path: Optional[Path] = None):
+        if custom_path:
+            color_file = custom_path
+        else:
+            try:
+                color_file = self._get_color_data_path()
+            except RuntimeError:
+                script_dir = Path(__file__).parent
+                color_file = script_dir / "filaments_color_codes.json"
+                self.logger.warning(f"Using fallback location: {color_file}")
+
+        if not color_file.exists():
+            script_dir = Path(__file__).parent
+            color_file = script_dir / "filaments_color_codes.json"
+            self.logger.warning(f"Using script directory fallback: {color_file}")
+
+        if not color_file.exists():
+            raise FileNotFoundError(f"Color data file not found: {color_file}")
+
+        try:
+            with open(color_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            self.filament_data = data.get("data", [])
+
+            for item in self.filament_data:
+                code = item.get("fila_color_code")
+                if code:
+                    self.color_data[code] = {
+                        "fila_color": item.get("fila_color", []),
+                        "fila_type": item.get("fila_type", ""),
+                        "fila_id": item.get("fila_id", ""),
+                        "fila_color_name": item.get("fila_color_name", {}),
+                    }
+
+                colors = item.get("fila_color", [])
+                color_name = item.get("fila_color_name", {}).get("en", "Unknown")
+
+                for hex_val in colors:
+                    hex_clean = hex_val.lstrip("#").upper()
+                    self.color_hex_to_name[hex_clean] = color_name
+
+                    if len(hex_clean) >= 6:
+                        self.color_hex_to_name[hex_clean[:6]] = color_name
+
+            self.logger.info(f"Loaded {len(self.color_data)} filament entries from: {color_file}")
+            self.logger.debug(f"Built color hex mapping with {len(self.color_hex_to_name)} entries")
+
+        except Exception as e:
+            self.logger.error(f"Failed to load color data: {e}")
+            raise
+
+    def hex_to_color_name(self, hex_color: str) -> str:
+        """Convert hex color to closest matching color name from database."""
+        hex_color = hex_color.lstrip("#").upper()
+
+        if hex_color in self.color_hex_to_name:
+            return self.color_hex_to_name[hex_color]
+
+        hex_rgb = hex_color[:6]
+        if hex_rgb in self.color_hex_to_name:
+            return self.color_hex_to_name[hex_rgb]
+
+        hex_with_alpha = hex_rgb + "FF"
+        if hex_with_alpha in self.color_hex_to_name:
+            return self.color_hex_to_name[hex_with_alpha]
+
+        target_rgb = tuple(int(hex_rgb[i : i + 2], 16) for i in (0, 2, 4))
+
+        min_dist = float("inf")
+        closest_name = "Unknown"
+
+        for hex_val, name in self.color_hex_to_name.items():
+            hex_val_rgb = hex_val[:6]
+            rgb = tuple(int(hex_val_rgb[i : i + 2], 16) for i in (0, 2, 4))
+            dist = sum((a - b) ** 2 for a, b in zip(target_rgb, rgb))
+            if dist < min_dist:
+                min_dist = dist
+                closest_name = name
+
+        return closest_name
+
+    def normalize_filament_type(self, filament_type: str) -> str:
+        """Normalize filament type string for filesystem usage."""
+        return filament_type.replace("/", "-").strip()
+
+    def get_filament_category(self, filament_type: str) -> str:
+        """Extract the category from a filament type, applying mapping rules."""
+        normalized = self.normalize_filament_type(filament_type)
+        category = re.split(r"[\s-]+", normalized)[0] if normalized else ""
+
+        ft_upper = normalized.upper()
+        for pattern, mapped_category in self.FILAMENT_TYPE_MAPPING.items():
+            if ft_upper.startswith(pattern):
+                return mapped_category
+
+        return category
+
+    def find_by_type_and_color(self, filament_type: str, color_name: str) -> Optional[Dict]:
+        """Find filament data by type and color name."""
+        normalized_type = self.normalize_filament_type(filament_type)
+
+        for item in self.filament_data:
+            item_type = self.normalize_filament_type(item.get("fila_type", ""))
+            item_color = item.get("fila_color_name", {}).get("en", "")
+
+            if item_type == normalized_type and item_color == color_name:
+                return item
+
+        return None
+
+    def get_color_hex(self, filament_code: str) -> Optional[str]:
+        """Get the hex color code for a filament code."""
+        item = self.color_data.get(filament_code, {})
+        colors = item.get("fila_color", [])
+        return colors[0] if colors else None
+
+    def get_filament_type(self, filament_code: str) -> Optional[str]:
+        """Get the filament type for a filament code."""
+        item = self.color_data.get(filament_code, {})
+        return item.get("fila_type")
+
+    def get_variant_id(self, filament_code: str) -> Optional[str]:
+        """Get the variant ID for a filament code."""
+        item = self.color_data.get(filament_code, {})
+        return item.get("fila_id")
+
+    def get_color_name(self, filament_code: str, language: str = "en") -> Optional[str]:
+        """Get the color name for a filament code in a specific language."""
+        item = self.color_data.get(filament_code, {})
+        names = item.get("fila_color_name", {})
+        return names.get(language)
+
+    def get_all_by_type(self) -> Dict[str, List[Dict]]:
+        """Get all filament data grouped by filament type."""
+        filament_types = {}
+        for item in self.filament_data:
+            fila_type = item.get("fila_type", "Unknown")
+            if fila_type not in filament_types:
+                filament_types[fila_type] = []
+            filament_types[fila_type].append(item)
+        return filament_types
+
+
+class FilesystemScanner(LoggerMixin):
+    """Scans filesystem for dumped RFID tags to determine status."""
+
+    def __init__(self, base_path: Path, color_loader: ColorDataLoader):
+        self.base_path = base_path
+        self.color_loader = color_loader
+        self.tag_cache = {}
+        self.non_compliant_folders = set()
+        self.partial_folders = set()
+        self._scan_tags()
+
+    def _scan_tags(self):
+        """Scan for hf-mf-*-dump.bin and hf-mf-*-key*.bin pairs."""
+        self.logger.info(f"Scanning for tag dumps in: {self.base_path}")
+
+        for dump_file in self.base_path.rglob("hf-mf-*-dump.bin"):
+            uid_match = re.search(r"hf-mf-([A-F0-9]+)-dump", dump_file.name)
+            if not uid_match:
+                continue
+
+            uid = uid_match.group(1)
+            key_files = list(dump_file.parent.glob(f"hf-mf-{uid}-key*.bin"))
+
+            if key_files:
+                parts = dump_file.relative_to(self.base_path).parts
+
+                if len(parts) >= 4:
+                    filament_category = parts[0]
+                    detailed_type = parts[1]
+                    color = parts[2]
+                    uid_folder = parts[3]
+
+                    self.tag_cache[uid] = {"category": filament_category, "detailed_type": detailed_type, "color": color, "uid_folder": uid_folder, "path": dump_file.parent, "has_complete_data": True}
+
+                    self.logger.debug(f"Found tag: {uid} ({filament_category}/{detailed_type}/{color}/{uid_folder})")
+
+        self._scan_non_compliant_folders()
+        self.logger.info(f"Found {len(self.tag_cache)} complete tag dumps")
+        if self.tag_cache:
+            self.logger.debug("Tag cache entries:")
+            for uid, data in self.tag_cache.items():
+                self.logger.debug(f"  {uid}: {data['category']}/{data['detailed_type']}/{data['color']}/{data['uid_folder']}")
+        self.logger.info(f"Found {len(self.non_compliant_folders)} non-compliant folders")
+        self.logger.info(f"Found {len(self.partial_folders)} partially populated folders")
+
+    def _scan_non_compliant_folders(self):
+        """Scan for folders with files but missing proper PM3 tag structure."""
+        if not self.base_path.exists():
+            return
+
+        color_folder_status = {}
+
+        for item in self.base_path.rglob("*"):
+            if not item.is_dir():
+                continue
+
+            files = [f for f in item.iterdir() if f.is_file()]
+            if not files:
+                continue
+
+            parts = item.relative_to(self.base_path).parts
+            if len(parts) != 4:
+                continue
+
+            category = parts[0]
+            detailed_type = parts[1]
+            color = parts[2]
+            uid_folder = parts[3]
+
+            color_key = (category, detailed_type, color)
+
+            has_dump = any(f.name == f"hf-mf-{uid_folder}-dump.bin" for f in files)
+            has_key = any(f.name.startswith(f"hf-mf-{uid_folder}-key") and f.name.endswith(".bin") for f in files)
+
+            if color_key not in color_folder_status:
+                color_folder_status[color_key] = {"compliant": 0, "non_compliant": 0}
+
+            if has_dump and has_key:
+                color_folder_status[color_key]["compliant"] += 1
+            else:
+                color_folder_status[color_key]["non_compliant"] += 1
+
+        for color_key, status in color_folder_status.items():
+            if status["compliant"] == 0 and status["non_compliant"] > 0:
+                self.non_compliant_folders.add(color_key)
+            elif status["compliant"] > 0 and status["non_compliant"] > 0:
+                self.partial_folders.add(color_key)
+
+    def get_status(self, filament_type: str, color_name: str) -> str:
+        """Determine status icon for a filament type and color."""
+        normalized_type = self.color_loader.normalize_filament_type(filament_type)
+        category = self.color_loader.get_filament_category(filament_type)
+
+        self.logger.debug(f"Checking status for: type='{filament_type}' -> normalized='{normalized_type}', category='{category}', color='{color_name}'")
+
+        color_key = (category, normalized_type, color_name)
+
+        if color_key in self.non_compliant_folders:
+            return "⚠️"
+
+        if color_key in self.partial_folders:
+            return "👀"
+
+        for uid, tag_data in self.tag_cache.items():
+            self.logger.debug(f"  Comparing with tag {uid}: cat={tag_data['category']}, type={tag_data['detailed_type']}, color={tag_data['color']}")
+            if tag_data["category"] == category and tag_data["detailed_type"] == normalized_type and tag_data["color"] == color_name:
+                self.logger.debug(f"  ✅ MATCH found for {uid}")
+                return "✅"
+
+        return "❌"
+
+
+class TableGenerator(LoggerMixin):
+    """Generates markdown tables from filament data."""
+
+    def __init__(self, color_loader: ColorDataLoader, scanner: Optional[FilesystemScanner] = None):
+        self.color_loader = color_loader
+        self.scanner = scanner
+
+    def generate_table_from_json(self, existing_data: Optional[Dict] = None) -> str:
+        """Generate complete markdown output from JSON data."""
+        output = "## List of Bambu Lab Materials + Colors\n\n"
+        output += "Status Icon Legend:\n"
+        output += "- ✅: Have complete tag data\n"
+        output += "- ❌: No tag scanned\n"
+        output += "- 👀: Folder has at least one compliant UID but also has non-compliant UIDs\n"
+        output += "- ⚠️: Folder exists with files but ALL UIDs missing proper PM3 tag structure\n\n"
+
+        filament_types = self.color_loader.get_all_by_type()
+
+        for fila_type in sorted(filament_types.keys()):
+            output += f"### {fila_type}\n\n"
+
+            table = PrettyTable()
+            table.set_style(TableStyle.MARKDOWN)
+            table.align = "l"
+            table.field_names = ["Color", "Filament Code", "Color Hex", "Variant ID", "Status"]
+
+            for item in sorted(filament_types[fila_type], key=lambda x: x.get("fila_color_code", "")):
+                color_name = item.get("fila_color_name", {}).get("en", "Unknown")
+                filament_code = item.get("fila_color_code", "?")
+                fila_color = item.get("fila_color", ["?"])[0]
+                variant_id = item.get("fila_id", "?")
+                filament_type = item.get("fila_type", "")
+
+                if self.scanner:
+                    status = self.scanner.get_status(filament_type, color_name)
+                elif existing_data and filament_code in existing_data:
+                    status = existing_data[filament_code].get("status", "❌")
+                else:
+                    status = "❌"
+
+                table.add_row([color_name, filament_code, fila_color, variant_id, status])
+
+            output += table.get_string().replace(":-", "--").replace("-|", " |")
+            output += "\n\n"
+
+        return output
+
+    def update_readme(self, readme_path: Path, dry_run: bool = False) -> str:
+        """Update datasheet with new filament data, determining status from filesystem."""
+        output = self.generate_table_from_json()
+
+        if not dry_run:
+            readme_path.write_text(output, encoding="utf-8")
+            self.logger.info(f"Updated datasheet: {readme_path}")
+        else:
+            self.logger.info("Dry run mode - no files written")
+
+        return output
+
+
 @dataclass(frozen=True)
 class TagInfo:
 
@@ -102,17 +449,24 @@ class TagInfo:
     filament_type: str
     detailed_filament_type: str
     color_hex: str
+    _color_loader: Optional[ColorDataLoader] = field(default=None, repr=False, compare=False)
 
     @property
     def color_name(self) -> str:
-        return ColorConverter.hex_to_name(self.color_hex)
+        if self._color_loader:
+            try:
+                return self._color_loader.hex_to_color_name(self.color_hex)
+            except Exception:
+                return self.color_hex
+        return self.color_hex
 
     @property
     def detailed_type(self) -> str:
         return self.detailed_filament_type or self.filament_type
 
     def get_path(self, base_dir: Path) -> Path:
-        path = base_dir / self.filament_type / self.detailed_type / self.color_name / self.uid
+        color_dir_name = self.color_name if self._color_loader else self.color_hex
+        path = base_dir / self.filament_type / self.detailed_type / color_dir_name / self.uid
         return path.resolve()
 
     def __str__(self) -> str:
@@ -146,21 +500,10 @@ class TagFiles:
         return cls(dump_file=dump_file, key_file=key_candidates[0], tag_id=tag_id)
 
 
-class ColorConverter:
-
-    @staticmethod
-    def hex_to_name(hex_color: str) -> str:
-        hex_color = hex_color[:6] if len(hex_color) == 8 else hex_color
-
-        try:
-            return webcolors.hex_to_name(f"#{hex_color}").capitalize()
-        except ValueError:
-            rgb = tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
-            closest = min(webcolors.CSS3_HEX_TO_NAMES.items(), key=lambda item: sum((a - b) ** 2 for a, b in zip(rgb, webcolors.hex_to_rgb(item[0]))))
-            return closest[1].capitalize()
-
-
 class TagParser:
+
+    def __init__(self, color_loader: Optional[ColorDataLoader] = None):
+        self.color_loader = color_loader
 
     @staticmethod
     def bytes_to_string(data: bytes) -> str:
@@ -170,14 +513,13 @@ class TagParser:
     def bytes_to_hex(data: bytes) -> str:
         return data.hex().upper()
 
-    @classmethod
-    def parse(cls, data: bytes) -> TagInfo:
+    def parse(self, data: bytes) -> TagInfo:
         blocks = [data[i : i + BYTES_PER_BLOCK] for i in range(0, len(data), BYTES_PER_BLOCK)]
 
         if len(blocks) < 6:
             raise ValueError(f"insufficient data blocks: {len(blocks)}")
 
-        return TagInfo(uid=cls.bytes_to_hex(blocks[0][0:4]), filament_type=cls.bytes_to_string(blocks[2]), detailed_filament_type=cls.bytes_to_string(blocks[4]), color_hex=cls.bytes_to_hex(blocks[5][0:4]))
+        return TagInfo(uid=self.bytes_to_hex(blocks[0][0:4]), filament_type=self.bytes_to_string(blocks[2]), detailed_filament_type=self.bytes_to_string(blocks[4]), color_hex=self.bytes_to_hex(blocks[5][0:4]), _color_loader=self.color_loader)
 
 
 class Proxmark3(LoggerMixin):
@@ -284,15 +626,20 @@ class Proxmark3(LoggerMixin):
         self.logger.debug(f"hf mf bambukeys output:\n{output}")
 
         if result.returncode != 0:
+            self.logger.error(f"Command failed with return code: {result.returncode}")
+            self.logger.error(f"Output: {output}")
             raise RuntimeError("failed to read tag keys")
 
         key_file_path = next((line[line.find("`") + 1 : line.rfind("`")] for line in output.split("\n") if "Saved" in line and "binary file" in line and "`" in line), None)
 
         if not key_file_path:
+            self.logger.error("Could not find key file path in output")
+            self.logger.error(f"Full output:\n{output}")
             raise RuntimeError("no key file in output")
 
         key_file = Path(key_file_path)
         if not key_file.exists():
+            self.logger.error(f"Key file was reported but doesn't exist: {key_file}")
             raise RuntimeError(f"key file not found: {key_file}")
 
         dest = tmp_dir / key_file.name
@@ -367,6 +714,16 @@ class BaseOperation(ABC, LoggerMixin):
     def __init__(self, config: Config):
         self.config = config
         self.pm3 = Proxmark3(config)
+        self.color_loader = self._load_color_data()
+        self.tag_parser = TagParser(self.color_loader)
+
+    def _load_color_data(self) -> Optional[ColorDataLoader]:
+        """Attempt to load color data, but don't fail if unavailable."""
+        try:
+            return ColorDataLoader()
+        except FileNotFoundError:
+            self.logger.warning("Color database not found, color names will be hex values")
+            return None
 
     @abstractmethod
     def run(self, *args, **kwargs):
@@ -401,7 +758,7 @@ class RFIDReader(BaseOperation):
             dump_file = self.pm3.dump_tag(key_file, tmp_dir)
 
             with open(tmp_dir / dump_file, "rb") as f:
-                tag_info = TagParser.parse(f.read())
+                tag_info = self.tag_parser.parse(f.read())
 
             self.logger.info("Tag Information:")
             self.logger.info(f"  UID: {tag_info.uid}")
@@ -415,7 +772,7 @@ class RFIDVerifier(BaseOperation):
         tag_files = TagFiles.from_directory(directory)
 
         with open(tag_files.dump_file, "rb") as f:
-            expected_info = TagParser.parse(f.read())
+            expected_info = self.tag_parser.parse(f.read())
 
         self.logger.info("Expected tag data (from file):")
         self.logger.info(f"  UID: {expected_info.uid}")
@@ -435,7 +792,7 @@ class RFIDVerifier(BaseOperation):
                 dump_file = self.pm3.dump_tag(key_file, tmp_dir)
 
                 with open(tmp_dir / dump_file, "rb") as f:
-                    physical_info = TagParser.parse(f.read())
+                    physical_info = self.tag_parser.parse(f.read())
 
                 self.logger.info("Physical tag data (from reader):")
                 self.logger.info(f"  UID: {physical_info.uid}")
@@ -481,7 +838,7 @@ class RFIDDumper(BaseOperation):
 
     def _organize_files(self, dump_file: str, tmp_dir: Path) -> Path:
         with open(tmp_dir / dump_file, "rb") as f:
-            tag_info = TagParser.parse(f.read())
+            tag_info = self.tag_parser.parse(f.read())
 
         target_dir = tag_info.get_path(self.config.dump_base_dir)
 
@@ -550,7 +907,7 @@ class RFIDWriter(BaseOperation):
         tag_files = TagFiles.from_directory(directory)
 
         with open(tag_files.dump_file, "rb") as f:
-            tag_info = TagParser.parse(f.read())
+            tag_info = self.tag_parser.parse(f.read())
 
         self._display_tag_info(tag_info, tag_files)
 
@@ -568,6 +925,76 @@ class RFIDWriter(BaseOperation):
         self._verify_write(tag_info.uid)
 
 
+class DatasheetUpdater(LoggerMixin):
+    """Updates filament datasheet with tag scan status."""
+
+    def run(self, args: List[str]):
+        custom_json_path = None
+        scan_path = Path.cwd()
+        datasheet_path = Path("./bambulab_filament_datasheet.md")
+        output_path = None
+        dry_run = False
+
+        i = 0
+        while i < len(args):
+            if args[i] == "--json" and i + 1 < len(args):
+                custom_json_path = Path(args[i + 1])
+                i += 2
+            elif args[i] == "--scan" and i + 1 < len(args):
+                scan_path = Path(args[i + 1])
+                i += 2
+            elif args[i] == "--datasheet" and i + 1 < len(args):
+                datasheet_path = Path(args[i + 1])
+                i += 2
+            elif args[i] == "--output" and i + 1 < len(args):
+                output_path = Path(args[i + 1])
+                i += 2
+            elif args[i] == "--dry-run":
+                dry_run = True
+                i += 1
+            else:
+                self.logger.error(f"Unknown argument: {args[i]}")
+                self._print_usage()
+                return False
+
+        try:
+            self.logger.info("Loading filament color data...")
+            color_loader = ColorDataLoader(custom_json_path)
+
+            self.logger.info("Scanning filesystem for tag dumps...")
+            scanner = FilesystemScanner(scan_path, color_loader)
+
+            self.logger.info("Generating table...")
+            generator = TableGenerator(color_loader, scanner)
+
+            if output_path:
+                output = generator.generate_table_from_json()
+                if not dry_run:
+                    output_path.write_text(output, encoding="utf-8")
+                    self.logger.info(f"Output written to: {output_path}")
+                else:
+                    self.logger.info(f"Dry run mode - output would be written to: {output_path}")
+                    print(output)
+            else:
+                output = generator.update_readme(datasheet_path, dry_run=dry_run)
+                if dry_run:
+                    print(output)
+
+            return True
+
+        except (RuntimeError, FileNotFoundError) as e:
+            self.logger.error(str(e))
+            return False
+
+    def _print_usage(self):
+        print("\nDatasheet Update Options:")
+        print("  --json <path>       Use custom JSON file path")
+        print("  --scan <path>       Base directory to scan for tag dumps (default: current directory)")
+        print("  --datasheet <path>  Datasheet file to update (default: ./bambulab_filament_datasheet.md)")
+        print("  --output <path>     Write output to file instead of updating datasheet")
+        print("  --dry-run           Show what would be written without actually writing")
+
+
 class CLIApplication(LoggerMixin):
 
     MODES = {
@@ -577,6 +1004,7 @@ class CLIApplication(LoggerMixin):
         "write": ("Write/clone tag data from directory to FUID tag", RFIDWriter),
         "clone": ("Alias for write mode", RFIDWriter),
         "verify": ("Verify physical tag matches stored tag data", RFIDVerifier),
+        "update-db": ("Update filament datasheet with current tag scan status", None),
     }
 
     def __init__(self):
@@ -616,7 +1044,7 @@ class CLIApplication(LoggerMixin):
         logging.root.setLevel(level)
 
     def _print_usage(self):
-        print("Usage: python3 bambu-tag-helper.py <mode> [arguments] [options]")
+        print("Usage: python3 bambu-lab-rfid-library-helper.py <mode> [arguments] [options]")
         print("\nModes:")
         for mode, (description, _) in self.MODES.items():
             print(f"  {mode:10s} {description}")
@@ -624,11 +1052,12 @@ class CLIApplication(LoggerMixin):
         print("  --accept-eula    Skip EULA prompt")
         print("  --verbose, -v    Enable verbose debug logging")
         print("\nExamples:")
-        print("  python3 bambu-tag-helper.py id")
-        print("  python3 bambu-tag-helper.py read")
-        print("  python3 bambu-tag-helper.py dump --accept-eula --verbose")
-        print('  python3 bambu-tag-helper.py write "/path/to/PETG/PETG HF/White/E3D1DC36"')
-        print('  python3 bambu-tag-helper.py verify "/path/to/tag" --accept-eula -v')
+        print("  python3 bambu-lab-rfid-library-helper.py id")
+        print("  python3 bambu-lab-rfid-library-helper.py read")
+        print("  python3 bambu-lab-rfid-library-helper.py dump --accept-eula --verbose")
+        print('  python3 bambu-lab-rfid-library-helper.py write "/path/to/PETG/PETG HF/White/E3D1DC36"')
+        print('  python3 bambu-lab-rfid-library-helper.py verify "/path/to/tag" --accept-eula -v')
+        print("  python3 bambu-lab-rfid-library-helper.py update-db --scan . --datasheet ./datasheet.md")
         print("\nEnvironment Variables:")
         print("  PM3_PATH          Path to proxmark3 binary")
         print("  DUMP_BASE_DIR     Base directory for tag storage (default: current directory)")
@@ -660,6 +1089,11 @@ class CLIApplication(LoggerMixin):
             self.logger.error(f"Unknown mode: {mode}")
             self._print_usage()
             sys.exit(1)
+
+        if mode == "update-db":
+            updater = DatasheetUpdater()
+            success = updater.run(args[1:])
+            sys.exit(0 if success else 1)
 
         if not accept_eula:
             self._show_disclaimer()
