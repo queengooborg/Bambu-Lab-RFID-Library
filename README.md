@@ -234,7 +234,7 @@ Status Icon Legend:
 | ------------ | ------------- | ---------- | ------ |
 | Burgundy Red | 14200         | ?          | ❌     |
 | Matcha Green | 14500         | ?          | ❌     |
-| Lava Gray    | 14101         | A50-D6     | ❌     |
+| Lava Gray    | 14101         | A50-D6     | ✅     |
 | Jeans Blue   | 14600         | ?          | ❌     |
 | Black        | 14100         | A50-K0     | ✅     |
 | Royal Blue   | 14601         | A50-B6     | ❌     |
