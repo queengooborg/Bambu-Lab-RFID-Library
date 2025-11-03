@@ -426,7 +426,7 @@ Status Icon Legend:
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
-| White | 65104         | ?          | ❌     |
+| White | 65104         | S02-W1     | ✅     |
 
 #### Support for ABS
 
