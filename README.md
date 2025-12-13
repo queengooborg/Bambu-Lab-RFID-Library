@@ -172,8 +172,8 @@ Status Icon Legend:
 | Color         | Filament Code | Variant ID | Status |
 | ------------- | ------------- | ---------- | ------ |
 | Teal          | 13612         | ?          | ❌     |
-| Blue          | 13611         | ?          | ❌     |
-| Orange        | 13301         | ?          | ❌     |
+| Blue          | 13611         | A17-B1     | ✅     |
+| Orange        | 13301         | A17-A0     | ✅     |
 | Purple        | 13710         | A17-P0     | ✅     |
 | Red           | 13210         | ?          | ❌     |
 | Light Jade    | 13510         | ?          | ❌     |
@@ -332,7 +332,7 @@ Status Icon Legend:
 | Blue   | 41600         | ?          | ❌     |
 | White  | 41100         | B50-W0     | ❌     |
 | Gray   | 41102         | ?          | ❌     |
-| Black  | 41101         | B50-K0     | ❌     |
+| Black  | 41101         | B50-K0     | ✅     |
 
 ### ASA
 
@@ -365,8 +365,8 @@ Status Icon Legend:
 
 | Color       | Filament Code | Variant ID | Status |
 | ----------- | ------------- | ---------- | ------ |
-| Transparent | 60103         | ?          | ❌     |
-| Clear Black | 60102         | ?          | ❌     |
+| Transparent | 60103         | C00-C1     | ✅     |
+| Clear Black | 60102         | C00-C0     | ✅     |
 | Black       | 60101         | C00-K0     | ✅     |
 | White       | 60100         | C00-W0     | ✅     |
 
@@ -438,7 +438,7 @@ Status Icon Legend:
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
-| Green | 65500         | ?          | ❌     |
+| Green | 65500         | S03-G1     | ✅     |
 
 #### PVA
 
