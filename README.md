@@ -207,6 +207,8 @@ Status Icon Legend:
 | Dawn Radiance  | 13912         | A05-M8     | ✅     |
 | Aurora Purple  | 13909         | A05-M4     | ✅     |
 | South Beach    | 13906         | A05-M1     | ✅     |
+| Phantom Blue   | 13916         | ?          | ❌     |
+| Mystic Magenta | 13913         | ?          | ❌     |
 | Neon City      | 13903         | A05-T3     | ✅     |
 | Midnight Blaze | 13902         | A05-T2     | ✅     |
 | Gilded Rose    | 13901         | A05-T1     | ✅     |
@@ -249,13 +251,13 @@ Status Icon Legend:
 
 | Color  | Filament Code | Variant ID | Status |
 | ------ | ------------- | ---------- | ------ |
-| Yellow | 12401         | ?          | ❌     |
+| Black  | 12104         | ?          | ❌     |
 | White  | 12107         | A10-W0     | ✅     |
+| Yellow | 12401         | ?          | ❌     |
 | Orange | 12301         | ?          | ❌     |
 | Gray   | 12105         | A10-D0     | ✅     |
 | Silver | 12106         | ?          | ❌     |
 | Cyan   | 12601         | ?          | ❌     |
-| Black  | 12104         | ?          | ❌     |
 
 #### PLA Tough
 
