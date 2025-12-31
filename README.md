@@ -257,6 +257,17 @@ Status Icon Legend:
 | Cyan   | 12601         | ?          | ❌     |
 | Black  | 12104         | ?          | ❌     |
 
+#### PLA Tough
+
+| Color         | Filament Code | Variant ID | Status |
+| ------------- | ------------- | ---------- | ------ |
+| Lavender Blue | 12005         | A09-B5     | ✅     |
+| Light Blue    | 12004         | A09-B4     | ✅     |
+| Orange        | 12002         | A09-A0     | ✅     |
+| Silver        | 12001         | A09-D1     | ✅     |
+| Vermilion Red | 12003         | A09-R3     | ✅     |
+| Yellow        | 12000         | A09-Y0     | ✅     |
+
 ### PETG
 
 #### PETG HF

@@ -40,7 +40,8 @@ CATEGORIES = {
         "PLA Galaxy",
         "PLA Wood",
         "PLA-CF",
-        "PLA Tough+"
+        "PLA Tough+",
+        "PLA Tough"
     ],
     "PETG": [
         "PETG HF",
@@ -95,6 +96,17 @@ PLA_LITE_DATA = {
     "Cyan": '16600',
     "Blue": '16601',
     "Matte Beige": '16602',
+}
+
+# PLA Tough was discontinued in favor of PLA Tough+
+# XXX Codes are made up; we don't know what they were 
+PLA_TOUGH_DATA = {
+    "Lavender Blue": '12005',
+    "Light Blue": '12004',
+    "Orange": '12002',
+    "Silver": '12001',
+    "Vermilion Red": '12003',
+    "Yellow": '12000',
 }
 
 requests_cache.install_cache('.bambulab_cache', expire_after=timedelta(days=1))
