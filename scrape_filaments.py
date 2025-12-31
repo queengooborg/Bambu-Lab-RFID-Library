@@ -154,14 +154,14 @@ def get_product(product_url):
     soup = get_page(product_url)
 
     # Get title
-    title = soup.select_one("h1.ProductMeta__Title").string
+    title = soup.select_one("h1").string
 
     if "bundle" in title.lower():
         return None
 
     # Get colors
     colors = {}
-    for el in soup.select_one(".Product__Info .property_selector_Color").select("li.swatch-view-item"):
+    for el in soup.select_one(".property_selector_Color").select("li"):
         color = re.sub(r"^(Matte|ABS|Glow) ", "", normalize_homoglyphs(el.get("value"))).title().replace(" To ", " to ")
 
         # Match pattern like "Color Name (12345)"
@@ -206,6 +206,7 @@ def get_materials():
 
     # Add overrides
     materials["PLA"]["PLA Lite"] = PLA_LITE_DATA
+    materials["PLA"]["PLA Tough"] = PLA_TOUGH_DATA
     materials["PLA"]["PLA Aero"]["Black"] = "14103"
 
     return materials
