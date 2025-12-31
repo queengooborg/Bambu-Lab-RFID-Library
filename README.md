@@ -11,7 +11,7 @@ For more information about Bambu Lab RFID tags and their format, see https://git
 
 ## Viewing Tag Data
 
-A script is included in this repository, `parse.py`, that will parse a tag dump and extract its information in an easy-to-read terminal output and easy-to-parse JSON format.  To run it, simply run `python3 parse.py [/path/to/tag.bin-or-json]`.
+A script is included in this repository, `parse.py`, that will parse a tag dump and extract its information in an easy-to-read terminal output and easy-to-parse JSON format. To run it, simply run `python3 parse.py [/path/to/tag.bin-or-json]`.
 
 ## Contributing
 
@@ -184,21 +184,21 @@ Status Icon Legend:
 
 #### PLA Silk+
 
-| Color       | Filament Code | Variant ID      | Status |
-| ----------- | ------------- | --------------- | ------ |
-| Gold        | 13405         | A06-Y1          | ✅     |
-| Titan Gray  | 13108         | A06-D0          | ✅     |
-| Silver      | 13109         | A06-D1          | ✅     |
-| White       | 13110         | A06-W0          | ✅     |
-| Candy Red   | 13205         | A06-R0          | ✅     |
-| Candy Green | 13506         | A06-G0          | ✅     |
-| Mint        | 13507         | A06-G1          | ✅     |
-| Blue        | 13604         | A06-B1          | ✅     |
-| Baby Blue   | 13603         | A06-B0          | ✅     |
-| Purple      | 13702         | A06-P0          | ✅     |
-| Rose Gold   | 13206         | A06-R1          | ✅     |
-| Pink        | 13207         | A06-R2          | ✅     |
-| Champagne   | 13404         | A06-Y0          | ✅     |
+| Color       | Filament Code | Variant ID | Status |
+| ----------- | ------------- | ---------- | ------ |
+| Gold        | 13405         | A06-Y1     | ✅     |
+| Titan Gray  | 13108         | A06-D0     | ✅     |
+| Silver      | 13109         | A06-D1     | ✅     |
+| White       | 13110         | A06-W0     | ✅     |
+| Candy Red   | 13205         | A06-R0     | ✅     |
+| Candy Green | 13506         | A06-G0     | ✅     |
+| Mint        | 13507         | A06-G1     | ✅     |
+| Blue        | 13604         | A06-B1     | ✅     |
+| Baby Blue   | 13603         | A06-B0     | ✅     |
+| Purple      | 13702         | A06-P0     | ✅     |
+| Rose Gold   | 13206         | A06-R1     | ✅     |
+| Pink        | 13207         | A06-R2     | ✅     |
+| Champagne   | 13404         | A06-Y0     | ✅     |
 
 #### PLA Silk Multi-Color
 
