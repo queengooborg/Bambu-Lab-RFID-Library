@@ -251,7 +251,7 @@ Status Icon Legend:
 
 | Color  | Filament Code | Variant ID | Status |
 | ------ | ------------- | ---------- | ------ |
-| Black  | 12104         | ?          | ❌     |
+| Black  | 12104         | A10-K0     | ✅     |
 | White  | 12107         | A10-W0     | ✅     |
 | Yellow | 12401         | ?          | ❌     |
 | Orange | 12301         | ?          | ❌     |
