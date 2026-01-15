@@ -43,7 +43,7 @@ Status Icon Legend:
 | Orange           | 10300         | A00-A0     | ✅     |
 | Gold             | 10401         | A00-Y4     | ✅     |
 | Bright Green     | 10503         | A00-G3     | ✅     |
-| Bambu Green      | 10501         | A00-G1     | ✅     |
+| Bambu Green      | 10501         | A00-G1/G6  | ✅     |
 | Mistletoe Green  | 10502         | A00-G2     | ✅     |
 | Pink             | 10203         | A00-A0     | ✅     |
 | Hot Pink         | 10204         | A00-R3     | ✅     |
