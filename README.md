@@ -176,9 +176,9 @@ Status Icon Legend:
 | Orange        | 13301         | A17-A0     | ✅     |
 | Purple        | 13710         | A17-P0     | ✅     |
 | Red           | 13210         | ?          | ❌     |
-| Light Jade    | 13510         | A17-G0     | ✅     |
-| Mellow Yellow | 13410         | A17-Y0     | ✅     |
-| Cherry Pink   | 13211         | A17-R1     | ✅     |
+| Light Jade    | 13510         | ?          | ❌     |
+| Mellow Yellow | 13410         | ?          | ❌     |
+| Cherry Pink   | 13211         | ?          | ❌     |
 | Ice Blue      | 13610         | ?          | ❌     |
 | Lavender      | 13711         | ?          | ❌     |
 
@@ -251,7 +251,7 @@ Status Icon Legend:
 
 | Color  | Filament Code | Variant ID | Status |
 | ------ | ------------- | ---------- | ------ |
-| Black  | 12104         | A10-K0     | ✅     |
+| Black  | 12104         | ?          | ❌     |
 | White  | 12107         | A10-W0     | ✅     |
 | Yellow | 12401         | ?          | ❌     |
 | Orange | 12301         | ?          | ❌     |
@@ -388,8 +388,8 @@ Status Icon Legend:
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | Black | 63100         | C01-K0     | ✅     |
-| White | 63101         | C01-W0     | ✅     |
-| Gray  | 63102         | C01-D0     | ✅     |
+| White | 63101         | ?          | ❌     |
+| Gray  | 63102         | ?          | ❌     |
 
 ### TPU
 
