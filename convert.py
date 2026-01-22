@@ -63,20 +63,7 @@ def write_dump_json(path, tag):
             "SAK": "08"
         },
         "blocks": {},
-        "SectorKeys": {
-            "0": {
-                "KeyA": "02379BD31DF3",
-                "KeyB": "EC7253F945E4",
-                "AccessConditions": "87878769",
-                "AccessConditionsText": {
-                    "block0": "read AB",
-                    "block1": "read AB",
-                    "block2": "read AB",
-                    "block3": "read ACCESS by AB; write ACCESS by B",
-                    "UserData": "69"
-                }
-            }
-        }
+        "SectorKeys": {}
     }
 
     i = 0
@@ -90,10 +77,10 @@ def write_dump_json(path, tag):
             "KeyB": bytes_to_hex(keys[sector+TOTAL_SECTORS]),
             "AccessConditions": "87878769",
             "AccessConditionsText": {
-                "block0": "read AB",
-                "block1": "read AB",
-                "block2": "read AB",
-                "block3": "read ACCESS by AB; write ACCESS by B",
+                f"block{sector*4}": "read AB",
+                f"block{sector*4+1}": "read AB",
+                f"block{sector*4+2}": "read AB",
+                f"block{sector*4+3}": "read ACCESS by AB; write ACCESS by B",
                 "UserData": "69"
             }
         }
