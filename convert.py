@@ -111,7 +111,7 @@ def write_flipper_nfc(path, tag):
         lines.append(f"Block {i}: {bytes_to_hex(block, True)}")
 
     with open(path, "w") as f:
-        f.write("\n".join(lines))
+        f.write("\n".join(lines) + "\n")
 
 
 # Check directory and write any missing files
