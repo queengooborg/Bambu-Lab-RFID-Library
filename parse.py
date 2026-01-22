@@ -212,11 +212,12 @@ class Tag():
 
         # Check for the presence of both A-keys and B-keys
         empty_keys = {'a': False, 'b': False}
+        invalid_keys = [0, bytes_to_int(b'\xFF'*6)]
         for block in range(0,len(self.blocks)):
             if block % 4 == 3:
-                if bytes_to_int(self.blocks[block][0:6]) == 0:
+                if bytes_to_int(self.blocks[block][0:6]) in invalid_keys:
                     empty_keys['a'] = True
-                if bytes_to_int(self.blocks[block][10:16]) == 0:
+                if bytes_to_int(self.blocks[block][10:16]) in invalid_keys:
                     empty_keys['b'] = True
 
         if empty_keys['a']:
