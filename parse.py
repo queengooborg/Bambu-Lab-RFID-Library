@@ -2,7 +2,7 @@
 
 # Python script to parse Bambu Lab RFID tag data
 # Created for https://github.com/queengooborg/Bambu-Lab-RFID-Library
-# Written by Vinyl Da.i'gyu-Kazotetsu (www.queengoob.org), 2024-2025
+# Written by Vinyl Da.i'gyu-Kazotetsu (www.queengoob.org), 2024-2026
 
 import sys
 import re
@@ -15,7 +15,9 @@ COMPARISON_BLOCKS = [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14]
 IMPORTANT_BLOCKS = [0] + COMPARISON_BLOCKS
 
 BYTES_PER_BLOCK = 16
+BLOCKS_PER_SECTOR = 4
 BLOCKS_PER_TAG = [64, 72] # 64 = 1KB, 72 = Output from Proxmark fm11rf08 script
+TOTAL_SECTORS = 16
 TOTAL_BYTES = [blocks * BYTES_PER_BLOCK for blocks in BLOCKS_PER_TAG]
 
 # Byte conversions
