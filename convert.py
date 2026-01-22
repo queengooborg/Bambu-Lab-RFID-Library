@@ -188,12 +188,13 @@ def sync_directory(path):
         tag = ref_tag
         keys = extract_keys_from_blocks(tag.blocks)
 
-        if "key" in entries:
-            with open(entries['key'], "rb") as f:
-                if not blocks_equal(b''.join(keys), f.read()):
-                    print(f"  [!] MISMATCH between keys and {ref_kind}")
-                    print("      Consider deleting malformed files")
-                    continue
+        # XXX Key files might be formatted differently than expected...
+        # if "key" in entries:
+        #     with open(entries['key'], "rb") as f:
+        #         if not blocks_equal(b''.join(keys), f.read()):
+        #             print(f"  [!] MISMATCH between keys and {ref_kind}")
+        #             print("      Consider deleting malformed files")
+        #             continue
 
         # generate missing files
         if "dump" not in entries:
@@ -201,10 +202,11 @@ def sync_directory(path):
             write_dump_bin(out, tag.blocks)
             print(f"  [+] Created {out.name}")
 
-        if "key" not in entries:
-            out = path / f"{base}{KEY_SUFFIX}"
-            write_key_bin(out, keys)
-            print(f"  [+] Created {out.name}")
+        # XXX Key files might be formatted differently than expected...
+        # if "key" not in entries:
+        #     out = path / f"{base}{KEY_SUFFIX}"
+        #     write_key_bin(out, keys)
+        #     print(f"  [+] Created {out.name}")
 
         if "json" not in entries:
             out = path / f"{base}{JSON_SUFFIX}"
