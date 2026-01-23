@@ -5,17 +5,16 @@
 # Written by Vinyl Da.i'gyu-Kazotetsu (www.queengoob.org), 2026
 # Requires: pycryptodome
 
+import sys
 from pathlib import Path
 from Crypto.Protocol.KDF import HKDF
 from Crypto.Hash import SHA256
 
 from parse import BYTES_PER_BLOCK, BLOCKS_PER_SECTOR, TOTAL_SECTORS, TOTAL_BYTES
 
-INVALID_KEYS = {
-    b"\xFF" * 6,
-    b"\x00" * 6,
-}
+INVALID_KEYS = [b"\xFF" * 6, b"\x00" * 6]
 
+# Function copied from https://github.com/queengooborg/Bambu-Lab-RFID-Tag-Guide/blob/main/deriveKeys.py
 def kdf(uid):
     salt = bytes([0x9a,0x75,0x9c,0xf2,0xc4,0xf7,0xca,0xff,0x22,0x2c,0xb9,0x76,0x9b,0x41,0xbc,0x96])
     return HKDF(uid, 6, salt, SHA256, 16, context=b"RFID-A\0") + HKDF(uid, 6, salt, SHA256, 16, context=b"RFID-B\0")
@@ -72,14 +71,9 @@ def repair_keys_in_place(path):
     else:
         print("\nNo repairs needed — file left unchanged.")
 
-def main():
-    import sys
-
+if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: repair_dump.py <dumpfile>")
         return
 
     repair_keys_in_place(Path(sys.argv[1]))
-
-if __name__ == "__main__":
-    main()
