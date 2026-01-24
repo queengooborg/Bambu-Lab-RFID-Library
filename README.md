@@ -310,7 +310,7 @@ Status Icon Legend:
 | Color           | Filament Code | Variant ID | Status |
 | --------------- | ------------- | ---------- | ------ |
 | Indigo Blue     | 31600         | ?          | ❌     |
-| Malachite Green | 31500         | ?          | ❌     |
+| Malachite Green | 31500         | G50-G7     | ✅     |
 | Titan Gray      | 31101         | ?          | ❌     |
 | Brick Red       | 31200         | ?          | ❌     |
 | Violet Purple   | 31700         | G50-P7     | ✅     |
@@ -357,7 +357,7 @@ Status Icon Legend:
 | Green | 45500         | ?          | ❌     |
 | Black | 45101         | B01-K0     | ✅     |
 | Gray  | 45102         | B01-D0     | ✅     |
-| Red   | 45200         | ?          | ❌     |
+| Red   | 45200         | B01-R0     | ✅     |
 | Blue  | 45600         | ?          | ❌     |
 
 #### ASA Aero
