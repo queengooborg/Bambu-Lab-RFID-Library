@@ -73,7 +73,7 @@ def repair_keys_in_place(path):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: repair_dump.py <dumpfile>")
+        print("Usage: repair.py <dumpfile>")
         return
 
     repair_keys_in_place(Path(sys.argv[1]))

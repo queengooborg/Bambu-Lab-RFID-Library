@@ -210,7 +210,7 @@ def sync_directory(path):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: sync_tags.py <folder>")
+        print("Usage: convert.py <folder>")
         sys.exit(1)
 
     sync_directory(Path(sys.argv[1]))
