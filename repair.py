@@ -74,6 +74,6 @@ def repair_keys_in_place(path):
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: repair.py <dumpfile>")
-        return
+        sys.exit(1)
 
     repair_keys_in_place(Path(sys.argv[1]))
