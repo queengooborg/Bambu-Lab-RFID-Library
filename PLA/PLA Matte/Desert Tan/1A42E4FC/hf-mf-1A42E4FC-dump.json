@@ -1,0 +1,269 @@
+{
+  "Created": "proxmark3",
+  "FileType": "mfc v2",
+  "Card": {
+    "UID": "1A42E4FC",
+    "ATQA": "0400",
+    "SAK": "08"
+  },
+  "blocks": {
+    "0": "1A42E4FC40080400047EBA3CB9A22590",
+    "1": "4130312D593300004746413031000000",
+    "2": "504C4100000000000000000000000000",
+    "3": "00FE04DB78B7878787698F97E0CCD542",
+    "4": "504C41204D6174746500000000000000",
+    "5": "E8DBB7FFE80300000000E03F00000000",
+    "6": "3700080000000000E600BE0000000000",
+    "7": "613BA75DE17E878787692AE87738ADD1",
+    "8": "102710278403E8036666663FCDCC4C3E",
+    "9": "9FEDD4FF1D6A4B818CB9798D17A95981",
+    "10": "000000009A0200000000000000000000",
+    "11": "3D56AC69A7F987878769B4F6D64E1410",
+    "12": "323032345F30385F31315F31385F3130",
+    "13": "32303234303831310000000000000000",
+    "14": "000000003B0100000000000000000000",
+    "15": "2C4384BA55248787876926CB07FFC8A2",
+    "16": "02000100000000000000000000000000",
+    "17": "00000000000000000000000000000000",
+    "18": "00000000000000000000000000000000",
+    "19": "99EB51336877878787699EC440477D8A",
+    "20": "00000000000000000000000000000000",
+    "21": "00000000000000000000000000000000",
+    "22": "00000000000000000000000000000000",
+    "23": "48F8D3921586878787694FE25E56F0C1",
+    "24": "00000000000000000000000000000000",
+    "25": "00000000000000000000000000000000",
+    "26": "00000000000000000000000000000000",
+    "27": "EA12A149153C8787876949249838C6CC",
+    "28": "00000000000000000000000000000000",
+    "29": "00000000000000000000000000000000",
+    "30": "00000000000000000000000000000000",
+    "31": "345E5A2173D987878769C7FEEF583647",
+    "32": "00000000000000000000000000000000",
+    "33": "00000000000000000000000000000000",
+    "34": "00000000000000000000000000000000",
+    "35": "89EE33AE6E79878787699C541A8A4D01",
+    "36": "00000000000000000000000000000000",
+    "37": "00000000000000000000000000000000",
+    "38": "00000000000000000000000000000000",
+    "39": "17CBFC28589C87878769D87347A15336",
+    "40": "01000000000000000000000000000000",
+    "41": "00000000000000000000000000000000",
+    "42": "1C2AB71C6342C1958F386C576010286C",
+    "43": "0A2FD8E77014878787695659892F56A8",
+    "44": "4676B941ED4F994022A28ECA96A3270C",
+    "45": "D82B6AC8054D9E2C6ABA38402573F1D9",
+    "46": "17C3861544E2374564B9A817550C28ED",
+    "47": "48F8562B7F9187878769D99FBF46FC2D",
+    "48": "BC29FFA0B426218210DD53B2C471E5CD",
+    "49": "4A8D6A567A3D84F1CBCA8767D038B4F9",
+    "50": "D3ECA4900E091FC94C75BAC3A3992E39",
+    "51": "90051FC92F6487878769E557E6BBE82D",
+    "52": "7839FFC604FEFFC972F65C9C6A9293B4",
+    "53": "C5163BCEC0040407DEA1991B57D2FE2C",
+    "54": "751716BC76A35354609DFD41C64908EE",
+    "55": "ED6729A92CF387878769E1E9B7BCAF3D",
+    "56": "D6B0FCDA236ED6F86DF9C0CB801E3B64",
+    "57": "55F1911B6929D5B9892B8495DB0DB6EE",
+    "58": "C15820F9BC98CE5136E1847A340C2359",
+    "59": "59617E46FF3087878769AB2A80F11F50",
+    "60": "CBBC5228FA78A1E1CE14815A1DFE809D",
+    "61": "2D16D3C006CC5B2D93542D942666402C",
+    "62": "C471E0C985B06A0C92B45D750247AC8F",
+    "63": "96946DFFE9E087878769A5DC4DF9F1CE"
+  },
+  "SectorKeys": {
+    "0": {
+      "KeyA": "00FE04DB78B7",
+      "KeyB": "8F97E0CCD542",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block0": "read AB",
+        "block1": "read AB",
+        "block2": "read AB",
+        "block3": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "1": {
+      "KeyA": "613BA75DE17E",
+      "KeyB": "2AE87738ADD1",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block4": "read AB",
+        "block5": "read AB",
+        "block6": "read AB",
+        "block7": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "2": {
+      "KeyA": "3D56AC69A7F9",
+      "KeyB": "B4F6D64E1410",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block8": "read AB",
+        "block9": "read AB",
+        "block10": "read AB",
+        "block11": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "3": {
+      "KeyA": "2C4384BA5524",
+      "KeyB": "26CB07FFC8A2",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block12": "read AB",
+        "block13": "read AB",
+        "block14": "read AB",
+        "block15": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "4": {
+      "KeyA": "99EB51336877",
+      "KeyB": "9EC440477D8A",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block16": "read AB",
+        "block17": "read AB",
+        "block18": "read AB",
+        "block19": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "5": {
+      "KeyA": "48F8D3921586",
+      "KeyB": "4FE25E56F0C1",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block20": "read AB",
+        "block21": "read AB",
+        "block22": "read AB",
+        "block23": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "6": {
+      "KeyA": "EA12A149153C",
+      "KeyB": "49249838C6CC",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block24": "read AB",
+        "block25": "read AB",
+        "block26": "read AB",
+        "block27": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "7": {
+      "KeyA": "345E5A2173D9",
+      "KeyB": "C7FEEF583647",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block28": "read AB",
+        "block29": "read AB",
+        "block30": "read AB",
+        "block31": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "8": {
+      "KeyA": "89EE33AE6E79",
+      "KeyB": "9C541A8A4D01",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block32": "read AB",
+        "block33": "read AB",
+        "block34": "read AB",
+        "block35": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "9": {
+      "KeyA": "17CBFC28589C",
+      "KeyB": "D87347A15336",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block36": "read AB",
+        "block37": "read AB",
+        "block38": "read AB",
+        "block39": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "10": {
+      "KeyA": "0A2FD8E77014",
+      "KeyB": "5659892F56A8",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block40": "read AB",
+        "block41": "read AB",
+        "block42": "read AB",
+        "block43": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "11": {
+      "KeyA": "48F8562B7F91",
+      "KeyB": "D99FBF46FC2D",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block44": "read AB",
+        "block45": "read AB",
+        "block46": "read AB",
+        "block47": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "12": {
+      "KeyA": "90051FC92F64",
+      "KeyB": "E557E6BBE82D",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block48": "read AB",
+        "block49": "read AB",
+        "block50": "read AB",
+        "block51": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "13": {
+      "KeyA": "ED6729A92CF3",
+      "KeyB": "E1E9B7BCAF3D",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block52": "read AB",
+        "block53": "read AB",
+        "block54": "read AB",
+        "block55": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "14": {
+      "KeyA": "59617E46FF30",
+      "KeyB": "AB2A80F11F50",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block56": "read AB",
+        "block57": "read AB",
+        "block58": "read AB",
+        "block59": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    },
+    "15": {
+      "KeyA": "96946DFFE9E0",
+      "KeyB": "A5DC4DF9F1CE",
+      "AccessConditions": "87878769",
+      "AccessConditionsText": {
+        "block60": "read AB",
+        "block61": "read AB",
+        "block62": "read AB",
+        "block63": "read ACCESS by AB; write ACCESS by B",
+        "UserData": "69"
+      }
+    }
+  }
+}

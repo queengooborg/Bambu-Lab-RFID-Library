@@ -43,7 +43,7 @@ Status Icon Legend:
 | Orange           | 10300         | A00-A0     | ✅     |
 | Gold             | 10401         | A00-Y4     | ✅     |
 | Bright Green     | 10503         | A00-G3     | ✅     |
-| Bambu Green      | 10501         | A00-G1     | ✅     |
+| Bambu Green      | 10501         | A00-G1/G6  | ✅     |
 | Mistletoe Green  | 10502         | A00-G2     | ✅     |
 | Pink             | 10203         | A00-A0     | ✅     |
 | Hot Pink         | 10204         | A00-R3     | ✅     |
@@ -176,9 +176,9 @@ Status Icon Legend:
 | Orange        | 13301         | A17-A0     | ✅     |
 | Purple        | 13710         | A17-P0     | ✅     |
 | Red           | 13210         | ?          | ❌     |
-| Light Jade    | 13510         | ?          | ❌     |
-| Mellow Yellow | 13410         | ?          | ❌     |
-| Cherry Pink   | 13211         | ?          | ❌     |
+| Light Jade    | 13510         | A17-G0     | ✅     |
+| Mellow Yellow | 13410         | A17-Y0     | ✅     |
+| Cherry Pink   | 13211         | A17-R1     | ✅     |
 | Ice Blue      | 13610         | ?          | ❌     |
 | Lavender      | 13711         | ?          | ❌     |
 
@@ -251,7 +251,7 @@ Status Icon Legend:
 
 | Color  | Filament Code | Variant ID | Status |
 | ------ | ------------- | ---------- | ------ |
-| Black  | 12104         | ?          | ❌     |
+| Black  | 12104         | A10-K0     | ✅     |
 | White  | 12107         | A10-W0     | ✅     |
 | Yellow | 12401         | ?          | ❌     |
 | Orange | 12301         | ?          | ❌     |
@@ -388,8 +388,8 @@ Status Icon Legend:
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | Black | 63100         | C01-K0     | ✅     |
-| White | 63101         | ?          | ❌     |
-| Gray  | 63102         | ?          | ❌     |
+| White | 63101         | C01-W0     | ✅     |
+| Gray  | 63102         | C01-D0     | ✅     |
 
 ### TPU
 
@@ -461,7 +461,7 @@ Status Icon Legend:
 
 ## History
 
-When Bambu Lab released the AMS for their 3D printers, it featured an RFID redear which could read RFID tags embedded on their filament spools to automatically update details such as material type, color and amount of remaining filament. However, the RFID tags were read-protected by keys, signed with an RSA2048 signature and structured in a proprietary format, which meant that only Bambu Lab could create these particular RFID tags and they could only be used on Bambu Lab printers. This led to the start of the [Bambu Research Group and a project to reverse engineer the RFID tag format](https://github.com/queengooborg/Bambu-Lab-RFID-Tag-Guide) in order to develop an open standard for all filament manufacturers and printers.
+When Bambu Lab released the AMS for their 3D printers, it featured an RFID reader which could read RFID tags embedded on their filament spools to automatically update details such as material type, color and amount of remaining filament. However, the RFID tags were read-protected by keys, signed with an RSA2048 signature and structured in a proprietary format, which meant that only Bambu Lab could create these particular RFID tags and they could only be used on Bambu Lab printers. This led to the start of the [Bambu Research Group and a project to reverse engineer the RFID tag format](https://github.com/queengooborg/Bambu-Lab-RFID-Tag-Guide) in order to develop an open standard for all filament manufacturers and printers.
 
 Of course, to research the tag format, a lot of tag data was required. This led to a community effort to scan lots of tags and cross-reference the data with known details about each spool. Eventually, enough of the format was reverse engineered to be able to determine what an open standard would need. But, the tag scanning didn't stop there, as the community realized another benefit to the collection of tags: even though custom tags couldn't be created due to the signing of the data, the data could be _cloned_ onto new tags and used to tell Bambu Lab printers what material and color a spool was, just like Bambu Lab first-party spools.
 
