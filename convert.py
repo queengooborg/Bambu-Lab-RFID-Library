@@ -55,7 +55,7 @@ def write_dump_json(path, tag):
     keys = extract_keys_from_blocks(tag.blocks)
 
     output = {
-        "Created": "proxmark3",
+        "Created": "queengooborg/Bambu-Lab-RFID-Library/convert.py",
         "FileType": "mfc v2",
         "Card": {
             "UID": tag.data['uid'],
