@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # Python script to repair any Bambu Lab RFID tag dumps without keys
@@ -6,6 +7,7 @@
 # Requires: pycryptodome
 
 import sys
+import argparse
 from pathlib import Path
 from Crypto.Protocol.KDF import HKDF
 from Crypto.Hash import SHA256
@@ -72,8 +74,9 @@ def repair_keys_in_place(path):
         print("\nNo repairs needed — file left unchanged.")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: repair.py <dumpfile>")
-        sys.exit(1)
+    parser = argparse.ArgumentParser(description='Check that a file contains A/B keys for all blocks, and generate missing keys')
+    parser.add_argument('file', nargs='+', help='Binary dump file(s) containing tag data')
+    args = parser.parse_args()
 
-    repair_keys_in_place(Path(sys.argv[1]))
+    for filename in args.file:
+        repair_keys_in_place(Path(filename))

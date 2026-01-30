@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # Python script to parse Bambu Lab RFID tag data
@@ -8,6 +9,7 @@ import sys
 import re
 import json
 import struct
+import argparse
 from pathlib import Path
 from datetime import datetime
 
@@ -130,10 +132,10 @@ class ColorList(list):
 
 class Tag():
     def __init__(self, filename, data):
-        # Proxmark3 JSON dump
+        # JSON mfc v2 dump (aka Proxmark)
         try:
             json_data = json.loads(data)
-            if json_data.get("Created") == "proxmark3":
+            if json_data.get("FileType") == "mfc v2":
                 data = b"".join([bytes.fromhex(json_data["blocks"][key].replace("??", "00")) for key in json_data["blocks"]])
         except ValueError:
             # We know that the data isn't JSON now
@@ -160,7 +162,7 @@ class Tag():
 
         # Parse the data
         has_extra_color_info = self.blocks[16][0:2] == b'\x02\x00'
-        
+
         self.data = {
             "uid": bytes_to_hex(self.blocks[0][0:4]),
             "filament_type": bytes_to_string(self.blocks[2]),
@@ -289,5 +291,12 @@ def print_data(data, print_comparisons):
             print()
 
 if __name__ == "__main__":
-    data = load_data(sys.argv[1:])
-    print_data(data, False)
+
+    parser = argparse.ArgumentParser(description='Parse a binary/JSON/Flipper dump to readable text')
+    parser.add_argument('file', nargs='+', help='File(s) containing tag data')
+    parser.add_argument('-s', '--silent', action='store_true', help='Do not print parsing errors')
+    parser.add_argument('-c', '--compare', action='store_true', help='Compare parsed data for all files')
+    args = parser.parse_args()
+
+    data = load_data(args.files, args.silent)
+    print_data(data, args.compare)
