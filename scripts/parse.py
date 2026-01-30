@@ -1,0 +1,315 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# Python script to parse Bambu Lab RFID tag data
+# Created for https://github.com/queengooborg/Bambu-Lab-RFID-Library
+# Written by Vinyl Da.i'gyu-Kazotetsu (www.queengoob.org), 2024-2026
+
+import sys
+import re
+import json
+import struct
+import argparse
+from pathlib import Path
+from datetime import datetime
+
+try:
+    from Crypto.Protocol.KDF import HKDF
+    from Crypto.Hash import SHA256
+except:
+    print("Can't import Crypto; install pycryptodome, and try again")
+    exit()
+
+COMPARISON_BLOCKS = [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14]
+IMPORTANT_BLOCKS = [0] + COMPARISON_BLOCKS
+
+BYTES_PER_BLOCK = 16
+BLOCKS_PER_SECTOR = 4
+BLOCKS_PER_TAG = 64
+TOTAL_SECTORS = 16
+TOTAL_BYTES = BLOCKS_PER_TAG * BYTES_PER_BLOCK
+
+# Key generation
+
+def generate_keys(uid):
+    SALT = bytes([0x9a,0x75,0x9c,0xf2,0xc4,0xf7,0xca,0xff,0x22,0x2c,0xb9,0x76,0x9b,0x41,0xbc,0x96])
+    return HKDF(uid, 6, SALT, SHA256, 16, context=b"RFID-A\0") + HKDF(uid, 6, SALT, SHA256, 16, context=b"RFID-B\0")
+
+# Byte conversions
+def bytes_to_string(data):
+    return data.decode('ascii').replace('\x00', ' ').strip()
+
+def bytes_to_hex(data, chunkify = False):
+    output = data.hex().upper()
+    return " ".join((output[0+i:2+i] for i in range(0, len(output), 2))) if chunkify else output
+
+def bytes_to_int(data):
+    return int.from_bytes(data, 'little')
+
+def bytes_to_float(data):
+    return struct.unpack('<f', data)[0]
+
+def bytes_to_date(data):
+    string = bytes_to_string(data)
+    parts = string.split("_")
+    if len(parts) < 5:
+        return string # Not a date we can process, if it's a date at all
+    return datetime(
+        year=int(parts[0]),
+        month=int(parts[1]),
+        day=int(parts[2]),
+        hour=int(parts[3]),
+        minute=int(parts[4])
+    )
+
+
+# Flipper Helper
+def strip_flipper_data(string):
+    # Remove comments
+    pattern = re.compile(r"^[\w\s]+: [\w\s\d?]+$", re.M)
+    data = dict([x.split(": ") for x in pattern.findall(string.decode())])
+
+    # Ensure the scan file is for the proper type of tag
+    assert(data.get("Version") == "4")
+    assert(data.get("Data format version") == "2")
+    assert(data.get("Device type") == "Mifare Classic")
+    assert(data.get("Mifare Classic type") == "1K")
+
+    output = b""
+
+    for key in data:
+        if key.startswith("Block "):
+            output += bytes.fromhex(data[key].replace("??", "00"))
+
+    return output
+
+# Classes
+
+class TagLengthMismatchError(TypeError):
+    def __init__(self, actual_length):
+        super().__init__(f"The data does not appear to be a valid MIFARE 1K RFID tag (received {actual_length} bytes / {int(actual_length / BYTES_PER_BLOCK)} blocks, expected {TOTAL_BYTES} bytes / {BLOCKS_PER_TAG} blocks).")
+
+class Unit():
+    def __init__(self, value, unit):
+        self.value = value
+        self.unit = unit
+
+    def __str__(self):
+        return str(self.value) + ("º" if self.unit in ["C", "F"] else "") + self.unit
+
+    def __get_comparison_values(self, other):
+        if type(other) in [int, float]:
+            return [self.value, other]
+        if type(other) != Unit:
+            raise TypeError(f"Type {type(other)} cannot be compared with type Unit")
+        if self.unit != other.unit:
+            raise TypeError(f"Unit type {other.unit} is not identical to {self.unit}")
+        return [self.value, other.value]
+
+    def __eq__(self, other):
+        values = self.__get_comparison_values(self, other)
+        return values[0] == values[1]
+
+    def __lt__(self, other):
+        values = self.__get_comparison_values(self, other)
+        return values[0] < values[1]
+
+    def __gt__(self, other):
+        values = self.__get_comparison_values(self, other)
+        return values[0] > values[1]
+
+class ColorList(list):
+    def __init__(self, value):
+        if type(value) in [list, tuple]:
+            super().__init__(value)
+        else:
+            super().__init__([value])
+
+    def __str__(self):
+        return " / ".join("#" + c for c in self)
+
+    def __setitem__(self, index, item):
+        super().__setitem__(index, str(item))
+
+    def insert(self, index, item):
+        super().insert(index, str(item))
+
+    def append(self, item):
+        super().append(str(item))
+
+    def extend(self, other):
+        if isinstance(other, type(self)):
+            super().extend(other)
+        else:
+            super().extend(str(item) for item in other)
+
+class Tag():
+    def __init__(self, filename, data):
+        # JSON mfc v2 dump (aka Proxmark)
+        try:
+            json_data = json.loads(data)
+            if json_data.get("FileType") == "mfc v2":
+                data = b"".join([bytes.fromhex(json_data["blocks"][key].replace("??", "00")) for key in json_data["blocks"]])
+        except ValueError:
+            # We know that the data isn't JSON now
+            pass
+
+        # Flipper NFC dump
+        if data.startswith(b"Filetype: Flipper NFC"):
+            data = strip_flipper_data(data)
+
+        # Check to make sure the data is 1KB or a known alternative
+        if len(data) not in TOTAL_BYTES:
+            raise TagLengthMismatchError(len(data))
+
+        # Store the raw data
+        self.filename = filename
+        self.blocks = list(data[0+i:BYTES_PER_BLOCK+i] for i in range(0, len(data), BYTES_PER_BLOCK))
+
+        self.warnings = []
+
+        # Check for blank blocks
+        for bi in IMPORTANT_BLOCKS:
+            if self.blocks[bi] == b'\x00' * BYTES_PER_BLOCK:
+                self.warnings.append(f"Block {bi} is blank!")
+
+        # Parse the data
+        has_extra_color_info = self.blocks[16][0:2] == b'\x02\x00'
+
+        self.data = {
+            "uid": bytes_to_hex(self.blocks[0][0:4]),
+            "filament_type": bytes_to_string(self.blocks[2]),
+            "detailed_filament_type": bytes_to_string(self.blocks[4]),
+            "filament_color_count": bytes_to_int(self.blocks[16][2:4]) if has_extra_color_info else 1,
+            "filament_color": "#" + bytes_to_hex(self.blocks[5][0:4]),
+            "spool_weight": Unit(bytes_to_int(self.blocks[5][4:6]), "g"),
+            "filament_length": Unit(bytes_to_int(self.blocks[14][4:6]), "m"),
+            "filament_diameter": Unit(bytes_to_float(self.blocks[5][8:12]), "mm"),
+            "spool_width": Unit(bytes_to_int(self.blocks[10][4:6]) / 100, "mm"),
+            "material_id": bytes_to_string(self.blocks[1][8:16]),
+            "variant_id": bytes_to_string(self.blocks[1][0:8]),
+            "min_nozzle_diameter": Unit(round(bytes_to_float(self.blocks[8][12:16]), 1), "mm"),
+            "temperatures": {
+                "min_hotend": Unit(bytes_to_int(self.blocks[6][10:12]), "C"),
+                "max_hotend": Unit(bytes_to_int(self.blocks[6][8:10]), "C"),
+                "bed_temp": Unit(bytes_to_int(self.blocks[6][6:8]), "C"),
+                "bed_temp_type": bytes_to_int(self.blocks[6][4:6]),
+                "drying_time": Unit(bytes_to_int(self.blocks[6][2:4]), "h"),
+                "drying_temp": Unit(bytes_to_int(self.blocks[6][0:2]), "C"),
+            },
+            "x_cam_info": self.blocks[8][0:12],
+            "tray_uid": self.blocks[9],
+            "production_date": bytes_to_date(self.blocks[12]),
+            "unknown_1": bytes_to_string(self.blocks[13]), # Appears to be some sort of date -- on some tags, this is identical to the production date, but not always
+            "unknown_2": self.blocks[17][0:2], # Only been "0100" on the PLA Silk Dual Color, "0000" otherwise
+        }
+
+        # Check for a second color
+        if self.data["filament_color_count"] == 2:
+            self.data["filament_color"] += " / #" + bytes_to_hex(self.blocks[16][4:8][::-1])
+
+        # Check for any data in bits that are expected to be blank
+        expected_to_be_blank = {
+            5: [*range(6,8),*range(12,16)],
+            6: range(12,16),
+            10: [*range(0,4), *range(6,16)],
+            14: [*range(0,4), *range(6,16)],
+            17: range(2,16)
+        }
+        for block in range(18,39):
+            if block % 4 == 3:
+                continue # Skip MIFARE encryption key blocks
+            expected_to_be_blank[block] = list(range(0,16))
+
+        for block in expected_to_be_blank:
+            for pos in expected_to_be_blank[block]:
+                byte = self.blocks[block][pos]
+                if byte != 0:
+                    self.warnings.append(f"Data found in block {block}, position {pos} that was expected to be blank (received {byte})")
+
+        # Check for the presence of both A-keys and B-keys
+        empty_keys = {'a': False, 'b': False}
+        invalid_keys = [0, bytes_to_int(b'\xFF'*6)]
+        for block in range(0,len(self.blocks)):
+            if block % 4 == 3:
+                if bytes_to_int(self.blocks[block][0:6]) in invalid_keys:
+                    empty_keys['a'] = True
+                if bytes_to_int(self.blocks[block][10:16]) in invalid_keys:
+                    empty_keys['b'] = True
+
+        if empty_keys['a']:
+            self.warnings.append("The dump is missing A-keys")
+        if empty_keys['b']:
+            self.warnings.append("The dump is missing B-keys")
+
+    def __str__(self, blocks_to_output = IMPORTANT_BLOCKS):
+        result = ""
+
+        for key in self.data:
+            if type(self.data[key]) == dict:
+                result += f"- {key}:\n"
+                for tkey in self.data[key]:
+                    result += f"  - {tkey}: {self.data[key][tkey]}\n"
+            else:
+                result += f"- {key}: {bytes_to_hex(self.data[key]) if type(self.data[key]) == bytes else self.data[key]}\n"
+
+        if len(self.warnings):
+            result += "- Warnings:\n"
+            for warning in self.warnings:
+                result += f"  - {warning}\n"
+
+        return result[:-1]
+
+    def print_blocks(self, blocks_to_output = IMPORTANT_BLOCKS):
+        for b in range(len(self.blocks)):
+            if b not in blocks_to_output:
+                continue
+            print(f"Block {b:02d}: {bytes_to_hex(self.blocks[b], True)} ({self.blocks[b]})")
+
+    def compare(self, other, blocks_to_compare = COMPARISON_BLOCKS):
+        cmp_result = [[False for i in range(BYTES_PER_BLOCK)] for b in blocks_to_compare]
+
+        # Compare all of the blocks
+        for bi in range(len(blocks_to_compare)):
+            b = blocks_to_compare[bi]
+            for i in range(BYTES_PER_BLOCK):
+                cmp_result[bi][i] = self.blocks[b][i] == other.blocks[b][i]
+
+        # Print results
+        for bi in range(len(cmp_result)):
+            print("Block {0:02d}: {1}".format(blocks_to_compare[bi], "".join("✅" if i else "❌" for i in cmp_result[bi])))
+
+def load_data(files_to_load, silent = False):
+    data = []
+    for filename in files_to_load:
+        try:
+            filepath = Path(filename)
+            with open(filepath, "rb") as f:
+                newdata = Tag(filepath, f.read())
+                data.append(newdata)
+        except TagLengthMismatchError:
+            if not silent: print(f"{filepath} not a valid tag, skipping")
+
+    return data
+
+def print_data(data, print_comparisons):
+    for i in range(len(data)):
+        tag = data[i]
+        print(tag.filename)
+        print(tag)
+        print()
+
+        if print_comparisons and i > 0:
+            tag.compare(data[i-1])
+            print()
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description='Parse a binary/JSON/Flipper dump to readable text')
+    parser.add_argument('file', nargs='+', help='File(s) containing tag data')
+    parser.add_argument('-s', '--silent', action='store_true', help='Do not print parsing errors')
+    parser.add_argument('-c', '--compare', action='store_true', help='Compare parsed data for all files')
+    args = parser.parse_args()
+
+    data = load_data(args.files, args.silent)
+    print_data(data, args.compare)
