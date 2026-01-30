@@ -13,14 +13,27 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 
+try:
+    from Crypto.Protocol.KDF import HKDF
+    from Crypto.Hash import SHA256
+except:
+    print("Can't import Crypto; install pycryptodome, and try again")
+    exit()
+
 COMPARISON_BLOCKS = [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14]
 IMPORTANT_BLOCKS = [0] + COMPARISON_BLOCKS
 
 BYTES_PER_BLOCK = 16
 BLOCKS_PER_SECTOR = 4
-BLOCKS_PER_TAG = [64, 72] # 64 = 1KB, 72 = Output from Proxmark fm11rf08 script
+BLOCKS_PER_TAG = 64
 TOTAL_SECTORS = 16
-TOTAL_BYTES = [blocks * BYTES_PER_BLOCK for blocks in BLOCKS_PER_TAG]
+TOTAL_BYTES = BLOCKS_PER_TAG * BYTES_PER_BLOCK
+
+# Key generation
+
+def generate_keys(uid):
+    SALT = bytes([0x9a,0x75,0x9c,0xf2,0xc4,0xf7,0xca,0xff,0x22,0x2c,0xb9,0x76,0x9b,0x41,0xbc,0x96])
+    return HKDF(uid, 6, SALT, SHA256, 16, context=b"RFID-A\0") + HKDF(uid, 6, SALT, SHA256, 16, context=b"RFID-B\0")
 
 # Byte conversions
 def bytes_to_string(data):
@@ -55,7 +68,7 @@ def strip_flipper_data(string):
     # Remove comments
     pattern = re.compile(r"^[\w\s]+: [\w\s\d?]+$", re.M)
     data = dict([x.split(": ") for x in pattern.findall(string.decode())])
-    
+
     # Ensure the scan file is for the proper type of tag
     assert(data.get("Version") == "4")
     assert(data.get("Data format version") == "2")
