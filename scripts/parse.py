@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # Python script to parse Bambu Lab RFID tag data
@@ -8,17 +9,31 @@ import sys
 import re
 import json
 import struct
+import argparse
 from pathlib import Path
 from datetime import datetime
+
+try:
+    from Crypto.Protocol.KDF import HKDF
+    from Crypto.Hash import SHA256
+except:
+    print("Can't import Crypto; install pycryptodome, and try again")
+    exit()
 
 COMPARISON_BLOCKS = [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14]
 IMPORTANT_BLOCKS = [0] + COMPARISON_BLOCKS
 
 BYTES_PER_BLOCK = 16
 BLOCKS_PER_SECTOR = 4
-BLOCKS_PER_TAG = [64, 72] # 64 = 1KB, 72 = Output from Proxmark fm11rf08 script
+BLOCKS_PER_TAG = 64
 TOTAL_SECTORS = 16
-TOTAL_BYTES = [blocks * BYTES_PER_BLOCK for blocks in BLOCKS_PER_TAG]
+TOTAL_BYTES = BLOCKS_PER_TAG * BYTES_PER_BLOCK
+
+# Key generation
+
+def generate_keys(uid):
+    SALT = bytes([0x9a,0x75,0x9c,0xf2,0xc4,0xf7,0xca,0xff,0x22,0x2c,0xb9,0x76,0x9b,0x41,0xbc,0x96])
+    return HKDF(uid, 6, SALT, SHA256, 16, context=b"RFID-A\0") + HKDF(uid, 6, SALT, SHA256, 16, context=b"RFID-B\0")
 
 # Byte conversions
 def bytes_to_string(data):
@@ -53,7 +68,7 @@ def strip_flipper_data(string):
     # Remove comments
     pattern = re.compile(r"^[\w\s]+: [\w\s\d?]+$", re.M)
     data = dict([x.split(": ") for x in pattern.findall(string.decode())])
-    
+
     # Ensure the scan file is for the proper type of tag
     assert(data.get("Version") == "4")
     assert(data.get("Data format version") == "2")
@@ -130,7 +145,7 @@ class ColorList(list):
 
 class Tag():
     def __init__(self, filename, data):
-        # Proxmark3 JSON dump
+        # JSON mfc v2 dump (aka proxmark3)
         try:
             json_data = json.loads(data)
             if json_data.get("Created") in ["proxmark3", "bambuman", "queengooborg/Bambu-Lab-RFID-Library/convert.py"]:
@@ -144,7 +159,7 @@ class Tag():
             data = strip_flipper_data(data)
 
         # Check to make sure the data is 1KB or a known alternative
-        if len(data) not in TOTAL_BYTES:
+        if len(data) != TOTAL_BYTES:
             raise TagLengthMismatchError(len(data))
 
         # Store the raw data
@@ -160,7 +175,7 @@ class Tag():
 
         # Parse the data
         has_extra_color_info = self.blocks[16][0:2] == b'\x02\x00'
-        
+
         self.data = {
             "uid": bytes_to_hex(self.blocks[0][0:4]),
             "filament_type": bytes_to_string(self.blocks[2]),
@@ -289,5 +304,12 @@ def print_data(data, print_comparisons):
             print()
 
 if __name__ == "__main__":
-    data = load_data(sys.argv[1:])
-    print_data(data, False)
+
+    parser = argparse.ArgumentParser(description='Parse a binary/JSON/Flipper dump to readable text')
+    parser.add_argument('file', nargs='+', help='File(s) containing tag data')
+    parser.add_argument('-s', '--silent', action='store_true', help='Do not print parsing errors')
+    parser.add_argument('-c', '--compare', action='store_true', help='Compare parsed data for all files')
+    args = parser.parse_args()
+
+    data = load_data(args.files, args.silent)
+    print_data(data, args.compare)
