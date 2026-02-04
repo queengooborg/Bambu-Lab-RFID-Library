@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # Python script to repair any Bambu Lab RFID tag dumps without keys
@@ -6,18 +7,12 @@
 # Requires: pycryptodome
 
 import sys
+import argparse
 from pathlib import Path
-from Crypto.Protocol.KDF import HKDF
-from Crypto.Hash import SHA256
 
-from parse import BYTES_PER_BLOCK, BLOCKS_PER_SECTOR, TOTAL_SECTORS, TOTAL_BYTES
+from parse import generate_keys, BYTES_PER_BLOCK, BLOCKS_PER_SECTOR, TOTAL_SECTORS, TOTAL_BYTES
 
 INVALID_KEYS = [b"\xFF" * 6, b"\x00" * 6]
-
-# Function copied from https://github.com/queengooborg/Bambu-Lab-RFID-Tag-Guide/blob/main/deriveKeys.py
-def kdf(uid):
-    salt = bytes([0x9a,0x75,0x9c,0xf2,0xc4,0xf7,0xca,0xff,0x22,0x2c,0xb9,0x76,0x9b,0x41,0xbc,0x96])
-    return HKDF(uid, 6, salt, SHA256, 16, context=b"RFID-A\0") + HKDF(uid, 6, salt, SHA256, 16, context=b"RFID-B\0")
 
 def sector_trailer_offset(sector):
     block_index = sector * BLOCKS_PER_SECTOR + 3
@@ -32,7 +27,7 @@ def is_invalid_key(key):
 def repair_keys_in_place(path):
     dump_bytes = path.read_bytes()
 
-    if len(dump_bytes) not in TOTAL_BYTES:
+    if len(dump_bytes) != TOTAL_BYTES:
         raise ValueError(f"{path} is not a 1K MIFARE Classic dump")
 
     dump = bytearray(dump_bytes)
@@ -40,7 +35,7 @@ def repair_keys_in_place(path):
     print(f"\nFile : {path}")
     print(f"UID  : {uid.hex()}")
 
-    keys = kdf(uid)
+    keys = generate_keys(uid)
     if len(keys) != 32:
         raise ValueError("KDF did not return 32 keys")
 
@@ -72,8 +67,9 @@ def repair_keys_in_place(path):
         print("\nNo repairs needed — file left unchanged.")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: repair.py <dumpfile>")
-        sys.exit(1)
+    parser = argparse.ArgumentParser(description='Check that a file contains A/B keys for all blocks, and generate missing keys')
+    parser.add_argument('file', nargs='+', help='Binary dump file(s) containing tag data')
+    args = parser.parse_args()
 
-    repair_keys_in_place(Path(sys.argv[1]))
+    for filename in args.file:
+        repair_keys_in_place(Path(filename))
