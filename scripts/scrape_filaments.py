@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # Python script to scrape Bambu Lab storepage to get all material types and colors
