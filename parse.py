@@ -133,7 +133,7 @@ class Tag():
         # Proxmark3 JSON dump
         try:
             json_data = json.loads(data)
-            if json_data.get("Created") == "proxmark3":
+            if json_data.get("Created") in ["proxmark3", "bambuman", "queengooborg/Bambu-Lab-RFID-Library/convert.py"]:
                 data = b"".join([bytes.fromhex(json_data["blocks"][key].replace("??", "00")) for key in json_data["blocks"]])
         except ValueError:
             # We know that the data isn't JSON now
