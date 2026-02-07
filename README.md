@@ -311,7 +311,7 @@ Status Icon Legend:
 | --------------- | ------------- | ---------- | ------ |
 | Indigo Blue     | 31600         | ?          | ❌     |
 | Malachite Green | 31500         | G50-G7     | ✅     |
-| Titan Gray      | 31101         | ?          | ❌     |
+| Titan Gray      | 31101         | G50-D6     | ✅     |
 | Brick Red       | 31200         | ?          | ❌     |
 | Violet Purple   | 31700         | G50-P7     | ✅     |
 | Black           | 31100         | G50-K0     | ✅     |
@@ -370,7 +370,7 @@ Status Icon Legend:
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
-| Black | 46101         | ?          | ❌     |
+| Black | 46101         | B51-K0     | ✅     |
 
 ### PC
 
