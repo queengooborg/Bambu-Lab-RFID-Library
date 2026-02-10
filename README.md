@@ -164,7 +164,7 @@ Status Icon Legend:
 | Cobalt Blue Metallic  | 13600         | A02-B2     | ✅     |
 | Oxide Green Metallic  | 13500         | A02-G2     | ✅     |
 | Iridium Gold Metallic | 13400         | A02-Y1     | ✅     |
-| Copper Brown Metallic | 13800         | ?          | ❌     |
+| Copper Brown Metallic | 13800         | A02-N3     | ✅     |
 | Iron Gray Metallic    | 13100         | A02-D2     | ✅     |
 
 #### PLA Translucent
@@ -175,12 +175,12 @@ Status Icon Legend:
 | Blue          | 13611         | A17-B1     | ✅     |
 | Orange        | 13301         | A17-A0     | ✅     |
 | Purple        | 13710         | A17-P0     | ✅     |
-| Red           | 13210         | ?          | ❌     |
+| Red           | 13210         | A17-R0     | ✅     |
 | Light Jade    | 13510         | A17-G0     | ✅     |
 | Mellow Yellow | 13410         | A17-Y0     | ✅     |
 | Cherry Pink   | 13211         | A17-R1     | ✅     |
 | Ice Blue      | 13610         | ?          | ❌     |
-| Lavender      | 13711         | ?          | ❌     |
+| Lavender      | 13711         | A17-P1     | ✅     |
 
 #### PLA Silk+
 
