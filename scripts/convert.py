@@ -21,7 +21,7 @@ NFC_SUFFIX = ".nfc"
 PARSED_SUFFIX = "-parsed.txt"
 
 DATA_ACCESS = {
-    0x00: "read AB; write AB; increment AB; decrement transfer restore AB",
+        0x00: "read AB; write AB; increment AB; decrement transfer restore AB",
         0x01: "read AB; decrement transfer restore AB",
         0x02: "read AB",
         0x03: "read B; write B",
@@ -47,9 +47,9 @@ TRAILER_ACCESS = {
 def decode_access_bits(sector, hexstr):
     ret = {}
 
-    b8 = int(hexstr[0:2], 16)
+    b6 = int(hexstr[0:2], 16)
     b7 = int(hexstr[2:4], 16)
-    b6 = int(hexstr[4:6], 16)
+    b8 = int(hexstr[4:6], 16)
     userdata = hexstr[6:8]
 
     C1 = []
@@ -222,9 +222,6 @@ def sync_directory(path, create_files=True, create_parsed=False):
             except Exception as e:
                 print(f"  [!] Failed to parse {file.name}: {e}")
 
-        if unhandled_files:
-            print(f'  [!] UNKNOWN FILES in folder: {", ".join(unhandled_files)}')
-
         if not tags:
             continue
 
@@ -273,6 +270,8 @@ def sync_directory(path, create_files=True, create_parsed=False):
                 write_parsed(out, tag)
                 print(f"  [+] Created {out.name}")
 
+    if unhandled_files:
+            print(f'  [!] UNKNOWN FILES in folder: {", ".join(unhandled_files)}')
 
 if __name__ == "__main__":
 
