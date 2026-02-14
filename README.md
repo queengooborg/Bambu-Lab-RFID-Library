@@ -11,7 +11,7 @@ For more information about Bambu Lab RFID tags and their format, see https://git
 
 ## Viewing Tag Data
 
-A script is included in this repository, `parse.py`, that will parse a tag dump and extract its information in an easy-to-read terminal output and easy-to-parse JSON format.  To run it, simply run `python3 parse.py [/path/to/tag.bin-or-json]`.
+A script is included in this repository, `parse.py`, that will parse a tag dump and extract its information in an easy-to-read terminal output and easy-to-parse JSON format. To run it, simply run `python3 parse.py [/path/to/tag.bin-or-json]`.
 
 ## Contributing
 
@@ -43,7 +43,7 @@ Status Icon Legend:
 | Orange           | 10300         | A00-A0     | ✅     |
 | Gold             | 10401         | A00-Y4     | ✅     |
 | Bright Green     | 10503         | A00-G3     | ✅     |
-| Bambu Green      | 10501         | A00-G1     | ✅     |
+| Bambu Green      | 10501         | A00-G1/G6  | ✅     |
 | Mistletoe Green  | 10502         | A00-G2     | ✅     |
 | Pink             | 10203         | A00-A0     | ✅     |
 | Hot Pink         | 10204         | A00-R3     | ✅     |
@@ -164,7 +164,7 @@ Status Icon Legend:
 | Cobalt Blue Metallic  | 13600         | A02-B2     | ✅     |
 | Oxide Green Metallic  | 13500         | A02-G2     | ✅     |
 | Iridium Gold Metallic | 13400         | A02-Y1     | ✅     |
-| Copper Brown Metallic | 13800         | ?          | ❌     |
+| Copper Brown Metallic | 13800         | A02-N3     | ✅     |
 | Iron Gray Metallic    | 13100         | A02-D2     | ✅     |
 
 #### PLA Translucent
@@ -175,38 +175,40 @@ Status Icon Legend:
 | Blue          | 13611         | A17-B1     | ✅     |
 | Orange        | 13301         | A17-A0     | ✅     |
 | Purple        | 13710         | A17-P0     | ✅     |
-| Red           | 13210         | ?          | ❌     |
-| Light Jade    | 13510         | ?          | ❌     |
-| Mellow Yellow | 13410         | ?          | ❌     |
-| Cherry Pink   | 13211         | ?          | ❌     |
+| Red           | 13210         | A17-R0     | ✅     |
+| Light Jade    | 13510         | A17-G0     | ✅     |
+| Mellow Yellow | 13410         | A17-Y0     | ✅     |
+| Cherry Pink   | 13211         | A17-R1     | ✅     |
 | Ice Blue      | 13610         | ?          | ❌     |
-| Lavender      | 13711         | ?          | ❌     |
+| Lavender      | 13711         | A17-P1     | ✅     |
 
 #### PLA Silk+
 
-| Color       | Filament Code | Variant ID      | Status |
-| ----------- | ------------- | --------------- | ------ |
-| Gold        | 13405         | A06-Y1          | ✅     |
-| Titan Gray  | 13108         | A06-D0          | ✅     |
-| Silver      | 13109         | A06-D1          | ✅     |
-| White       | 13110         | A06-W0          | ✅     |
-| Candy Red   | 13205         | A06-R0          | ✅     |
-| Candy Green | 13506         | A06-G0          | ✅     |
-| Mint        | 13507         | A06-G1          | ✅     |
-| Blue        | 13604         | A06-B1          | ✅     |
-| Baby Blue   | 13603         | A06-B0          | ✅     |
-| Purple      | 13702         | A06-P0          | ✅     |
-| Rose Gold   | 13206         | A06-R1          | ✅     |
-| Pink        | 13207         | A06-R2          | ✅     |
-| Champagne   | 13404         | A06-Y0          | ✅     |
+| Color       | Filament Code | Variant ID | Status |
+| ----------- | ------------- | ---------- | ------ |
+| Gold        | 13405         | A06-Y1     | ✅     |
+| Titan Gray  | 13108         | A06-D0     | ✅     |
+| Silver      | 13109         | A06-D1     | ✅     |
+| White       | 13110         | A06-W0     | ✅     |
+| Candy Red   | 13205         | A06-R0     | ✅     |
+| Candy Green | 13506         | A06-G0     | ✅     |
+| Mint        | 13507         | A06-G1     | ✅     |
+| Blue        | 13604         | A06-B1     | ✅     |
+| Baby Blue   | 13603         | A06-B0     | ✅     |
+| Purple      | 13702         | A06-P0     | ✅     |
+| Rose Gold   | 13206         | A06-R1     | ✅     |
+| Pink        | 13207         | A06-R2     | ✅     |
+| Champagne   | 13404         | A06-Y0     | ✅     |
 
 #### PLA Silk Multi-Color
 
 | Color          | Filament Code | Variant ID | Status |
 | -------------- | ------------- | ---------- | ------ |
 | Dawn Radiance  | 13912         | A05-M8     | ✅     |
-| Aurora Purple  | 13909         | ?          | ❌     |
+| Aurora Purple  | 13909         | A05-M4     | ✅     |
 | South Beach    | 13906         | A05-M1     | ✅     |
+| Phantom Blue   | 13916         | ?          | ❌     |
+| Mystic Magenta | 13913         | ?          | ❌     |
 | Neon City      | 13903         | A05-T3     | ✅     |
 | Midnight Blaze | 13902         | A05-T2     | ✅     |
 | Gilded Rose    | 13901         | A05-T1     | ✅     |
@@ -249,13 +251,24 @@ Status Icon Legend:
 
 | Color  | Filament Code | Variant ID | Status |
 | ------ | ------------- | ---------- | ------ |
+| Black  | 12104         | A10-K0     | ✅     |
+| White  | 12107         | A10-W0     | ✅     |
 | Yellow | 12401         | ?          | ❌     |
-| White  | 12107         | ?          | ❌     |
 | Orange | 12301         | ?          | ❌     |
-| Gray   | 12105         | ?          | ❌     |
+| Gray   | 12105         | A10-D0     | ✅     |
 | Silver | 12106         | ?          | ❌     |
 | Cyan   | 12601         | ?          | ❌     |
-| Black  | 12104         | ?          | ❌     |
+
+#### PLA Tough
+
+| Color         | Filament Code | Variant ID | Status |
+| ------------- | ------------- | ---------- | ------ |
+| Lavender Blue | 12005         | A09-B5     | ✅     |
+| Light Blue    | 12004         | A09-B4     | ✅     |
+| Orange        | 12002         | A09-A0     | ✅     |
+| Silver        | 12001         | A09-D1     | ✅     |
+| Vermilion Red | 12003         | A09-R3     | ✅     |
+| Yellow        | 12000         | A09-Y0     | ✅     |
 
 ### PETG
 
@@ -297,8 +310,8 @@ Status Icon Legend:
 | Color           | Filament Code | Variant ID | Status |
 | --------------- | ------------- | ---------- | ------ |
 | Indigo Blue     | 31600         | ?          | ❌     |
-| Malachite Green | 31500         | ?          | ❌     |
-| Titan Gray      | 31101         | ?          | ❌     |
+| Malachite Green | 31500         | G50-G7     | ✅     |
+| Titan Gray      | 31101         | G50-D6     | ✅     |
 | Brick Red       | 31200         | ?          | ❌     |
 | Violet Purple   | 31700         | G50-P7     | ✅     |
 | Black           | 31100         | G50-K0     | ✅     |
@@ -344,7 +357,7 @@ Status Icon Legend:
 | Green | 45500         | ?          | ❌     |
 | Black | 45101         | B01-K0     | ✅     |
 | Gray  | 45102         | B01-D0     | ✅     |
-| Red   | 45200         | ?          | ❌     |
+| Red   | 45200         | B01-R0     | ✅     |
 | Blue  | 45600         | ?          | ❌     |
 
 #### ASA Aero
@@ -357,7 +370,7 @@ Status Icon Legend:
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
-| Black | 46101         | ?          | ❌     |
+| Black | 46101         | B51-K0     | ✅     |
 
 ### PC
 
@@ -375,8 +388,8 @@ Status Icon Legend:
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | Black | 63100         | C01-K0     | ✅     |
-| White | 63101         | ?          | ❌     |
-| Gray  | 63102         | ?          | ❌     |
+| White | 63101         | C01-W0     | ✅     |
+| Gray  | 63102         | C01-D0     | ✅     |
 
 ### TPU
 
@@ -448,7 +461,7 @@ Status Icon Legend:
 
 ## History
 
-When Bambu Lab released the AMS for their 3D printers, it featured an RFID redear which could read RFID tags embedded on their filament spools to automatically update details such as material type, color and amount of remaining filament. However, the RFID tags were read-protected by keys, signed with an RSA2048 signature and structured in a proprietary format, which meant that only Bambu Lab could create these particular RFID tags and they could only be used on Bambu Lab printers. This led to the start of the [Bambu Research Group and a project to reverse engineer the RFID tag format](https://github.com/queengooborg/Bambu-Lab-RFID-Tag-Guide) in order to develop an open standard for all filament manufacturers and printers.
+When Bambu Lab released the AMS for their 3D printers, it featured an RFID reader which could read RFID tags embedded on their filament spools to automatically update details such as material type, color and amount of remaining filament. However, the RFID tags were read-protected by keys, signed with an RSA2048 signature and structured in a proprietary format, which meant that only Bambu Lab could create these particular RFID tags and they could only be used on Bambu Lab printers. This led to the start of the [Bambu Research Group and a project to reverse engineer the RFID tag format](https://github.com/queengooborg/Bambu-Lab-RFID-Tag-Guide) in order to develop an open standard for all filament manufacturers and printers.
 
 Of course, to research the tag format, a lot of tag data was required. This led to a community effort to scan lots of tags and cross-reference the data with known details about each spool. Eventually, enough of the format was reverse engineered to be able to determine what an open standard would need. But, the tag scanning didn't stop there, as the community realized another benefit to the collection of tags: even though custom tags couldn't be created due to the signing of the data, the data could be _cloned_ onto new tags and used to tell Bambu Lab printers what material and color a spool was, just like Bambu Lab first-party spools.
 
