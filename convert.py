@@ -208,9 +208,14 @@ def sync_directory(path):
         if unhandled_files:
             print(f"  [!] UNKNOWN FILES in folder: {", ".join(unhandled_files)}")
 
+def sync_directories(path):
+    for root, dirs, files in os.walk(path):
+        if files:
+            sync_directory(Path(root))
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: convert.py <folder>")
         sys.exit(1)
 
-    sync_directory(Path(sys.argv[1]))
+    sync_directories(Path(sys.argv[1]))
