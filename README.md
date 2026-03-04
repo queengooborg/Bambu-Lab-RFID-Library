@@ -179,7 +179,7 @@ Status Icon Legend:
 | Light Jade    | 13510         | A17-G0     | ✅     |
 | Mellow Yellow | 13410         | A17-Y0     | ✅     |
 | Cherry Pink   | 13211         | A17-R1     | ✅     |
-| Ice Blue      | 13610         | ?          | ❌     |
+| Ice Blue      | 13610         | A17-B0     | ✅     |
 | Lavender      | 13711         | A17-P1     | ✅     |
 
 #### PLA Silk+
@@ -312,7 +312,7 @@ Status Icon Legend:
 | Indigo Blue     | 31600         | ?          | ❌     |
 | Malachite Green | 31500         | G50-G7     | ✅     |
 | Titan Gray      | 31101         | G50-D6     | ✅     |
-| Brick Red       | 31200         | ?          | ❌     |
+| Brick Red       | 31200         | G50-R4     | ✅     |
 | Violet Purple   | 31700         | G50-P7     | ✅     |
 | Black           | 31100         | G50-K0     | ✅     |
 
@@ -400,7 +400,7 @@ Status Icon Legend:
 | Blue       | 53600         | U02-B0     | ✅     |
 | Red        | 53200         | ?          | ❌     |
 | Yellow     | 53400         | ?          | ❌     |
-| Neon Green | 53500         | ?          | ❌     |
+| Neon Green | 53500         | U02-K0     | ✅     |
 | White      | 53100         | ?          | ❌     |
 | Gray       | 53102         | U02-D0     | ✅     |
 | Black      | 53101         | U02-K0     | ✅     |
