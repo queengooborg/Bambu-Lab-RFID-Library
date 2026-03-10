@@ -333,6 +333,7 @@ Status Icon Legend:
 | Azure            | 40601         | B00-B4     | ✅     |
 | Blue             | 40600         | B00-B0     | ✅     |
 | Navy Blue        | 40602         | B00-B6     | ✅     |
+| Yellow           | ?             | B00-Y0     | ✅     |
 
 #### ABS-GF
 
@@ -358,7 +359,7 @@ Status Icon Legend:
 | Black | 45101         | B01-K0     | ✅     |
 | Gray  | 45102         | B01-D0     | ✅     |
 | Red   | 45200         | B01-R0     | ✅     |
-| Blue  | 45600         | ?          | ❌     |
+| Blue  | 45600         | B01-B0     | ✅     |
 
 #### ASA Aero
 
