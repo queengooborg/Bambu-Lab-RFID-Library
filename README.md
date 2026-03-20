@@ -355,7 +355,7 @@ Status Icon Legend:
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | White | 45100         | B01-W0     | ✅     |
-| Green | 45500         | ?          | ❌     |
+| Green | 45500         | B01-G0     | ✅     |
 | Black | 45101         | B01-K0     | ✅     |
 | Gray  | 45102         | B01-D0     | ✅     |
 | Red   | 45200         | B01-R0     | ✅     |
