@@ -164,7 +164,7 @@ Status Icon Legend:
 | Cobalt Blue Metallic  | 13600         | A02-B2     | ✅     |
 | Oxide Green Metallic  | 13500         | A02-G2     | ✅     |
 | Iridium Gold Metallic | 13400         | A02-Y1     | ✅     |
-| Copper Brown Metallic | 13800         | ?          | ❌     |
+| Copper Brown Metallic | 13800         | A02-N3     | ✅     |
 | Iron Gray Metallic    | 13100         | A02-D2     | ✅     |
 
 #### PLA Translucent
@@ -175,12 +175,12 @@ Status Icon Legend:
 | Blue          | 13611         | A17-B1     | ✅     |
 | Orange        | 13301         | A17-A0     | ✅     |
 | Purple        | 13710         | A17-P0     | ✅     |
-| Red           | 13210         | ?          | ❌     |
+| Red           | 13210         | A17-R0     | ✅     |
 | Light Jade    | 13510         | A17-G0     | ✅     |
 | Mellow Yellow | 13410         | A17-Y0     | ✅     |
 | Cherry Pink   | 13211         | A17-R1     | ✅     |
-| Ice Blue      | 13610         | ?          | ❌     |
-| Lavender      | 13711         | ?          | ❌     |
+| Ice Blue      | 13610         | A17-B0     | ✅     |
+| Lavender      | 13711         | A17-P1     | ✅     |
 
 #### PLA Silk+
 
@@ -311,8 +311,8 @@ Status Icon Legend:
 | --------------- | ------------- | ---------- | ------ |
 | Indigo Blue     | 31600         | ?          | ❌     |
 | Malachite Green | 31500         | G50-G7     | ✅     |
-| Titan Gray      | 31101         | ?          | ❌     |
-| Brick Red       | 31200         | ?          | ❌     |
+| Titan Gray      | 31101         | G50-D6     | ✅     |
+| Brick Red       | 31200         | G50-R4     | ✅     |
 | Violet Purple   | 31700         | G50-P7     | ✅     |
 | Black           | 31100         | G50-K0     | ✅     |
 
@@ -333,6 +333,7 @@ Status Icon Legend:
 | Azure            | 40601         | B00-B4     | ✅     |
 | Blue             | 40600         | B00-B0     | ✅     |
 | Navy Blue        | 40602         | B00-B6     | ✅     |
+| Yellow           | ?             | B00-Y0     | ✅     |
 
 #### ABS-GF
 
@@ -354,11 +355,11 @@ Status Icon Legend:
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
 | White | 45100         | B01-W0     | ✅     |
-| Green | 45500         | ?          | ❌     |
+| Green | 45500         | B01-G0     | ✅     |
 | Black | 45101         | B01-K0     | ✅     |
 | Gray  | 45102         | B01-D0     | ✅     |
 | Red   | 45200         | B01-R0     | ✅     |
-| Blue  | 45600         | ?          | ❌     |
+| Blue  | 45600         | B01-B0     | ✅     |
 
 #### ASA Aero
 
@@ -370,7 +371,7 @@ Status Icon Legend:
 
 | Color | Filament Code | Variant ID | Status |
 | ----- | ------------- | ---------- | ------ |
-| Black | 46101         | ?          | ❌     |
+| Black | 46101         | B51-K0     | ✅     |
 
 ### PC
 
@@ -400,7 +401,7 @@ Status Icon Legend:
 | Blue       | 53600         | U02-B0     | ✅     |
 | Red        | 53200         | ?          | ❌     |
 | Yellow     | 53400         | ?          | ❌     |
-| Neon Green | 53500         | ?          | ❌     |
+| Neon Green | 53500         | U02-K0     | ✅     |
 | White      | 53100         | ?          | ❌     |
 | Gray       | 53102         | U02-D0     | ✅     |
 | Black      | 53101         | U02-K0     | ✅     |
