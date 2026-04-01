@@ -272,6 +272,18 @@ Status Icon Legend:
 
 ### PETG
 
+#### PETG Basic
+
+| Color       | Filament Code | Variant ID | Status |
+| ----------- | ------------- | ---------- | ------ |
+| Red         | 30201         | G00-R00    | ❌     |
+| White       | 30106         | G00-W00    | ✅     |
+| Black       | 30105         | G00-K00    | ❌     |
+| Gray        | 30107         | G00-D00    | ✅     |
+| Dark Brown  | 30800         | G00-N00    | ✅     |
+| Reflex Blue | 30603         | ?          | ❌     |
+| Yellow      | 30402         | ?          | ❌     |
+
 #### PETG HF
 
 | Color        | Filament Code | Variant ID | Status |
