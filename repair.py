@@ -12,6 +12,9 @@ from Crypto.Hash import SHA256
 
 from parse import BYTES_PER_BLOCK, BLOCKS_PER_SECTOR, TOTAL_SECTORS, TOTAL_BYTES
 
+if not sys.version_info >= (3, 6):
+  raise Exception("Python 3.6 or higher is required!")
+
 INVALID_KEYS = [b"\xFF" * 6, b"\x00" * 6]
 
 # Function copied from https://github.com/queengooborg/Bambu-Lab-RFID-Tag-Guide/blob/main/deriveKeys.py

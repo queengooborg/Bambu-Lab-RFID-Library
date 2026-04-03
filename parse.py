@@ -11,6 +11,9 @@ import struct
 from pathlib import Path
 from datetime import datetime
 
+if not sys.version_info >= (3, 6):
+  raise Exception("Python 3.6 or higher is required!")
+
 COMPARISON_BLOCKS = [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14]
 IMPORTANT_BLOCKS = [0] + COMPARISON_BLOCKS
 
@@ -53,7 +56,7 @@ def strip_flipper_data(string):
     # Remove comments
     pattern = re.compile(r"^[\w\s]+: [\w\s\d?]+$", re.M)
     data = dict([x.split(": ") for x in pattern.findall(string.decode())])
-    
+
     # Ensure the scan file is for the proper type of tag
     assert(data.get("Version") == "4")
     assert(data.get("Data format version") == "2")
@@ -69,6 +72,10 @@ def strip_flipper_data(string):
     return output
 
 # Classes
+
+class TagDataError(TypeError):
+    def __init__(self, block, error):
+        super().__init__(f"Bad data in tag block {block}: {error}")
 
 class TagLengthMismatchError(TypeError):
     def __init__(self, actual_length):
@@ -129,7 +136,7 @@ class ColorList(list):
             super().extend(str(item) for item in other)
 
 class Tag():
-    def __init__(self, filename, data):
+    def __init__(self, filename, data, fail_on_warn=False):
         # Proxmark3 JSON dump
         try:
             json_data = json.loads(data)
@@ -156,11 +163,14 @@ class Tag():
         # Check for blank blocks
         for bi in IMPORTANT_BLOCKS:
             if self.blocks[bi] == b'\x00' * BYTES_PER_BLOCK:
-                self.warnings.append(f"Block {bi} is blank!")
+                if fail_on_warn:
+                    raise TagDataError(bi, 'block is blank')
+                else:
+                    self.warnings.append(f"Block {bi} is blank!")
 
         # Parse the data
         has_extra_color_info = self.blocks[16][0:2] == b'\x02\x00'
-        
+
         self.data = {
             "uid": bytes_to_hex(self.blocks[0][0:4]),
             "filament_type": bytes_to_string(self.blocks[2]),
@@ -210,22 +220,28 @@ class Tag():
             for pos in expected_to_be_blank[block]:
                 byte = self.blocks[block][pos]
                 if byte != 0:
-                    self.warnings.append(f"Data found in block {block}, position {pos} that was expected to be blank (received {byte})")
+                    if fail_on_warn:
+                        raise TagDataError(block, f"Found {byte} at {pos} in expected blank block")
+                    else:
+                        self.warnings.append(f"Data found in block {block}, position {pos} that "
+                                              "was expected to be blank (received {byte})")
 
         # Check for the presence of both A-keys and B-keys
-        empty_keys = {'a': False, 'b': False}
+        empty_keys = ''
         invalid_keys = [0, bytes_to_int(b'\xFF'*6)]
         for block in range(0,len(self.blocks)):
             if block % 4 == 3:
                 if bytes_to_int(self.blocks[block][0:6]) in invalid_keys:
-                    empty_keys['a'] = True
+                    empty_keys += 'A'
                 if bytes_to_int(self.blocks[block][10:16]) in invalid_keys:
-                    empty_keys['b'] = True
+                    empty_keys += 'B'
 
-        if empty_keys['a']:
-            self.warnings.append("The dump is missing A-keys")
-        if empty_keys['b']:
-            self.warnings.append("The dump is missing B-keys")
+        if empty_keys:
+            msg = f"Dump is missing {'+'.join(empty_keys)}"
+            if fail_on_warn:
+                raise TagDataError('key', msg)
+            else:
+                self.warnings.append(msg)
 
     def __str__(self, blocks_to_output = IMPORTANT_BLOCKS):
         result = ""

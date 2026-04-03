@@ -13,6 +13,9 @@ For more information about Bambu Lab RFID tags and their format, see https://git
 
 A script is included in this repository, `parse.py`, that will parse a tag dump and extract its information in an easy-to-read terminal output and easy-to-parse JSON format. To run it, simply run `python3 parse.py [/path/to/tag.bin-or-json]`.
 
+> [!NOTE]
+> Python 3.6 or higher is required to run scripts.
+
 ## Contributing
 
 The best way to contribute is to provide data for Bambu Lab RFID tags. Not sure how to obtain the data? Check out the [guide written in the Bambu Lab RFID Tag Guide repository](https://github.com/queengooborg/Bambu-Lab-RFID-Tag-Guide/blob/main/docs/ReadTags.md)!
@@ -271,6 +274,18 @@ Status Icon Legend:
 | Yellow        | 12000         | A09-Y0     | ✅     |
 
 ### PETG
+
+#### PETG Basic
+
+| Color       | Filament Code | Variant ID | Status |
+| ----------- | ------------- | ---------- | ------ |
+| Red         | 30201         | G00-R00    | ❌     |
+| White       | 30106         | G00-W00    | ✅     |
+| Black       | 30105         | G00-K00    | ❌     |
+| Gray        | 30107         | G00-D00    | ✅     |
+| Dark Brown  | 30800         | G00-N00    | ✅     |
+| Reflex Blue | 30603         | ?          | ❌     |
+| Yellow      | 30402         | ?          | ❌     |
 
 #### PETG HF
 
