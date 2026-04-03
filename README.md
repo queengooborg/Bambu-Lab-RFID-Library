@@ -13,6 +13,9 @@ For more information about Bambu Lab RFID tags and their format, see https://git
 
 A script is included in this repository, `parse.py`, that will parse a tag dump and extract its information in an easy-to-read terminal output and easy-to-parse JSON format. To run it, simply run `python3 parse.py [/path/to/tag.bin-or-json]`.
 
+> [!NOTE]
+> Python 3.6 or higher is required to run scripts.
+
 ## Contributing
 
 The best way to contribute is to provide data for Bambu Lab RFID tags. Not sure how to obtain the data? Check out the [guide written in the Bambu Lab RFID Tag Guide repository](https://github.com/queengooborg/Bambu-Lab-RFID-Tag-Guide/blob/main/docs/ReadTags.md)!

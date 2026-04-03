@@ -11,6 +11,9 @@ import struct
 from pathlib import Path
 from datetime import datetime
 
+if not sys.version_info >= (3, 6):
+  raise Exception("Python 3.6 or higher is required!")
+
 COMPARISON_BLOCKS = [1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14]
 IMPORTANT_BLOCKS = [0] + COMPARISON_BLOCKS
 

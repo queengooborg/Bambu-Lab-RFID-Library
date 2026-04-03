@@ -7,6 +7,7 @@
 # to its data.
 # Also print errors if it encounters tags which don't parse correctly.
 
+import sys
 import argparse
 
 from rich.console import Console
@@ -14,6 +15,9 @@ from rich.console import Console
 from pathlib import Path
 
 from parse import Tag, bytes_to_hex, BLOCKS_PER_SECTOR, TOTAL_SECTORS
+
+if not sys.version_info >= (3, 6):
+  raise Exception("Python 3.6 or higher is required!")
 
 DUMP_SUFFIX = "-dump.bin"
 LIBRARY_ROOT = Path.cwd()
