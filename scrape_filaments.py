@@ -10,6 +10,7 @@ import csv
 import re
 import traceback
 import logging
+import urllib.parse
 from datetime import timedelta
 from pathlib import Path
 from prettytable import PrettyTable, TableStyle
@@ -233,8 +234,11 @@ def get_existing_data(readme):
     )
     return {match.group("filament_code"): match.groupdict() for match in table_row_pattern.finditer(readme)}
 
-def make_table(material, colors, existing_data):
-    out = f"#### {material}\n\n"
+def make_md_link(text, url):
+    return f"[{text}]({urllib.parse.quote(url)})"
+
+def make_table(category, material, colors, existing_data):
+    out = f"#### {make_md_link(material, f'./{category}/{material}')}\n\n"
 
     table = PrettyTable()
     table.set_style(TableStyle.MARKDOWN)
@@ -245,7 +249,7 @@ def make_table(material, colors, existing_data):
         existing_color_data = existing_data.get(filament_code, {})
         status = existing_color_data.get("status", "❌")
         variant_id = existing_color_data.get("variant_id", '?')
-        table.add_row([color, filament_code, variant_id, status])
+        table.add_row([make_md_link(color, f'./{category}/{material}/{color}'), filament_code, variant_id, status])
 
     out += table.get_string().replace(":-", "--").replace("-|", " |")
     out += "\n\n"
@@ -260,9 +264,9 @@ def generate_tables(materials, readme_path):
     out = ""
 
     for category in materials:
-        out += f"### {category}\n\n"
+        out += f"### {make_md_link(category, f'./{category}')}\n\n"
         for material in materials[category]:
-            out += make_table(material, materials[category][material], existing_data)
+            out += make_table(category, material, materials[category][material], existing_data)
 
     print(out)
 
