@@ -280,11 +280,11 @@ Status Icon Legend:
 | Color       | Filament Code | Variant ID | Status |
 | ----------- | ------------- | ---------- | ------ |
 | Red         | 30201         | G00-R00    | ❌     |
-| White       | 30106         | G00-W00    | ✅     |
 | Black       | 30105         | G00-K00    | ❌     |
+| White       | 30106         | G00-W00    | ✅     |
 | Gray        | 30107         | G00-D00    | ✅     |
-| Dark Brown  | 30800         | G00-N00    | ✅     |
 | Reflex Blue | 30603         | ?          | ❌     |
+| Dark Brown  | 30800         | G00-N00    | ✅     |
 | Yellow      | 30402         | ?          | ❌     |
 
 #### PETG HF
@@ -348,16 +348,14 @@ Status Icon Legend:
 | Azure            | 40601         | B00-B4     | ✅     |
 | Blue             | 40600         | B00-B0     | ✅     |
 | Navy Blue        | 40602         | B00-B6     | ✅     |
-| Yellow           | ?             | B00-Y0     | ✅     |
+| Yellow           | 40401         | B00-Y0     | ✅     |
 
 #### ABS-GF
 
 | Color  | Filament Code | Variant ID | Status |
 | ------ | ------------- | ---------- | ------ |
 | Orange | 41300         | B50-A0     | ✅     |
-| Green  | 41500         | B50-G0     | ❌     |
 | Red    | 41200         | B50-R0     | ❌     |
-| Yellow | 41400         | ?          | ❌     |
 | Blue   | 41600         | ?          | ❌     |
 | White  | 41100         | B50-W0     | ❌     |
 | Gray   | 41102         | ?          | ❌     |

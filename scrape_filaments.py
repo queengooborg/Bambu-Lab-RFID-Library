@@ -4,6 +4,7 @@
 # Created for https://github.com/Bambu-Research-Group/RFID-Tag-Guide
 # Written by Vinyl Da.i'gyu-Kazotetsu (www.queengoob.org), 2025
 
+import sys
 import time
 import csv
 import re
@@ -47,6 +48,7 @@ CATEGORIES = {
         "PLA Tough"
     ],
     "PETG": [
+        "PETG Basic",
         "PETG HF",
         "PETG Translucent",
         "PETG-CF"
@@ -112,6 +114,11 @@ PLA_TOUGH_DATA = {
     "Yellow": '12000',
 }
 
+# Support for PA/PET is no longer on the stores
+SUPPORT_FOR_PA_PET_DATA = {
+    "Green": '65500'
+}
+
 requests_cache.install_cache('.bambulab_cache', expire_after=timedelta(days=1))
 
 # -----
@@ -168,7 +175,7 @@ def get_product(product_url):
         color = re.sub(r"^(Matte|ABS|Glow) ", "", normalize_homoglyphs(el.get("value"))).title().replace(" To ", " to ")
 
         # Match pattern like "Color Name (12345)"
-        match = re.match(r"^(.*?) \((\d{5})\)", color)
+        match = re.match(r"^([\w\s-]+?)\s?\((\d{5})\)", color)
 
         color_name = match.group(1).strip() if match else color
         filament_code = FILAMENT_CODE_OVERRIDES.get(color_name, match.group(2) if match else None)
@@ -181,6 +188,9 @@ def get_products():
     soup = get_page(f"{BASE_URL}/collections/bambu-lab-3d-printer-filament?Compatibility=Compatible+with+AMS")
 
     product_links = list(filter(lambda a: not any(s in a.get('bl-m-value') for s in ['Bundle', 'Pack']), soup.select("a.ProductItem__ImageWrapper")))
+
+    # PETG Basic is not in the "Compatible with AMS" category anymore...not sure why
+    product_links.append({"href": "/products/petg-basic"})
 
     products = []
     i = 1
@@ -211,6 +221,8 @@ def get_materials():
     materials["PLA"]["PLA Lite"] = PLA_LITE_DATA
     materials["PLA"]["PLA Tough"] = PLA_TOUGH_DATA
     materials["PLA"]["PLA Aero"]["Black"] = "14103"
+    materials["ABS"]["ABS"]["Yellow"] = "40401" # Superseded by Tangerine Yellow
+    materials["Support Material"]["Support for PA/PET"] = SUPPORT_FOR_PA_PET_DATA
 
     return materials
 
