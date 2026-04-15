@@ -280,7 +280,7 @@ Status Icon Legend:
 | Color                                            | Filament Code | Variant ID | Status |
 | ------------------------------------------------ | ------------- | ---------- | ------ |
 | [Red](./PETG/PETG%20Basic/Red)                   | 30201         | G00-R00    | ❌     |
-| [Black](./PETG/PETG%20Basic/Black)               | 30105         | G00-K00    | ❌     |
+| [Black](./PETG/PETG%20Basic/Black)               | 30105         | G00-K00    | ✅     |
 | [White](./PETG/PETG%20Basic/White)               | 30106         | G00-W00    | ✅     |
 | [Gray](./PETG/PETG%20Basic/Gray)                 | 30107         | G00-D00    | ✅     |
 | [Reflex Blue](./PETG/PETG%20Basic/Reflex%20Blue) | 30603         | ?          | ❌     |
