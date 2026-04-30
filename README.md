@@ -64,7 +64,7 @@ Status Icon Legend:
 | [Bronze](./PLA/PLA%20Basic/Bronze)                       | 10801         | A00-Y03/A00-Y3 | ✅     |
 | [Gray](./PLA/PLA%20Basic/Gray)                           | 10103         | A00-D0/A00-D00 | ✅     |
 | [Silver](./PLA/PLA%20Basic/Silver)                       | 10102         | A00-D01/A00-D1 | ✅     |
-| [Blue Grey](./PLA/PLA%20Basic/Blue%20Grey)               | 10602         | A00-B01/A00-B1 | ✅     |
+| [Blue Grey](./PLA/PLA%20Basic/Blue%20Gray)               | 10602         | A00-B01/A00-B1 | ✅     |
 | [Dark Gray](./PLA/PLA%20Basic/Dark%20Gray)               | 10105         | A00-D03/A00-D3 | ✅     |
 | [Black](./PLA/PLA%20Basic/Black)                         | 10101         | A00-K0/A00-K00 | ✅     |
 
@@ -128,11 +128,11 @@ Status Icon Legend:
 
 | Color                             | Filament Code | Variant ID | Status |
 | --------------------------------- | ------------- | ---------- | ------ |
-| [Green](./PLA/PLA%20Glow/Green)   | 15500         | A12-G0     | ✅     |
-| [Pink](./PLA/PLA%20Glow/Pink)     | 15200         | A12-R0     | ✅     |
-| [Orange](./PLA/PLA%20Glow/Orange) | 15300         | A12-A0     | ✅     |
-| [Yellow](./PLA/PLA%20Glow/Yellow) | 15400         | A12-Y0     | ✅     |
-| [Blue](./PLA/PLA%20Glow/Blue)     | 15600         | A12-B0     | ✅     |
+| [Green](./PLA/PLA%20Glow/Glow%20Green)   | 15500         | A12-G0     | ✅     |
+| [Pink](./PLA/PLA%20Glow/Glow%20Pink)     | 15200         | A12-R0     | ✅     |
+| [Orange](./PLA/PLA%20Glow/Orange) | 15300         | A12-A0     | ❌     |
+| [Yellow](./PLA/PLA%20Glow/Glow%20Yellow) | 15400         | A12-Y0     | ✅     |
+| [Blue](./PLA/PLA%20Glow/Glow%20Blue)     | 15600         | A12-B0     | ✅     |
 
 #### [PLA Marble](./PLA/PLA%20Marble)
 
@@ -216,7 +216,7 @@ Status Icon Legend:
 | [Midnight Blaze](./PLA/PLA%20Silk%20Multi-Color/Midnight%20Blaze) | 13902         | A05-T2/A05-T3 | ✅     |
 | [Gilded Rose](./PLA/PLA%20Silk%20Multi-Color/Gilded%20Rose)       | 13901         | A00-M1/A05-T1 | ✅     |
 | [Blue Hawaii](./PLA/PLA%20Silk%20Multi-Color/Blue%20Hawaii)       | 13904         | A05-T4     | ✅     |
-| [Velvet Eclipse](./PLA/PLA%20Silk%20Multi-Color/Velvet%20Eclipse) | 13905         | A05-T5     | ✅     |
+| [Velvet Eclipse](./PLA/PLA%20Silk%20Multi-Color/Velvet%20Eclipse%20%28Black-Red%29) | 13905         | A05-T5     | ✅     |
 
 #### [PLA Galaxy](./PLA/PLA%20Galaxy)
 
@@ -403,7 +403,7 @@ Status Icon Legend:
 | --------------------------- | ------------- | ---------- | ------ |
 | [Black](./PC/PC%20FR/Black) | 63100         | C01-K0     | ✅     |
 | [White](./PC/PC%20FR/White) | 63101         | C01-W0     | ✅     |
-| [Gray](./PC/PC%20FR/Gray)   | 63102         | C01-D0     | ❌     |
+| [Gray](./PC/PC%20FR/Gray)   | 63102         | C01-D0     | ✅     |
 
 ### [TPU](./TPU)
 
