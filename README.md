@@ -64,7 +64,7 @@ Status Icon Legend:
 | [Bronze](./PLA/PLA%20Basic/Bronze)                       | 10801         | A00-Y03/A00-Y3 | ✅     |
 | [Gray](./PLA/PLA%20Basic/Gray)                           | 10103         | A00-D0/A00-D00 | ✅     |
 | [Silver](./PLA/PLA%20Basic/Silver)                       | 10102         | A00-D01/A00-D1 | ✅     |
-| [Blue Grey](./PLA/PLA%20Basic/Blue%20Grey)               | 10602         | A00-B01/A00-B1 | ✅     |
+| [Blue Grey](./PLA/PLA%20Basic/Blue%20Gray)               | 10602         | A00-B01/A00-B1 | ✅     |
 | [Dark Gray](./PLA/PLA%20Basic/Dark%20Gray)               | 10105         | A00-D03/A00-D3 | ✅     |
 | [Black](./PLA/PLA%20Basic/Black)                         | 10101         | A00-K0/A00-K00 | ✅     |
 
