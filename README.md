@@ -403,7 +403,7 @@ Status Icon Legend:
 | --------------------------- | ------------- | ---------- | ------ |
 | [Black](./PC/PC%20FR/Black) | 63100         | C01-K0     | ✅     |
 | [White](./PC/PC%20FR/White) | 63101         | C01-W0     | ✅     |
-| [Gray](./PC/PC%20FR/Gray)   | 63102         | C01-D0     | ❌     |
+| [Gray](./PC/PC%20FR/Gray)   | 63102         | C01-D0     | ✅     |
 
 ### [TPU](./TPU)
 
