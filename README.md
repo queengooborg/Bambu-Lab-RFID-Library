@@ -216,7 +216,7 @@ Status Icon Legend:
 | [Midnight Blaze](./PLA/PLA%20Silk%20Multi-Color/Midnight%20Blaze) | 13902         | A05-T2/A05-T3 | ✅     |
 | [Gilded Rose](./PLA/PLA%20Silk%20Multi-Color/Gilded%20Rose)       | 13901         | A00-M1/A05-T1 | ✅     |
 | [Blue Hawaii](./PLA/PLA%20Silk%20Multi-Color/Blue%20Hawaii)       | 13904         | A05-T4     | ✅     |
-| [Velvet Eclipse](./PLA/PLA%20Silk%20Multi-Color/Velvet%20Eclipse) | 13905         | A05-T5     | ✅     |
+| [Velvet Eclipse](./PLA/PLA%20Silk%20Multi-Color/Velvet%20Eclipse%20%28Black-Red%29) | 13905         | A05-T5     | ✅     |
 
 #### [PLA Galaxy](./PLA/PLA%20Galaxy)
 
