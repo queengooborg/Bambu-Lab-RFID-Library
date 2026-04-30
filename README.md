@@ -128,11 +128,11 @@ Status Icon Legend:
 
 | Color                             | Filament Code | Variant ID | Status |
 | --------------------------------- | ------------- | ---------- | ------ |
-| [Green](./PLA/PLA%20Glow/Green)   | 15500         | A12-G0     | ✅     |
-| [Pink](./PLA/PLA%20Glow/Pink)     | 15200         | A12-R0     | ✅     |
-| [Orange](./PLA/PLA%20Glow/Orange) | 15300         | A12-A0     | ✅     |
-| [Yellow](./PLA/PLA%20Glow/Yellow) | 15400         | A12-Y0     | ✅     |
-| [Blue](./PLA/PLA%20Glow/Blue)     | 15600         | A12-B0     | ✅     |
+| [Green](./PLA/PLA%20Glow/Glow%20Green)   | 15500         | A12-G0     | ✅     |
+| [Pink](./PLA/PLA%20Glow/Glow%20Pink)     | 15200         | A12-R0     | ✅     |
+| [Orange](./PLA/PLA%20Glow/Orange) | 15300         | A12-A0     | ❌     |
+| [Yellow](./PLA/PLA%20Glow/Glow%20Yellow) | 15400         | A12-Y0     | ✅     |
+| [Blue](./PLA/PLA%20Glow/Glow%20Blue)     | 15600         | A12-B0     | ✅     |
 
 #### [PLA Marble](./PLA/PLA%20Marble)
 
