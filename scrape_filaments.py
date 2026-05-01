@@ -299,8 +299,8 @@ def generate_tables(materials, readme_path):
 		for material in materials[category]:
 			new_tables += make_table(category, material, materials[category][material], existing_data)
 
-	suffix = readme[next_section:] if next_section != -1 else ""
-	updated = readme[:section_start] + header_and_legend + "\n\n" + new_tables + suffix
+	suffix = readme[next_section+1:] if next_section != -1 else ""
+	updated = readme[:section_start] + header_and_legend + "\n" + new_tables + suffix
 	readme_path.write_text(updated, encoding='utf-8')
 	print(f"README updated: {readme_path}")
 
