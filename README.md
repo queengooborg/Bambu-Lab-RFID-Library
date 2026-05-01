@@ -283,7 +283,7 @@ Status Icon Legend:
 | [Black](./PETG/PETG%20Basic/Black)               | 30105         | G00-K0/G00-K00/G02-K0 | ✅     |
 | [White](./PETG/PETG%20Basic/White)               | 30106         | G00-W0/G00-W00 | ✅     |
 | [Gray](./PETG/PETG%20Basic/Gray)                 | 30107         | G00-D0/G00-D00 | ✅     |
-| [Reflex Blue](./PETG/PETG%20Basic/Reflex%20Blue) | 30603         | ?          | ❌     |
+| [Reflex Blue](./PETG/PETG%20Basic/Reflex%20Blue) | 30603         | G00-B00    | ✅     |
 | [Dark Brown](./PETG/PETG%20Basic/Dark%20Brown)   | 30800         | G00-N00    | ✅     |
 | [Yellow](./PETG/PETG%20Basic/Yellow)             | 30402         | ?          | ❌     |
 
