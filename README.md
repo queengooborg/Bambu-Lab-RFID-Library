@@ -35,38 +35,38 @@ Status Icon Legend:
 
 #### [PLA Basic](./PLA/PLA%20Basic)
 
-| Color                                                    | Filament Code | Variant ID | Status |
-| -------------------------------------------------------- | ------------- | ---------- | ------ |
-| [Jade White](./PLA/PLA%20Basic/Jade%20White)             | 10100         | A00-W01/A00-W1 | ✅     |
-| [Beige](./PLA/PLA%20Basic/Beige)                         | 10201         | A00-P0/A00-P00 | ✅     |
-| [Light Gray](./PLA/PLA%20Basic/Light%20Gray)             | 10104         | A00-D02/A00-D2 | ✅     |
-| [Yellow](./PLA/PLA%20Basic/Yellow)                       | 10400         | A00-Y0/A00-Y00 | ✅     |
-| [Sunflower Yellow](./PLA/PLA%20Basic/Sunflower%20Yellow) | 10402         | A00-Y2     | ✅     |
-| [Pumpkin Orange](./PLA/PLA%20Basic/Pumpkin%20Orange)     | 10301         | A00-A1     | ✅     |
+| Color                                                    | Filament Code | Variant ID            | Status |
+| -------------------------------------------------------- | ------------- | --------------------- | ------ |
+| [Jade White](./PLA/PLA%20Basic/Jade%20White)             | 10100         | A00-W01/A00-W1        | ✅     |
+| [Beige](./PLA/PLA%20Basic/Beige)                         | 10201         | A00-P0/A00-P00        | ✅     |
+| [Light Gray](./PLA/PLA%20Basic/Light%20Gray)             | 10104         | A00-D02/A00-D2        | ✅     |
+| [Yellow](./PLA/PLA%20Basic/Yellow)                       | 10400         | A00-Y0/A00-Y00        | ✅     |
+| [Sunflower Yellow](./PLA/PLA%20Basic/Sunflower%20Yellow) | 10402         | A00-Y2                | ✅     |
+| [Pumpkin Orange](./PLA/PLA%20Basic/Pumpkin%20Orange)     | 10301         | A00-A1                | ✅     |
 | [Orange](./PLA/PLA%20Basic/Orange)                       | 10300         | A00-A0/A00-A00/A00-A1 | ✅     |
-| [Gold](./PLA/PLA%20Basic/Gold)                           | 10401         | A00-Y04/A00-Y4 | ✅     |
-| [Bright Green](./PLA/PLA%20Basic/Bright%20Green)         | 10503         | A00-G3     | ✅     |
+| [Gold](./PLA/PLA%20Basic/Gold)                           | 10401         | A00-Y04/A00-Y4        | ✅     |
+| [Bright Green](./PLA/PLA%20Basic/Bright%20Green)         | 10503         | A00-G3                | ✅     |
 | [Bambu Green](./PLA/PLA%20Basic/Bambu%20Green)           | 10501         | A00-G06/A00-G1/A00-G6 | ✅     |
-| [Mistletoe Green](./PLA/PLA%20Basic/Mistletoe%20Green)   | 10502         | A00-G02/A00-G2 | ✅     |
+| [Mistletoe Green](./PLA/PLA%20Basic/Mistletoe%20Green)   | 10502         | A00-G02/A00-G2        | ✅     |
 | [Pink](./PLA/PLA%20Basic/Pink)                           | 10203         | A00-A0/A00-P01/A00-P1 | ✅     |
-| [Hot Pink](./PLA/PLA%20Basic/Hot%20Pink)                 | 10204         | A00-R3     | ✅     |
-| [Magenta](./PLA/PLA%20Basic/Magenta)                     | 10202         | A00-P06/A00-P6 | ✅     |
-| [Red](./PLA/PLA%20Basic/Red)                             | 10200         | A00-R0/A00-R00 | ✅     |
-| [Maroon Red](./PLA/PLA%20Basic/Maroon%20Red)             | 10205         | A00-R2     | ✅     |
-| [Purple](./PLA/PLA%20Basic/Purple)                       | 10700         | A00-P05/A00-P5 | ✅     |
-| [Indigo Purple](./PLA/PLA%20Basic/Indigo%20Purple)       | 10701         | A00-P2     | ✅     |
-| [Turquoise](./PLA/PLA%20Basic/Turquoise)                 | 10605         | A00-B5     | ✅     |
-| [Cyan](./PLA/PLA%20Basic/Cyan)                           | 10603         | A00-B08/A00-B8 | ✅     |
-| [Cobalt Blue](./PLA/PLA%20Basic/Cobalt%20Blue)           | 10604         | A00-B3     | ✅     |
-| [Blue](./PLA/PLA%20Basic/Blue)                           | 10601         | A00-B09/A00-B9 | ✅     |
-| [Brown](./PLA/PLA%20Basic/Brown)                         | 10800         | A00-N0     | ✅     |
-| [Cocoa Brown](./PLA/PLA%20Basic/Cocoa%20Brown)           | 10802         | A00-N1     | ✅     |
-| [Bronze](./PLA/PLA%20Basic/Bronze)                       | 10801         | A00-Y03/A00-Y3 | ✅     |
-| [Gray](./PLA/PLA%20Basic/Gray)                           | 10103         | A00-D0/A00-D00 | ✅     |
-| [Silver](./PLA/PLA%20Basic/Silver)                       | 10102         | A00-D01/A00-D1 | ✅     |
-| [Blue Grey](./PLA/PLA%20Basic/Blue%20Gray)               | 10602         | A00-B01/A00-B1 | ✅     |
-| [Dark Gray](./PLA/PLA%20Basic/Dark%20Gray)               | 10105         | A00-D03/A00-D3 | ✅     |
-| [Black](./PLA/PLA%20Basic/Black)                         | 10101         | A00-K0/A00-K00 | ✅     |
+| [Hot Pink](./PLA/PLA%20Basic/Hot%20Pink)                 | 10204         | A00-R3                | ✅     |
+| [Magenta](./PLA/PLA%20Basic/Magenta)                     | 10202         | A00-P06/A00-P6        | ✅     |
+| [Red](./PLA/PLA%20Basic/Red)                             | 10200         | A00-R0/A00-R00        | ✅     |
+| [Maroon Red](./PLA/PLA%20Basic/Maroon%20Red)             | 10205         | A00-R2                | ✅     |
+| [Purple](./PLA/PLA%20Basic/Purple)                       | 10700         | A00-P05/A00-P5        | ✅     |
+| [Indigo Purple](./PLA/PLA%20Basic/Indigo%20Purple)       | 10701         | A00-P2                | ✅     |
+| [Turquoise](./PLA/PLA%20Basic/Turquoise)                 | 10605         | A00-B5                | ✅     |
+| [Cyan](./PLA/PLA%20Basic/Cyan)                           | 10603         | A00-B08/A00-B8        | ✅     |
+| [Cobalt Blue](./PLA/PLA%20Basic/Cobalt%20Blue)           | 10604         | A00-B3                | ✅     |
+| [Blue](./PLA/PLA%20Basic/Blue)                           | 10601         | A00-B09/A00-B9        | ✅     |
+| [Brown](./PLA/PLA%20Basic/Brown)                         | 10800         | A00-N0                | ✅     |
+| [Cocoa Brown](./PLA/PLA%20Basic/Cocoa%20Brown)           | 10802         | A00-N1                | ✅     |
+| [Bronze](./PLA/PLA%20Basic/Bronze)                       | 10801         | A00-Y03/A00-Y3        | ✅     |
+| [Gray](./PLA/PLA%20Basic/Gray)                           | 10103         | A00-D0/A00-D00        | ✅     |
+| [Silver](./PLA/PLA%20Basic/Silver)                       | 10102         | A00-D01/A00-D1        | ✅     |
+| [Blue Gray](./PLA/PLA%20Basic/Blue%20Gray)               | 10602         | A00-B01/A00-B1        | ✅     |
+| [Dark Gray](./PLA/PLA%20Basic/Dark%20Gray)               | 10105         | A00-D03/A00-D3        | ✅     |
+| [Black](./PLA/PLA%20Basic/Black)                         | 10101         | A00-K0/A00-K00        | ✅     |
 
 #### [PLA Lite](./PLA/PLA%20Lite)
 
@@ -83,32 +83,32 @@ Status Icon Legend:
 
 #### [PLA Matte](./PLA/PLA%20Matte)
 
-| Color                                                  | Filament Code | Variant ID | Status |
-| ------------------------------------------------------ | ------------- | ---------- | ------ |
+| Color                                                  | Filament Code | Variant ID     | Status |
+| ------------------------------------------------------ | ------------- | -------------- | ------ |
 | [Ivory White](./PLA/PLA%20Matte/Ivory%20White)         | 11100         | A01-W02/A01-W2 | ✅     |
-| [Bone White](./PLA/PLA%20Matte/Bone%20White)           | 11103         | A01-W3     | ✅     |
-| [Lemon Yellow](./PLA/PLA%20Matte/Lemon%20Yellow)       | 11400         | A01-A2/A01-Y2 | ✅     |
-| [Mandarin Orange](./PLA/PLA%20Matte/Mandarin%20Orange) | 11300         | A01-A2     | ✅     |
+| [Bone White](./PLA/PLA%20Matte/Bone%20White)           | 11103         | A01-W3         | ✅     |
+| [Lemon Yellow](./PLA/PLA%20Matte/Lemon%20Yellow)       | 11400         | A01-A2/A01-Y2  | ✅     |
+| [Mandarin Orange](./PLA/PLA%20Matte/Mandarin%20Orange) | 11300         | A01-A2         | ✅     |
 | [Sakura Pink](./PLA/PLA%20Matte/Sakura%20Pink)         | 11201         | A01-P03/A01-P3 | ✅     |
-| [Lilac Purple](./PLA/PLA%20Matte/Lilac%20Purple)       | 11700         | A01-P4     | ✅     |
-| [Plum](./PLA/PLA%20Matte/Plum)                         | 11204         | A01-R3     | ✅     |
-| [Scarlet Red](./PLA/PLA%20Matte/Scarlet%20Red)         | 11200         | A01-R1     | ✅     |
-| [Dark Red](./PLA/PLA%20Matte/Dark%20Red)               | 11202         | A01-R4     | ✅     |
-| [Apple Green](./PLA/PLA%20Matte/Apple%20Green)         | 11502         | A01-G0     | ✅     |
-| [Grass Green](./PLA/PLA%20Matte/Grass%20Green)         | 11500         | A01-G1     | ✅     |
-| [Dark Green](./PLA/PLA%20Matte/Dark%20Green)           | 11501         | A01-G7     | ✅     |
-| [Ice Blue](./PLA/PLA%20Matte/Ice%20Blue)               | 11601         | A01-B4     | ✅     |
-| [Sky Blue](./PLA/PLA%20Matte/Sky%20Blue)               | 11603         | A01-B0     | ✅     |
-| [Marine Blue](./PLA/PLA%20Matte/Marine%20Blue)         | 11600         | A01-B3     | ✅     |
-| [Dark Blue](./PLA/PLA%20Matte/Dark%20Blue)             | 11602         | A01-B6     | ✅     |
-| [Desert Tan](./PLA/PLA%20Matte/Desert%20Tan)           | 11401         | A01-Y3     | ✅     |
-| [Latte Brown](./PLA/PLA%20Matte/Latte%20Brown)         | 11800         | A01-N1     | ✅     |
-| [Caramel](./PLA/PLA%20Matte/Caramel)                   | 11803         | A01-N3     | ✅     |
-| [Terracotta](./PLA/PLA%20Matte/Terracotta)             | 11203         | A01-R2     | ✅     |
-| [Dark Brown](./PLA/PLA%20Matte/Dark%20Brown)           | 11801         | A01-N2     | ✅     |
-| [Dark Chocolate](./PLA/PLA%20Matte/Dark%20Chocolate)   | 11802         | A01-N0     | ✅     |
+| [Lilac Purple](./PLA/PLA%20Matte/Lilac%20Purple)       | 11700         | A01-P4         | ✅     |
+| [Plum](./PLA/PLA%20Matte/Plum)                         | 11204         | A01-R3         | ✅     |
+| [Scarlet Red](./PLA/PLA%20Matte/Scarlet%20Red)         | 11200         | A01-R1         | ✅     |
+| [Dark Red](./PLA/PLA%20Matte/Dark%20Red)               | 11202         | A01-R4         | ✅     |
+| [Apple Green](./PLA/PLA%20Matte/Apple%20Green)         | 11502         | A01-G0         | ✅     |
+| [Grass Green](./PLA/PLA%20Matte/Grass%20Green)         | 11500         | A01-G1         | ✅     |
+| [Dark Green](./PLA/PLA%20Matte/Dark%20Green)           | 11501         | A01-G7         | ✅     |
+| [Ice Blue](./PLA/PLA%20Matte/Ice%20Blue)               | 11601         | A01-B4         | ✅     |
+| [Sky Blue](./PLA/PLA%20Matte/Sky%20Blue)               | 11603         | A01-B0         | ✅     |
+| [Marine Blue](./PLA/PLA%20Matte/Marine%20Blue)         | 11600         | A01-B3         | ✅     |
+| [Dark Blue](./PLA/PLA%20Matte/Dark%20Blue)             | 11602         | A01-B6         | ✅     |
+| [Desert Tan](./PLA/PLA%20Matte/Desert%20Tan)           | 11401         | A01-Y3         | ✅     |
+| [Latte Brown](./PLA/PLA%20Matte/Latte%20Brown)         | 11800         | A01-N1         | ✅     |
+| [Caramel](./PLA/PLA%20Matte/Caramel)                   | 11803         | A01-N3         | ✅     |
+| [Terracotta](./PLA/PLA%20Matte/Terracotta)             | 11203         | A01-R2         | ✅     |
+| [Dark Brown](./PLA/PLA%20Matte/Dark%20Brown)           | 11801         | A01-N2         | ✅     |
+| [Dark Chocolate](./PLA/PLA%20Matte/Dark%20Chocolate)   | 11802         | A01-N0         | ✅     |
 | [Ash Gray](./PLA/PLA%20Matte/Ash%20Gray)               | 11102         | A01-D03/A01-D3 | ✅     |
-| [Nardo Gray](./PLA/PLA%20Matte/Nardo%20Gray)           | 11104         | A01-D0     | ✅     |
+| [Nardo Gray](./PLA/PLA%20Matte/Nardo%20Gray)           | 11104         | A01-D0         | ✅     |
 | [Charcoal](./PLA/PLA%20Matte/Charcoal)                 | 11101         | A01-K01/A01-K1 | ✅     |
 
 #### [PLA Basic Gradient](./PLA/PLA%20Basic%20Gradient)
@@ -126,11 +126,11 @@ Status Icon Legend:
 
 #### [PLA Glow](./PLA/PLA%20Glow)
 
-| Color                             | Filament Code | Variant ID | Status |
-| --------------------------------- | ------------- | ---------- | ------ |
+| Color                                    | Filament Code | Variant ID | Status |
+| ---------------------------------------- | ------------- | ---------- | ------ |
 | [Green](./PLA/PLA%20Glow/Glow%20Green)   | 15500         | A12-G0     | ✅     |
 | [Pink](./PLA/PLA%20Glow/Glow%20Pink)     | 15200         | A12-R0     | ✅     |
-| [Orange](./PLA/PLA%20Glow/Orange) | 15300         | A12-A0     | ❌     |
+| [Orange](./PLA/PLA%20Glow/Orange)        | 15300         | A12-A0     | ❌     |
 | [Yellow](./PLA/PLA%20Glow/Glow%20Yellow) | 15400         | A12-Y0     | ✅     |
 | [Blue](./PLA/PLA%20Glow/Glow%20Blue)     | 15600         | A12-B0     | ✅     |
 
@@ -151,14 +151,14 @@ Status Icon Legend:
 
 #### [PLA Sparkle](./PLA/PLA%20Sparkle)
 
-| Color                                                                | Filament Code | Variant ID | Status |
-| -------------------------------------------------------------------- | ------------- | ---------- | ------ |
-| [Alpine Green Sparkle](./PLA/PLA%20Sparkle/Alpine%20Green%20Sparkle) | 13501         | A08-G3     | ✅     |
-| [Slate Gray Sparkle](./PLA/PLA%20Sparkle/Slate%20Gray%20Sparkle)     | 13102         | A08-D5     | ✅     |
-| [Royal Purple Sparkle](./PLA/PLA%20Sparkle/Royal%20Purple%20Sparkle) | 13700         | A08-B7     | ✅     |
-| [Crimson Red Sparkle](./PLA/PLA%20Sparkle/Crimson%20Red%20Sparkle)   | 13200         | A08-R2     | ✅     |
+| Color                                                                | Filament Code | Variant ID     | Status |
+| -------------------------------------------------------------------- | ------------- | -------------- | ------ |
+| [Alpine Green Sparkle](./PLA/PLA%20Sparkle/Alpine%20Green%20Sparkle) | 13501         | A08-G3         | ✅     |
+| [Slate Gray Sparkle](./PLA/PLA%20Sparkle/Slate%20Gray%20Sparkle)     | 13102         | A08-D5         | ✅     |
+| [Royal Purple Sparkle](./PLA/PLA%20Sparkle/Royal%20Purple%20Sparkle) | 13700         | A08-B7         | ✅     |
+| [Crimson Red Sparkle](./PLA/PLA%20Sparkle/Crimson%20Red%20Sparkle)   | 13200         | A08-R2         | ✅     |
 | [Onyx Black Sparkle](./PLA/PLA%20Sparkle/Onyx%20Black%20Sparkle)     | 13101         | A08-K02/A08-K2 | ✅     |
-| [Classic Gold Sparkle](./PLA/PLA%20Sparkle/Classic%20Gold%20Sparkle) | 13402         | A08-Y1     | ✅     |
+| [Classic Gold Sparkle](./PLA/PLA%20Sparkle/Classic%20Gold%20Sparkle) | 13402         | A08-Y1         | ✅     |
 
 #### [PLA Metal](./PLA/PLA%20Metal)
 
@@ -187,56 +187,56 @@ Status Icon Legend:
 
 #### [PLA Silk+](./PLA/PLA%20Silk%2B)
 
-| Color                                            | Filament Code | Variant ID | Status |
-| ------------------------------------------------ | ------------- | ---------- | ------ |
-| [Gold](./PLA/PLA%20Silk%2B/Gold)                 | 13405         | A06-Y1     | ✅     |
-| [Titan Gray](./PLA/PLA%20Silk%2B/Titan%20Gray)   | 13108         | A06-D0/A06-D00 | ✅     |
+| Color                                            | Filament Code | Variant ID             | Status |
+| ------------------------------------------------ | ------------- | ---------------------- | ------ |
+| [Gold](./PLA/PLA%20Silk%2B/Gold)                 | 13405         | A06-Y1                 | ✅     |
+| [Titan Gray](./PLA/PLA%20Silk%2B/Titan%20Gray)   | 13108         | A06-D0/A06-D00         | ✅     |
 | [Silver](./PLA/PLA%20Silk%2B/Silver)             | 13109         | A06-D00/A06-D01/A06-D1 | ✅     |
-| [White](./PLA/PLA%20Silk%2B/White)               | 13110         | A06-W0/A06-W00 | ✅     |
-| [Candy Red](./PLA/PLA%20Silk%2B/Candy%20Red)     | 13205         | A06-R0     | ✅     |
-| [Candy Green](./PLA/PLA%20Silk%2B/Candy%20Green) | 13506         | A06-G0/A06-G00 | ✅     |
-| [Mint](./PLA/PLA%20Silk%2B/Mint)                 | 13507         | A06-G01/A06-G1 | ✅     |
-| [Blue](./PLA/PLA%20Silk%2B/Blue)                 | 13604         | A06-B01/A06-B1 | ✅     |
-| [Baby Blue](./PLA/PLA%20Silk%2B/Baby%20Blue)     | 13603         | A06-B0/A06-B00 | ✅     |
-| [Purple](./PLA/PLA%20Silk%2B/Purple)             | 13702         | A06-P0/A06-P00 | ✅     |
-| [Rose Gold](./PLA/PLA%20Silk%2B/Rose%20Gold)     | 13206         | A06-R01/A06-R1 | ✅     |
-| [Pink](./PLA/PLA%20Silk%2B/Pink)                 | 13207         | A06-R2     | ✅     |
-| [Champagne](./PLA/PLA%20Silk%2B/Champagne)       | 13404         | A06-Y0     | ✅     |
+| [White](./PLA/PLA%20Silk%2B/White)               | 13110         | A06-W0/A06-W00         | ✅     |
+| [Candy Red](./PLA/PLA%20Silk%2B/Candy%20Red)     | 13205         | A06-R0                 | ✅     |
+| [Candy Green](./PLA/PLA%20Silk%2B/Candy%20Green) | 13506         | A06-G0/A06-G00         | ✅     |
+| [Mint](./PLA/PLA%20Silk%2B/Mint)                 | 13507         | A06-G01/A06-G1         | ✅     |
+| [Blue](./PLA/PLA%20Silk%2B/Blue)                 | 13604         | A06-B01/A06-B1         | ✅     |
+| [Baby Blue](./PLA/PLA%20Silk%2B/Baby%20Blue)     | 13603         | A06-B0/A06-B00         | ✅     |
+| [Purple](./PLA/PLA%20Silk%2B/Purple)             | 13702         | A06-P0/A06-P00         | ✅     |
+| [Rose Gold](./PLA/PLA%20Silk%2B/Rose%20Gold)     | 13206         | A06-R01/A06-R1         | ✅     |
+| [Pink](./PLA/PLA%20Silk%2B/Pink)                 | 13207         | A06-R2                 | ✅     |
+| [Champagne](./PLA/PLA%20Silk%2B/Champagne)       | 13404         | A06-Y0                 | ✅     |
 
 #### [PLA Silk Multi-Color](./PLA/PLA%20Silk%20Multi-Color)
 
-| Color                                                             | Filament Code | Variant ID | Status |
-| ----------------------------------------------------------------- | ------------- | ---------- | ------ |
-| [Dawn Radiance](./PLA/PLA%20Silk%20Multi-Color/Dawn%20Radiance)   | 13912         | A05-M8     | ✅     |
-| [Aurora Purple](./PLA/PLA%20Silk%20Multi-Color/Aurora%20Purple)   | 13909         | A05-M4     | ✅     |
-| [South Beach](./PLA/PLA%20Silk%20Multi-Color/South%20Beach)       | 13906         | A05-M1     | ✅     |
-| [Phantom Blue](./PLA/PLA%20Silk%20Multi-Color/Phantom%20Blue)     | 13916         | A05-T9     | ✅     |
-| [Mystic Magenta](./PLA/PLA%20Silk%20Multi-Color/Mystic%20Magenta) | 13913         | A05-T7     | ✅     |
-| [Neon City](./PLA/PLA%20Silk%20Multi-Color/Neon%20City)           | 13903         | A05-M4/A05-T3 | ✅     |
-| [Midnight Blaze](./PLA/PLA%20Silk%20Multi-Color/Midnight%20Blaze) | 13902         | A05-T2/A05-T3 | ✅     |
-| [Gilded Rose](./PLA/PLA%20Silk%20Multi-Color/Gilded%20Rose)       | 13901         | A00-M1/A05-T1 | ✅     |
-| [Blue Hawaii](./PLA/PLA%20Silk%20Multi-Color/Blue%20Hawaii)       | 13904         | A05-T4     | ✅     |
-| [Velvet Eclipse](./PLA/PLA%20Silk%20Multi-Color/Velvet%20Eclipse%20%28Black-Red%29) | 13905         | A05-T5     | ✅     |
+| Color                                                                               | Filament Code | Variant ID    | Status |
+| ----------------------------------------------------------------------------------- | ------------- | ------------- | ------ |
+| [Dawn Radiance](./PLA/PLA%20Silk%20Multi-Color/Dawn%20Radiance)                     | 13912         | A05-M8        | ✅     |
+| [Aurora Purple](./PLA/PLA%20Silk%20Multi-Color/Aurora%20Purple)                     | 13909         | A05-M4        | ✅     |
+| [South Beach](./PLA/PLA%20Silk%20Multi-Color/South%20Beach)                         | 13906         | A05-M1        | ✅     |
+| [Phantom Blue](./PLA/PLA%20Silk%20Multi-Color/Phantom%20Blue)                       | 13916         | A05-T9        | ✅     |
+| [Mystic Magenta](./PLA/PLA%20Silk%20Multi-Color/Mystic%20Magenta)                   | 13913         | A05-T7        | ✅     |
+| [Neon City](./PLA/PLA%20Silk%20Multi-Color/Neon%20City)                             | 13903         | A05-M4/A05-T3 | ✅     |
+| [Midnight Blaze](./PLA/PLA%20Silk%20Multi-Color/Midnight%20Blaze)                   | 13902         | A05-T2/A05-T3 | ✅     |
+| [Gilded Rose](./PLA/PLA%20Silk%20Multi-Color/Gilded%20Rose)                         | 13901         | A00-M1/A05-T1 | ✅     |
+| [Blue Hawaii](./PLA/PLA%20Silk%20Multi-Color/Blue%20Hawaii)                         | 13904         | A05-T4        | ✅     |
+| [Velvet Eclipse](./PLA/PLA%20Silk%20Multi-Color/Velvet%20Eclipse%20%28Black-Red%29) | 13905         | A05-T5        | ✅     |
 
 #### [PLA Galaxy](./PLA/PLA%20Galaxy)
 
-| Color                                 | Filament Code | Variant ID | Status |
-| ------------------------------------- | ------------- | ---------- | ------ |
-| [Purple](./PLA/PLA%20Galaxy/Purple)   | 13602         | A15-B0     | ✅     |
-| [Green](./PLA/PLA%20Galaxy/Green)     | 13503         | A15-G0     | ✅     |
+| Color                                 | Filament Code | Variant ID     | Status |
+| ------------------------------------- | ------------- | -------------- | ------ |
+| [Purple](./PLA/PLA%20Galaxy/Purple)   | 13602         | A15-B0         | ✅     |
+| [Green](./PLA/PLA%20Galaxy/Green)     | 13503         | A15-G0         | ✅     |
 | [Nebulae](./PLA/PLA%20Galaxy/Nebulae) | 13504         | A15-G01/A15-G1 | ✅     |
-| [Brown](./PLA/PLA%20Galaxy/Brown)     | 13203         | A15-R0     | ✅     |
+| [Brown](./PLA/PLA%20Galaxy/Brown)     | 13203         | A15-R0         | ✅     |
 
 #### [PLA Wood](./PLA/PLA%20Wood)
 
-| Color                                             | Filament Code | Variant ID | Status |
-| ------------------------------------------------- | ------------- | ---------- | ------ |
+| Color                                             | Filament Code | Variant ID    | Status |
+| ------------------------------------------------- | ------------- | ------------- | ------ |
 | [Black Walnut](./PLA/PLA%20Wood/Black%20Walnut)   | 13107         | A16-K0/A16-R0 | ✅     |
-| [Rosewood](./PLA/PLA%20Wood/Rosewood)             | 13204         | A16-R0     | ✅     |
-| [Clay Brown](./PLA/PLA%20Wood/Clay%20Brown)       | 13801         | A16-N0     | ✅     |
-| [Classic Birch](./PLA/PLA%20Wood/Classic%20Birch) | 13505         | A16-G0     | ✅     |
-| [White Oak](./PLA/PLA%20Wood/White%20Oak)         | 13106         | A16-W0     | ✅     |
-| [Ochre Yellow](./PLA/PLA%20Wood/Ochre%20Yellow)   | 13403         | A16-Y0     | ✅     |
+| [Rosewood](./PLA/PLA%20Wood/Rosewood)             | 13204         | A16-R0        | ✅     |
+| [Clay Brown](./PLA/PLA%20Wood/Clay%20Brown)       | 13801         | A16-N0        | ✅     |
+| [Classic Birch](./PLA/PLA%20Wood/Classic%20Birch) | 13505         | A16-G0        | ✅     |
+| [White Oak](./PLA/PLA%20Wood/White%20Oak)         | 13106         | A16-W0        | ✅     |
+| [Ochre Yellow](./PLA/PLA%20Wood/Ochre%20Yellow)   | 13403         | A16-Y0        | ✅     |
 
 #### [PLA-CF](./PLA/PLA-CF)
 
@@ -277,15 +277,15 @@ Status Icon Legend:
 
 #### [PETG Basic](./PETG/PETG%20Basic)
 
-| Color                                            | Filament Code | Variant ID | Status |
-| ------------------------------------------------ | ------------- | ---------- | ------ |
-| [Red](./PETG/PETG%20Basic/Red)                   | 30201         | G00-R0     | ✅     |
+| Color                                            | Filament Code | Variant ID            | Status |
+| ------------------------------------------------ | ------------- | --------------------- | ------ |
+| [Red](./PETG/PETG%20Basic/Red)                   | 30201         | G00-R0                | ✅     |
 | [Black](./PETG/PETG%20Basic/Black)               | 30105         | G00-K0/G00-K00/G02-K0 | ✅     |
-| [White](./PETG/PETG%20Basic/White)               | 30106         | G00-W0/G00-W00 | ✅     |
-| [Gray](./PETG/PETG%20Basic/Gray)                 | 30107         | G00-D0/G00-D00 | ✅     |
-| [Reflex Blue](./PETG/PETG%20Basic/Reflex%20Blue) | 30603         | G00-B00    | ✅     |
-| [Dark Brown](./PETG/PETG%20Basic/Dark%20Brown)   | 30800         | G00-N00    | ✅     |
-| [Yellow](./PETG/PETG%20Basic/Yellow)             | 30402         | ?          | ❌     |
+| [White](./PETG/PETG%20Basic/White)               | 30106         | G00-W0/G00-W00        | ✅     |
+| [Gray](./PETG/PETG%20Basic/Gray)                 | 30107         | G00-D0/G00-D00        | ✅     |
+| [Reflex Blue](./PETG/PETG%20Basic/Reflex%20Blue) | 30603         | G00-B00               | ✅     |
+| [Dark Brown](./PETG/PETG%20Basic/Dark%20Brown)   | 30800         | G00-N00               | ✅     |
+| [Yellow](./PETG/PETG%20Basic/Yellow)             | 30402         | ?                     | ❌     |
 
 #### [PETG HF](./PETG/PETG%20HF)
 
@@ -308,17 +308,17 @@ Status Icon Legend:
 
 #### [PETG Translucent](./PETG/PETG%20Translucent)
 
-| Color                                                                          | Filament Code | Variant ID | Status |
-| ------------------------------------------------------------------------------ | ------------- | ---------- | ------ |
-| [Translucent Teal](./PETG/PETG%20Translucent/Translucent%20Teal)               | 32501         | G01-G1     | ✅     |
-| [Translucent Light Blue](./PETG/PETG%20Translucent/Translucent%20Light%20Blue) | 32600         | G01-B0     | ✅     |
-| [Clear](./PETG/PETG%20Translucent/Clear)                                       | 32101         | G01-C0     | ✅     |
-| [Translucent Gray](./PETG/PETG%20Translucent/Translucent%20Gray)               | 32100         | G01-D0     | ✅     |
-| [Translucent Olive](./PETG/PETG%20Translucent/Translucent%20Olive)             | 32500         | G01-G0     | ✅     |
-| [Translucent Brown](./PETG/PETG%20Translucent/Translucent%20Brown)             | 32800         | G01-N0     | ✅     |
+| Color                                                                          | Filament Code | Variant ID    | Status |
+| ------------------------------------------------------------------------------ | ------------- | ------------- | ------ |
+| [Translucent Teal](./PETG/PETG%20Translucent/Translucent%20Teal)               | 32501         | G01-G1        | ✅     |
+| [Translucent Light Blue](./PETG/PETG%20Translucent/Translucent%20Light%20Blue) | 32600         | G01-B0        | ✅     |
+| [Clear](./PETG/PETG%20Translucent/Clear)                                       | 32101         | G01-C0        | ✅     |
+| [Translucent Gray](./PETG/PETG%20Translucent/Translucent%20Gray)               | 32100         | G01-D0        | ✅     |
+| [Translucent Olive](./PETG/PETG%20Translucent/Translucent%20Olive)             | 32500         | G01-G0        | ✅     |
+| [Translucent Brown](./PETG/PETG%20Translucent/Translucent%20Brown)             | 32800         | G01-N0        | ✅     |
 | [Translucent Orange](./PETG/PETG%20Translucent/Translucent%20Orange)           | 32300         | G01-A0/G02-A0 | ✅     |
-| [Translucent Pink](./PETG/PETG%20Translucent/Translucent%20Pink)               | 32200         | G01-P1     | ✅     |
-| [Translucent Purple](./PETG/PETG%20Translucent/Translucent%20Purple)           | 32700         | G01-P0     | ✅     |
+| [Translucent Pink](./PETG/PETG%20Translucent/Translucent%20Pink)               | 32200         | G01-P1        | ✅     |
+| [Translucent Purple](./PETG/PETG%20Translucent/Translucent%20Purple)           | 32700         | G01-P0        | ✅     |
 
 #### [PETG-CF](./PETG/PETG-CF)
 
@@ -335,20 +335,20 @@ Status Icon Legend:
 
 #### [ABS](./ABS/ABS)
 
-| Color                                            | Filament Code | Variant ID | Status |
-| ------------------------------------------------ | ------------- | ---------- | ------ |
-| [Silver](./ABS/ABS/Silver)                       | 40102         | B00-D1     | ✅     |
-| [Black](./ABS/ABS/Black)                         | 40101         | B00-K0     | ✅     |
+| Color                                            | Filament Code | Variant ID     | Status |
+| ------------------------------------------------ | ------------- | -------------- | ------ |
+| [Silver](./ABS/ABS/Silver)                       | 40102         | B00-D1         | ✅     |
+| [Black](./ABS/ABS/Black)                         | 40101         | B00-K0         | ✅     |
 | [White](./ABS/ABS/White)                         | 40100         | B00-W0/B00-W00 | ✅     |
-| [Bambu Green](./ABS/ABS/Bambu%20Green)           | 40500         | B00-G6     | ✅     |
-| [Olive](./ABS/ABS/Olive)                         | 40502         | B00-G7     | ✅     |
-| [Tangerine Yellow](./ABS/ABS/Tangerine%20Yellow) | 40402         | B00-Y1     | ✅     |
-| [Orange](./ABS/ABS/Orange)                       | 40300         | B00-A0     | ✅     |
-| [Red](./ABS/ABS/Red)                             | 40200         | B00-R0     | ✅     |
-| [Azure](./ABS/ABS/Azure)                         | 40601         | B00-B4     | ✅     |
-| [Blue](./ABS/ABS/Blue)                           | 40600         | B00-B0     | ✅     |
-| [Navy Blue](./ABS/ABS/Navy%20Blue)               | 40602         | B00-B6     | ✅     |
-| [Yellow](./ABS/ABS/Yellow)                       | 40401         | B00-Y0     | ✅     |
+| [Bambu Green](./ABS/ABS/Bambu%20Green)           | 40500         | B00-G6         | ✅     |
+| [Olive](./ABS/ABS/Olive)                         | 40502         | B00-G7         | ✅     |
+| [Tangerine Yellow](./ABS/ABS/Tangerine%20Yellow) | 40402         | B00-Y1         | ✅     |
+| [Orange](./ABS/ABS/Orange)                       | 40300         | B00-A0         | ✅     |
+| [Red](./ABS/ABS/Red)                             | 40200         | B00-R0         | ✅     |
+| [Azure](./ABS/ABS/Azure)                         | 40601         | B00-B4         | ✅     |
+| [Blue](./ABS/ABS/Blue)                           | 40600         | B00-B0         | ✅     |
+| [Navy Blue](./ABS/ABS/Navy%20Blue)               | 40602         | B00-B6         | ✅     |
+| [Yellow](./ABS/ABS/Yellow)                       | 40401         | B00-Y0         | ✅     |
 
 #### [ABS-GF](./ABS/ABS-GF)
 
@@ -390,12 +390,12 @@ Status Icon Legend:
 
 #### [PC](./PC/PC)
 
-| Color                                | Filament Code | Variant ID | Status |
-| ------------------------------------ | ------------- | ---------- | ------ |
-| [Transparent](./PC/PC/Transparent)   | 60103         | C00-C1     | ✅     |
+| Color                                | Filament Code | Variant ID    | Status |
+| ------------------------------------ | ------------- | ------------- | ------ |
+| [Transparent](./PC/PC/Transparent)   | 60103         | C00-C1        | ✅     |
 | [Clear Black](./PC/PC/Clear%20Black) | 60102         | C00-C0/C00-C1 | ✅     |
-| [Black](./PC/PC/Black)               | 60101         | C00-K0     | ✅     |
-| [White](./PC/PC/White)               | 60100         | C00-W0     | ✅     |
+| [Black](./PC/PC/Black)               | 60101         | C00-K0        | ✅     |
+| [White](./PC/PC/White)               | 60100         | C00-W0        | ✅     |
 
 #### [PC FR](./PC/PC%20FR)
 
@@ -444,10 +444,10 @@ Status Icon Legend:
 
 #### [Support for PLA/PETG](./Support%20Material/Support%20for%20PLA/PETG)
 
-| Color                                                          | Filament Code | Variant ID           | Status |
-| -------------------------------------------------------------- | ------------- | -------------------- | ------ |
-| [Nature](./Support%20Material/Support%20for%20PLA/PETG/Nature) | 65102         | S05-C0               | ✅     |
-| [Black](./Support%20Material/Support%20for%20PLA/PETG/Black)   | 65103         | S05-C0/S05-K0        | ✅     |
+| Color                                                          | Filament Code | Variant ID    | Status |
+| -------------------------------------------------------------- | ------------- | ------------- | ------ |
+| [Nature](./Support%20Material/Support%20for%20PLA/PETG/Nature) | 65102         | S05-C0        | ✅     |
+| [Black](./Support%20Material/Support%20for%20PLA/PETG/Black)   | 65103         | S05-C0/S05-K0 | ✅     |
 
 #### [Support for PLA (New Version)](./Support%20Material/Support%20for%20PLA%20%28New%20Version%29)
 
@@ -463,8 +463,8 @@ Status Icon Legend:
 
 #### [Support for PA/PET](./Support%20Material/Support%20for%20PA/PET)
 
-| Color                                                      | Filament Code | Variant ID | Status |
-| ---------------------------------------------------------- | ------------- | ---------- | ------ |
+| Color                                                      | Filament Code | Variant ID    | Status |
+| ---------------------------------------------------------- | ------------- | ------------- | ------ |
 | [Green](./Support%20Material/Support%20for%20PA/PET/Green) | 65500         | S01-G1/S03-G1 | ✅     |
 
 #### [PVA](./Support%20Material/PVA)
