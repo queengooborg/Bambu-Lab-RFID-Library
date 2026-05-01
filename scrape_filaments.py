@@ -83,6 +83,15 @@ CATEGORIES = {
     ]
 }
 
+# Some material store names cannot be used directly as folder names
+# (slashes become path separators; hyphens vs spaces differ from the library).
+# Maps store display name -> actual library folder name.
+FOLDER_NAME_OVERRIDES = {
+    'PETG-CF':              'PETG CF',
+    'Support for PLA/PETG': 'Support for PLA-PETG',
+    'Support for PA/PET':   'Support for PA-PET',
+}
+
 # Some PLA Silk Multi-Color filaments don't publish filament codes
 FILAMENT_CODE_OVERRIDES = {
     "Velvet Eclipse (Black-Red)": '13905',
@@ -144,7 +153,7 @@ def get_page(url, attempt=0):
     req = requests.get(url, headers=REQ_HEADERS)
     soup = BeautifulSoup(req.text, "html.parser")
 
-    if soup.title.string == "Just a moment...":
+    if soup.title and soup.title.string == "Just a moment...":
         if attempt >= RETRIES:
             raise Exception(f"CloudFlare prohibiting connection, please try again later")
 
@@ -165,14 +174,20 @@ def get_product(product_url):
     soup = get_page(product_url)
 
     # Get title
-    title = soup.select_one("h1").string
+    h1 = soup.select_one("h1")
+    if not h1:
+        return None
+    title = h1.get_text(strip=True)
 
     if "bundle" in title.lower():
         return None
 
     # Get colors
     colors = {}
-    for el in soup.select_one(".property_selector_Color").select("li"):
+    color_selector = soup.select_one(".property_selector_Color")
+    if not color_selector:
+        return None
+    for el in color_selector.select("li"):
         color = re.sub(r"^(Matte|ABS|Glow) ", "", normalize_homoglyphs(el.get("value"))).title().replace(" To ", " to ")
 
         # Match pattern like "Color Name (12345)"
@@ -188,7 +203,7 @@ def get_products():
     print("Getting products from Bambu Lab, this may take a while...")
     soup = get_page(f"{BASE_URL}/collections/bambu-lab-3d-printer-filament?Compatibility=Compatible+with+AMS")
 
-    product_links = list(filter(lambda a: not any(s in a.get('bl-m-value') for s in ['Bundle', 'Pack']), soup.select("a.ProductItem__ImageWrapper")))
+    product_links = list(filter(lambda a: not any(s in a.get('bl-m-value', '') for s in ['Bundle', 'Pack']), soup.select("a.ProductItem__ImageWrapper")))
 
     # PETG Basic is not in the "Compatible with AMS" category anymore...not sure why
     product_links.append({"href": "/products/petg-basic"})
@@ -205,7 +220,7 @@ def get_products():
                     products.append(product)
                 i += 1
         except Exception as e:
-            print(f"Failed on {a.get("href")}")
+            print(f"Failed on {a.get('href')}")
             logging.error(traceback.format_exc())
     
     return products
@@ -238,7 +253,9 @@ def make_md_link(text, url):
     return f"[{text}]({urllib.parse.quote(url)})"
 
 def make_table(category, material, colors, existing_data):
-    out = f"#### {make_md_link(material, f'./{category}/{material}')}\n\n"
+    # Use the actual library folder name in links (may differ from store display name)
+    folder = FOLDER_NAME_OVERRIDES.get(material, material)
+    out = f"#### {make_md_link(material, f'./{category}/{folder}')}\n\n"
 
     table = PrettyTable()
     table.set_style(TableStyle.MARKDOWN)
@@ -249,7 +266,7 @@ def make_table(category, material, colors, existing_data):
         existing_color_data = existing_data.get(filament_code, {})
         status = existing_color_data.get("status", "❌")
         variant_id = existing_color_data.get("variant_id", '?')
-        table.add_row([make_md_link(color, f'./{category}/{material}/{color}'), filament_code, variant_id, status])
+        table.add_row([make_md_link(color, f'./{category}/{folder}/{color}'), filament_code, variant_id, status])
 
     out += table.get_string().replace(":-", "--").replace("-|", " |")
     out += "\n\n"
@@ -257,18 +274,35 @@ def make_table(category, material, colors, existing_data):
     return out
 
 def generate_tables(materials, readme_path):
-    readme = Path(readme_path).read_text()
+    readme_path = Path(readme_path)
+    readme = readme_path.read_text(encoding='utf-8')
 
     existing_data = get_existing_data(readme)
 
-    out = ""
+    # Replace only the "List of Bambu Lab Materials + Colors" section, preserving the rest
+    section_start = readme.find("## List of Bambu Lab Materials + Colors")
+    if section_start == -1:
+        print("Could not find materials section in README — printing to stdout instead")
+        for category in materials:
+            print(f"### {make_md_link(category, f'./{category}')}\n")
+            for material in materials[category]:
+                print(make_table(category, material, materials[category][material], existing_data))
+        return
 
+    # Find the next top-level heading after the section (## History or similar)
+    next_section = readme.find("\n## ", section_start + 1)
+    header_and_legend = readme[section_start:readme.find("\n### ", section_start)]
+
+    new_tables = ""
     for category in materials:
-        out += f"### {make_md_link(category, f'./{category}')}\n\n"
+        new_tables += f"### {make_md_link(category, f'./{category}')}\n\n"
         for material in materials[category]:
-            out += make_table(category, material, materials[category][material], existing_data)
+            new_tables += make_table(category, material, materials[category][material], existing_data)
 
-    print(out)
+    suffix = readme[next_section:] if next_section != -1 else ""
+    updated = readme[:section_start] + header_and_legend + "\n\n" + new_tables + suffix
+    readme_path.write_text(updated, encoding='utf-8')
+    print(f"README updated: {readme_path}")
 
 if __name__ == "__main__":
     materials = get_materials()
