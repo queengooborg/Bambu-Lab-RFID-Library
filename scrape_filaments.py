@@ -188,7 +188,7 @@ def get_product(product_url):
     if not color_selector:
         return None
     for el in color_selector.select("li"):
-        color = re.sub(r"^(Matte|ABS|Glow) ", "", normalize_homoglyphs(el.get("value"))).title().replace(" To ", " to ")
+        color = re.sub(r"^(Matte|ABS|Glow) ", "", normalize_homoglyphs(el.get("value"))).title().replace(" To ", " to ").replace("Grey", "Gray")
 
         # Match pattern like "Color Name (12345)"
         match = re.match(r"^([\w\s-]+?)\s?\((\d{5})\)", color)
