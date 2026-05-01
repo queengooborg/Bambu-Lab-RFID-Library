@@ -7,20 +7,14 @@
 
 import sys
 from pathlib import Path
-from Crypto.Protocol.KDF import HKDF
-from Crypto.Hash import SHA256
 
+from deriveKeys import kdf
 from parse import BYTES_PER_BLOCK, BLOCKS_PER_SECTOR, TOTAL_SECTORS, TOTAL_BYTES
 
 if not sys.version_info >= (3, 6):
   raise Exception("Python 3.6 or higher is required!")
 
 INVALID_KEYS = [b"\xFF" * 6, b"\x00" * 6]
-
-# Function copied from https://github.com/queengooborg/Bambu-Lab-RFID-Tag-Guide/blob/main/deriveKeys.py
-def kdf(uid):
-    salt = bytes([0x9a,0x75,0x9c,0xf2,0xc4,0xf7,0xca,0xff,0x22,0x2c,0xb9,0x76,0x9b,0x41,0xbc,0x96])
-    return HKDF(uid, 6, salt, SHA256, 16, context=b"RFID-A\0") + HKDF(uid, 6, salt, SHA256, 16, context=b"RFID-B\0")
 
 def sector_trailer_offset(sector):
     block_index = sector * BLOCKS_PER_SECTOR + 3
@@ -43,9 +37,9 @@ def repair_keys_in_place(path):
     print(f"\nFile : {path}")
     print(f"UID  : {uid.hex()}")
 
-    keys = kdf(uid)
-    if len(keys) != 32:
-        raise ValueError("KDF did not return 32 keys")
+    keys_a, keys_b = kdf(uid)
+    if len(keys_a) != 16 or len(keys_b) != 16:
+        raise ValueError("KDF did not return 16 keys for each of A and B")
 
     changes = 0
 
@@ -55,8 +49,8 @@ def repair_keys_in_place(path):
         key_a = dump[trailer : trailer + 6]
         key_b = dump[trailer + 10 : trailer + 16]
 
-        derived_a = keys[sector]
-        derived_b = keys[16 + sector]
+        derived_a = keys_a[sector]
+        derived_b = keys_b[sector]
 
         if is_invalid_key(key_a):
             dump[trailer : trailer + 6] = derived_a
