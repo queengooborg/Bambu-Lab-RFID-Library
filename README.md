@@ -320,16 +320,16 @@ Status Icon Legend:
 | [Translucent Pink](./PETG/PETG%20Translucent/Translucent%20Pink)               | 32200         | G01-P1        | ✅     |
 | [Translucent Purple](./PETG/PETG%20Translucent/Translucent%20Purple)           | 32700         | G01-P0        | ✅     |
 
-#### [PETG-CF](./PETG/PETG-CF)
+#### [PETG-CF](./PETG/PETG%20CF)
 
-| Color                                               | Filament Code | Variant ID | Status |
-| --------------------------------------------------- | ------------- | ---------- | ------ |
-| [Indigo Blue](./PETG/PETG-CF/Indigo%20Blue)         | 31600         | G50-B6     | ✅     |
-| [Malachite Green](./PETG/PETG-CF/Malachite%20Green) | 31500         | G50-G7     | ✅     |
-| [Titan Gray](./PETG/PETG-CF/Titan%20Gray)           | 31101         | G50-D6     | ✅     |
-| [Brick Red](./PETG/PETG-CF/Brick%20Red)             | 31200         | G50-R4     | ✅     |
-| [Violet Purple](./PETG/PETG-CF/Violet%20Purple)     | 31700         | G50-P7     | ✅     |
-| [Black](./PETG/PETG-CF/Black)                       | 31100         | G50-K0     | ✅     |
+| Color                                                 | Filament Code | Variant ID | Status |
+| ----------------------------------------------------- | ------------- | ---------- | ------ |
+| [Indigo Blue](./PETG/PETG%20CF/Indigo%20Blue)         | 31600         | G50-B6     | ✅     |
+| [Malachite Green](./PETG/PETG%20CF/Malachite%20Green) | 31500         | G50-G7     | ✅     |
+| [Titan Gray](./PETG/PETG%20CF/Titan%20Gray)           | 31101         | G50-D6     | ✅     |
+| [Brick Red](./PETG/PETG%20CF/Brick%20Red)             | 31200         | G50-R4     | ✅     |
+| [Violet Purple](./PETG/PETG%20CF/Violet%20Purple)     | 31700         | G50-P7     | ✅     |
+| [Black](./PETG/PETG%20CF/Black)                       | 31100         | G50-K0     | ✅     |
 
 ### [ABS](./ABS)
 
@@ -442,12 +442,12 @@ Status Icon Legend:
 
 ### [Support Material](./Support%20Material)
 
-#### [Support for PLA/PETG](./Support%20Material/Support%20for%20PLA/PETG)
+#### [Support for PLA/PETG](./Support%20Material/Support%20for%20PLA-PETG)
 
 | Color                                                          | Filament Code | Variant ID    | Status |
 | -------------------------------------------------------------- | ------------- | ------------- | ------ |
-| [Nature](./Support%20Material/Support%20for%20PLA/PETG/Nature) | 65102         | S05-C0        | ✅     |
-| [Black](./Support%20Material/Support%20for%20PLA/PETG/Black)   | 65103         | S05-C0/S05-K0 | ✅     |
+| [Nature](./Support%20Material/Support%20for%20PLA-PETG/Nature) | 65102         | S05-C0        | ✅     |
+| [Black](./Support%20Material/Support%20for%20PLA-PETG/Black)   | 65103         | S05-C0/S05-K0 | ✅     |
 
 #### [Support for PLA (New Version)](./Support%20Material/Support%20for%20PLA%20%28New%20Version%29)
 
@@ -461,11 +461,11 @@ Status Icon Legend:
 | ------------------------------------------------------- | ------------- | ---------- | ------ |
 | [White](./Support%20Material/Support%20for%20ABS/White) | 66100         | S06-W0     | ✅     |
 
-#### [Support for PA/PET](./Support%20Material/Support%20for%20PA/PET)
+#### [Support for PA/PET](./Support%20Material/Support%20for%20PA-PET)
 
 | Color                                                      | Filament Code | Variant ID    | Status |
 | ---------------------------------------------------------- | ------------- | ------------- | ------ |
-| [Green](./Support%20Material/Support%20for%20PA/PET/Green) | 65500         | S01-G1/S03-G1 | ✅     |
+| [Green](./Support%20Material/Support%20for%20PA-PET/Green) | 65500         | S01-G1/S03-G1 | ✅     |
 
 #### [PVA](./Support%20Material/PVA)
 
