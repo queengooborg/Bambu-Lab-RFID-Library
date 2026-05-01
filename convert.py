@@ -90,7 +90,7 @@ def extract_keys_from_blocks(blocks):
 
 
 def blocks_equal(a, b):
-    return all(x == y for x, y in zip(a, b))
+    return len(a) == len(b) and all(x == y for x, y in zip(a, b))
 
 
 # Format writers
@@ -121,10 +121,8 @@ def write_dump_json(path, tag):
         "SectorKeys": {}
     }
 
-    i = 0
-    for block in tag.blocks:
+    for i, block in enumerate(tag.blocks):
         output['blocks'][str(i)] = bytes_to_hex(block)
-        i += 1
 
     for sector in range(TOTAL_SECTORS):
         access_bits = bytes_to_hex(tag.blocks[sector_trailer_block(sector)][6:10])
@@ -150,7 +148,7 @@ def write_flipper_nfc(path, tag):
     lines.append("# UID is common for all formats")
     lines.append(f"UID: {bytes_to_hex(tag.blocks[0][0:4], True)}")
     lines.append("# ISO14443-3A specific data")
-    # Flipper has the ATQA bytes reveresed
+    # Flipper has the ATQA bytes reversed
     lines.append(f"ATQA: {bytes_to_hex(int.from_bytes(tag.blocks[0][6:8], 'little').to_bytes(2,'big'), True)}")
     lines.append(f"SAK: {bytes_to_hex(tag.blocks[0][5].to_bytes(1,'big'))}")
     lines.append("# Mifare Classic specific data")
@@ -167,10 +165,53 @@ def write_flipper_nfc(path, tag):
 
 # Check directory and write any missing files
 
+def normalize_filenames(path):
+    """
+    Rename any *.bin dump files that don't use the standard -dump.bin suffix
+    to the hf-mf-<UID>-dump.bin convention, and rename their matching key file
+    too (if present).  Skips files that can't be parsed as a valid tag.
+    Returns the number of files renamed.
+    """
+    renamed = 0
+    for file in sorted(path.glob('*.bin')):
+        if file.name.endswith(DUMP_SUFFIX) or file.name.endswith(KEY_SUFFIX):
+            continue  # already a standard file
+
+        try:
+            with open(file, 'rb') as f:
+                tag = Tag(file.name, f.read())
+        except Exception:
+            continue  # not a valid dump — leave it alone
+
+        uid      = tag.data['uid']
+        new_base = f'hf-mf-{uid}'
+        new_dump = path / f'{new_base}{DUMP_SUFFIX}'
+        new_key  = path / f'{new_base}{KEY_SUFFIX}'
+        old_base = file.stem  # filename without the final .bin
+        old_key  = path / f'{old_base}{KEY_SUFFIX}'
+
+        if new_dump.exists():
+            print(f'  [!] Cannot rename {file.name}: {new_dump.name} already exists')
+            continue
+
+        file.rename(new_dump)
+        print(f'  [~] Renamed {file.name} -> {new_dump.name}')
+        renamed += 1
+
+        if old_key.exists() and not new_key.exists():
+            old_key.rename(new_key)
+            print(f'  [~] Renamed {old_key.name} -> {new_key.name}')
+
+    return renamed
+
+
 def sync_directory(path):
     # If we're given a specific file, get the parent instead
     if path.is_file():
         path = path.parent
+
+    # Rename any non-standard *.bin dumps to hf-mf-<UID>-dump.bin before grouping
+    normalize_filenames(path)
 
     files = list(path.iterdir())
     unhandled_files = []
@@ -219,13 +260,17 @@ def sync_directory(path):
         if not tags:
             continue
 
-        # consistency check
+        # consistency check — abort file generation for this group if any mismatch found
         ref_kind, ref_tag = tags[0]
+        mismatch = False
         for kind, tag in tags[1:]:
             if not blocks_equal(ref_tag.blocks, tag.blocks):
                 print(f"  [!] MISMATCH between {ref_kind} and {kind}")
                 print(f"      Consider deleting malformed {kind} file")
-                continue
+                mismatch = True
+
+        if mismatch:
+            continue
 
         tag = ref_tag
         keys = extract_keys_from_blocks(tag.blocks)
