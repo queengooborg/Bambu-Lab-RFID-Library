@@ -48,7 +48,7 @@ Status Icon Legend:
 | [Silver](./PLA/PLA%20Basic/Silver)                       | 10102         | A00-D01/A00-D1        | ✅     |
 | [Light Gray](./PLA/PLA%20Basic/Light%20Gray)             | 10104         | A00-D02/A00-D2        | ✅     |
 | [Dark Gray](./PLA/PLA%20Basic/Dark%20Gray)               | 10105         | A00-D03/A00-D3        | ✅     |
-| [Green](./PLA/PLA%20Basic/Green)                         | 10500         | ?                     | ❌     |
+| [Green](./PLA/PLA%20Basic/Green)                         | 10500         | A00-G0                | ✅     |
 | [Mistletoe Green](./PLA/PLA%20Basic/Mistletoe%20Green)   | 10502         | A00-G02/A00-G2        | ✅     |
 | [Bright Green](./PLA/PLA%20Basic/Bright%20Green)         | 10503         | A00-G3                | ✅     |
 | [Bambu Green](./PLA/PLA%20Basic/Bambu%20Green)           | 10501         | A00-G06/A00-G1/A00-G6 | ✅     |
