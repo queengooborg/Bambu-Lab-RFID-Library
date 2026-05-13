@@ -292,7 +292,7 @@ Status Icon Legend:
 | [Black](./PETG/PETG%20Basic/Black)               | 30105         | G00-K0/G00-K00/G02-K0 | ✅     |
 | [White](./PETG/PETG%20Basic/White)               | 30106         | G00-W0/G00-W00        | ✅     |
 | [Gray](./PETG/PETG%20Basic/Gray)                 | 30107         | G00-D0/G00-D00        | ✅     |
-| [Yellow](./PETG/PETG%20Basic/Yellow)             | 30402         | ?                     | ❌     |
+| [Yellow](./PETG/PETG%20Basic/Yellow)             | 30402         | G00-Y0                | ✅     |
 | [Red](./PETG/PETG%20Basic/Red)                   | 30201         | G00-R0                | ✅     |
 | [Reflex Blue](./PETG/PETG%20Basic/Reflex%20Blue) | 30603         | G00-B00               | ✅     |
 | [Dark Brown](./PETG/PETG%20Basic/Dark%20Brown)   | 30800         | G00-N00               | ✅     |
@@ -302,6 +302,7 @@ Status Icon Legend:
 | [Navy Blue](./PETG/PETG%20Basic/Navy%20Blue)     | 30604         | ?                     | ❌     |
 | [Misty Blue](./PETG/PETG%20Basic/Misty%20Blue)   | 30108         | ?                     | ❌     |
 | [Dark Beige](./PETG/PETG%20Basic/Dark%20Beige)   | 30403         | ?                     | ❌     |
+| [Lime Green](./PETG/PETG%20Basic/Lime%20Green)   | 30403         | G00-G8                | ✅     |
 
 #### [PETG HF](./PETG/PETG%20HF)
 
