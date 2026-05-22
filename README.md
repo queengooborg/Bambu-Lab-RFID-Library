@@ -253,7 +253,7 @@ Status Icon Legend:
 | [Lava Gray](./PLA/PLA-CF/Lava%20Gray)       | 14101         | A50-D6     | ✅     |
 | [Matcha Green](./PLA/PLA-CF/Matcha%20Green) | 14500         | ?          | ❌     |
 | [Black](./PLA/PLA-CF/Black)                 | 14100         | A50-K0     | ✅     |
-| [Iris Purple](./PLA/PLA-CF/Iris%20Purple)   | 14700         | ?          | ❌     |
+| [Iris Purple](./PLA/PLA-CF/Iris%20Purple)   | 14700         | A50-P7     | ✅     |
 | [Burgundy Red](./PLA/PLA-CF/Burgundy%20Red) | 14200         | ?          | ❌     |
 
 #### [PLA Tough+](./PLA/PLA%20Tough%2B)
@@ -381,7 +381,7 @@ Status Icon Legend:
 | [Green](./ABS/ABS-GF/Green)   | 41500         | ?          | ❌     |
 | [Black](./ABS/ABS-GF/Black)   | 41101         | B50-K0     | ✅     |
 | [Red](./ABS/ABS-GF/Red)       | 41200         | B50-R0     | ❌     |
-| [White](./ABS/ABS-GF/White)   | 41100         | B50-W0     | ❌     |
+| [White](./ABS/ABS-GF/White)   | 41100         | B50-W0     | ✅     |
 | [Yellow](./ABS/ABS-GF/Yellow) | 41400         | ?          | ❌     |
 
 ### [ASA](./ASA)
