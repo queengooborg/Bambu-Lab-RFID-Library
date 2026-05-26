@@ -223,8 +223,7 @@ class Tag():
 					if fail_on_warn:
 						raise TagDataError(block, f"Found {byte} at {pos} in expected blank block")
 					else:
-						self.warnings.append(f"Data found in block {block}, position {pos} that "
-											  "was expected to be blank (received {byte})")
+						self.warnings.append(f"Data found in block {block}, position {pos} that was expected to be blank (received {byte})")
 
 		# Check for the presence of both A-keys and B-keys
 		empty_keys = ''
