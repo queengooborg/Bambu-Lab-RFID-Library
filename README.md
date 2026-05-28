@@ -249,12 +249,12 @@ Status Icon Legend:
 | Color                                       | Filament Code | Variant ID | Status |
 | ------------------------------------------- | ------------- | ---------- | ------ |
 | [Royal Blue](./PLA/PLA-CF/Royal%20Blue)     | 14601         | A50-B6     | ❌     |
-| [Jeans Blue](./PLA/PLA-CF/Jeans%20Blue)     | 14600         | ?          | ❌     |
+| [Jeans Blue](./PLA/PLA-CF/Jeans%20Blue)     | 14600         | A50-B9     | ✅     |
 | [Lava Gray](./PLA/PLA-CF/Lava%20Gray)       | 14101         | A50-D6     | ✅     |
 | [Matcha Green](./PLA/PLA-CF/Matcha%20Green) | 14500         | ?          | ❌     |
 | [Black](./PLA/PLA-CF/Black)                 | 14100         | A50-K0     | ✅     |
+| [Burgundy Red](./PLA/PLA-CF/Burgundy%20Red) | 14200         | A50-R4     | ✅     |
 | [Iris Purple](./PLA/PLA-CF/Iris%20Purple)   | 14700         | A50-P7     | ✅     |
-| [Burgundy Red](./PLA/PLA-CF/Burgundy%20Red) | 14200         | ?          | ❌     |
 
 #### [PLA Tough+](./PLA/PLA%20Tough%2B)
 
@@ -438,8 +438,8 @@ Status Icon Legend:
 | [Gray](./TPU/TPU%20for%20AMS/Gray)               | 53102         | U02-D0     | ✅     |
 | [Neon Green](./TPU/TPU%20for%20AMS/Neon%20Green) | 53500         | U02-G0     | ✅     |
 | [Black](./TPU/TPU%20for%20AMS/Black)             | 53101         | U02-K0     | ✅     |
-| [Red](./TPU/TPU%20for%20AMS/Red)                 | 53200         | ?          | ❌     |
-| [White](./TPU/TPU%20for%20AMS/White)             | 53100         | ?          | ❌     |
+| [Red](./TPU/TPU%20for%20AMS/Red)                 | 53200         | U02-R0     | ✅     |
+| [White](./TPU/TPU%20for%20AMS/White)             | 53100         | U02-W0     | ✅     |
 | [Yellow](./TPU/TPU%20for%20AMS/Yellow)           | 53400         | ?          | ❌     |
 
 ### [PA](./PA)
