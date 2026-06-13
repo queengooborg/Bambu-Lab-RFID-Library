@@ -98,6 +98,20 @@ FOLDER_NAME_OVERRIDES = {
 	'Support for PA/PET':   'Support for PA-PET',
 }
 
+# These materials/colors were discontinued, but we have their data
+MATERIAL_ADDITIONS = [
+	{
+		'material': "PLA Basic",
+		'color': 'Green',
+		'filament_code': "10500"
+	},
+	{
+		'material': "PETG Basic",
+		'color': "Lime Green",
+		'filament_code': "30404"
+	}
+]
+
 def get_category(material):
 	for category, materials in CATEGORIES.items():
 		if material in materials:
@@ -138,6 +152,11 @@ def get_materials():
 		category = get_category(material)
 
 		result[category][material][color] = code
+
+	for a in MATERIAL_ADDITIONS:
+		material = a['material']
+		category = get_category(material)
+		result[category][material][a['color']] = a['filament_code']
 
 	return result
 

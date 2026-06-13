@@ -48,7 +48,6 @@ Status Icon Legend:
 | [Silver](./PLA/PLA%20Basic/Silver)                       | 10102         | A00-D01/A00-D1        | ✅     |
 | [Light Gray](./PLA/PLA%20Basic/Light%20Gray)             | 10104         | A00-D02/A00-D2        | ✅     |
 | [Dark Gray](./PLA/PLA%20Basic/Dark%20Gray)               | 10105         | A00-D03/A00-D3        | ✅     |
-| [Green](./PLA/PLA%20Basic/Green)                         | 10500         | A00-G0                | ✅     |
 | [Mistletoe Green](./PLA/PLA%20Basic/Mistletoe%20Green)   | 10502         | A00-G02/A00-G2        | ✅     |
 | [Bright Green](./PLA/PLA%20Basic/Bright%20Green)         | 10503         | A00-G3                | ✅     |
 | [Bambu Green](./PLA/PLA%20Basic/Bambu%20Green)           | 10501         | A00-G06/A00-G1/A00-G6 | ✅     |
@@ -68,6 +67,7 @@ Status Icon Legend:
 | [Sunflower Yellow](./PLA/PLA%20Basic/Sunflower%20Yellow) | 10402         | A00-Y2                | ✅     |
 | [Bronze](./PLA/PLA%20Basic/Bronze)                       | 10801         | A00-Y03/A00-Y3        | ✅     |
 | [Gold](./PLA/PLA%20Basic/Gold)                           | 10401         | A00-Y04/A00-Y4        | ✅     |
+| [Green](./PLA/PLA%20Basic/Green)                         | 10500         | A00-G0                | ✅     |
 
 #### [PLA Lite](./PLA/PLA%20Lite)
 
@@ -253,8 +253,8 @@ Status Icon Legend:
 | [Lava Gray](./PLA/PLA-CF/Lava%20Gray)       | 14101         | A50-D6     | ✅     |
 | [Matcha Green](./PLA/PLA-CF/Matcha%20Green) | 14500         | ?          | ❌     |
 | [Black](./PLA/PLA-CF/Black)                 | 14100         | A50-K0     | ✅     |
-| [Burgundy Red](./PLA/PLA-CF/Burgundy%20Red) | 14200         | A50-R4     | ✅     |
 | [Iris Purple](./PLA/PLA-CF/Iris%20Purple)   | 14700         | A50-P7     | ✅     |
+| [Burgundy Red](./PLA/PLA-CF/Burgundy%20Red) | 14200         | A50-R4     | ✅     |
 
 #### [PLA Tough+](./PLA/PLA%20Tough%2B)
 
@@ -312,7 +312,7 @@ Status Icon Legend:
 | [Navy Blue](./PETG/PETG%20Basic/Navy%20Blue)     | 30604         | ?                     | ❌     |
 | [Misty Blue](./PETG/PETG%20Basic/Misty%20Blue)   | 30108         | ?                     | ❌     |
 | [Dark Beige](./PETG/PETG%20Basic/Dark%20Beige)   | 30403         | ?                     | ❌     |
-| [Lime Green](./PETG/PETG%20Basic/Lime%20Green)   | 30403         | G00-G8                | ✅     |
+| [Lime Green](./PETG/PETG%20Basic/Lime%20Green)   | 30404         | G00-G8                | ✅     |
 
 #### [PETG HF](./PETG/PETG%20HF)
 
