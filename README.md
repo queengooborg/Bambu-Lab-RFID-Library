@@ -464,14 +464,14 @@ Status Icon Legend:
 
 | Color                        | Filament Code | Variant ID | Status |
 | ---------------------------- | ------------- | ---------- | ------ |
-| [Blue](./PA/PA6-GF/Blue)     | 72600         | ?          | ❌     |
+| [Blue](./PA/PA6-GF/Blue)     | 72600         | N08-B0     | ❌     |
 | [White](./PA/PA6-GF/White)   | 72102         | N08-D0     | ✅     |
-| [Gray](./PA/PA6-GF/Gray)     | 72103         | ?          | ❌     |
-| [Lime](./PA/PA6-GF/Lime)     | 72500         | ?          | ❌     |
+| [Gray](./PA/PA6-GF/Gray)     | 72103         | N08-D1     | ❌     |
+| [Lime](./PA/PA6-GF/Lime)     | 72500         | N08-G0     | ✅     |
 | [Black](./PA/PA6-GF/Black)   | 72104         | N08-K0     | ✅     |
-| [Brown](./PA/PA6-GF/Brown)   | 72800         | ?          | ❌     |
-| [Orange](./PA/PA6-GF/Orange) | 72200         | ?          | ❌     |
-| [Yellow](./PA/PA6-GF/Yellow) | 72400         | ?          | ❌     |
+| [Brown](./PA/PA6-GF/Brown)   | 72800         | N08-N0     | ❌     |
+| [Orange](./PA/PA6-GF/Orange) | 72200         | N08-R0     | ❌     |
+| [Yellow](./PA/PA6-GF/Yellow) | 72400         | N08-Y0     | ❌     |
 
 ### [Support Material](./Support%20Material)
 
