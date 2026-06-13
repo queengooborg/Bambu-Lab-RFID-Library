@@ -83,7 +83,7 @@ Status Icon Legend:
 | [Sunflower Yellow](./PLA/PLA%20Lite/Sunflower%20Yellow) | 16401         | ?          | ❌     |
 | [Green](./PLA/PLA%20Lite/Green)                         | 16501         | ?          | ❌     |
 | [Orange](./PLA/PLA%20Lite/Orange)                       | 16301         | ?          | ❌     |
-| [Matte Beige](./PLA/PLA%20Lite/Matte%20Beige)           | 16700         | ?          | ❌     |
+| [Matte Beige](./PLA/PLA%20Lite/Matte%20Beige)           | 16700         | A18-P0     | ✅     |
 | [Cocoa Brown](./PLA/PLA%20Lite/Cocoa%20Brown)           | 16800         | ?          | ❌     |
 | [Dark Gray](./PLA/PLA%20Lite/Dark%20Gray)               | 16102         | ?          | ❌     |
 
@@ -134,7 +134,7 @@ Status Icon Legend:
 
 | Color                                         | Filament Code | Variant ID | Status |
 | --------------------------------------------- | ------------- | ---------- | ------ |
-| [Glow Orange](./PLA/PLA%20Glow/Glow%20Orange) | 15300         | A12-A0     | ❌     |
+| [Glow Orange](./PLA/PLA%20Glow/Glow%20Orange) | 15300         | A12-A0     | ✅     |
 | [Glow Blue](./PLA/PLA%20Glow/Glow%20Blue)     | 15600         | A12-B0     | ✅     |
 | [Glow Green](./PLA/PLA%20Glow/Glow%20Green)   | 15500         | A12-G0     | ✅     |
 | [Glow Pink](./PLA/PLA%20Glow/Glow%20Pink)     | 15200         | A12-R0     | ✅     |
@@ -367,9 +367,9 @@ Status Icon Legend:
 | [Purple](./ABS/ABS/Purple)                       | 40700         | ?              | ❌     |
 | [Red](./ABS/ABS/Red)                             | 40200         | B00-R0         | ✅     |
 | [White](./ABS/ABS/White)                         | 40100         | B00-W0/B00-W00 | ✅     |
-| [Yellow](./ABS/ABS/Yellow)                       | 40400         | ?              | ❌     |
+| [Yellow](./ABS/ABS/Yellow)                       | 40400         | B00-Y0         | ✅     |
 | [Tangerine Yellow](./ABS/ABS/Tangerine%20Yellow) | 40402         | B00-Y1         | ✅     |
-| [Beige](./ABS/ABS/Beige)                         | 40401         | B00-Y0         | ✅     |
+| [Beige](./ABS/ABS/Beige)                         | 40401         | ?              | ❌     |
 
 #### [ABS-GF](./ABS/ABS-GF)
 
