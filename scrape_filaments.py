@@ -36,7 +36,8 @@ CATEGORIES = {
 		"PLA Wood",
 		"PLA-CF",
 		"PLA Tough+",
-		"PLA Tough"
+		"PLA Tough",
+		"PLA Pure"
 	],
 	"PETG": [
 		"PETG Basic",

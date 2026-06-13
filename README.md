@@ -283,6 +283,16 @@ Status Icon Legend:
 | [White](./PLA/PLA%20Tough/White)                   | 12100         | ?          | ❌     |
 | [Yellow](./PLA/PLA%20Tough/Yellow)                 | 12400         | A09-Y0     | ✅     |
 
+#### [PLA Pure](./PLA/PLA%20Pure)
+
+| Color                                               | Filament Code | Variant ID | Status |
+| --------------------------------------------------- | ------------- | ---------- | ------ |
+| [Pure White](./PLA/PLA%20Pure/Pure%20White)         | 17100         | ?          | ❌     |
+| [Absolute Black](./PLA/PLA%20Pure/Absolute%20Black) | 17101         | ?          | ❌     |
+| [Milky Pink](./PLA/PLA%20Pure/Milky%20Pink)         | 17200         | ?          | ❌     |
+| [Baby Blue](./PLA/PLA%20Pure/Baby%20Blue)           | 17600         | ?          | ❌     |
+| [Apricot](./PLA/PLA%20Pure/Apricot)                 | 17300         | ?          | ❌     |
+
 ### [PETG](./PETG)
 
 #### [PETG Basic](./PETG/PETG%20Basic)
