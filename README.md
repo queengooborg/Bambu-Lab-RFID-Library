@@ -289,8 +289,8 @@ Status Icon Legend:
 | --------------------------------------------------- | ------------- | ---------- | ------ |
 | [Pure White](./PLA/PLA%20Pure/Pure%20White)         | 17100         | A19-W00    | ✅     |
 | [Absolute Black](./PLA/PLA%20Pure/Absolute%20Black) | 17101         | ?          | ❌     |
-| [Milky Pink](./PLA/PLA%20Pure/Milky%20Pink)         | 17200         | ?          | ❌     |
-| [Baby Blue](./PLA/PLA%20Pure/Baby%20Blue)           | 17600         | ?          | ❌     |
+| [Milky Pink](./PLA/PLA%20Pure/Milky%20Pink)         | 17200         | A19-P00    | ✅     |
+| [Baby Blue](./PLA/PLA%20Pure/Baby%20Blue)           | 17600         | A19-B00    | ✅     |
 | [Apricot](./PLA/PLA%20Pure/Apricot)                 | 17300         | ?          | ❌     |
 
 ### [PETG](./PETG)
@@ -308,10 +308,10 @@ Status Icon Legend:
 | [Dark Brown](./PETG/PETG%20Basic/Dark%20Brown)   | 30800         | G00-N00               | ✅     |
 | [Green](./PETG/PETG%20Basic/Green)               | 30502         | G00-G00               | ✅     |
 | [Orange](./PETG/PETG%20Basic/Orange)             | 30301         | ?                     | ❌     |
-| [Pine Green](./PETG/PETG%20Basic/Pine%20Green)   | 30503         | ?                     | ❌     |
+| [Pine Green](./PETG/PETG%20Basic/Pine%20Green)   | 30503         | G00-G01               | ✅     |
 | [Navy Blue](./PETG/PETG%20Basic/Navy%20Blue)     | 30604         | ?                     | ❌     |
 | [Misty Blue](./PETG/PETG%20Basic/Misty%20Blue)   | 30108         | ?                     | ❌     |
-| [Dark Beige](./PETG/PETG%20Basic/Dark%20Beige)   | 30403         | ?                     | ❌     |
+| [Dark Beige](./PETG/PETG%20Basic/Dark%20Beige)   | 30403         | G00-Y01               | ✅     |
 | [Lime Green](./PETG/PETG%20Basic/Lime%20Green)   | 30404         | G00-G8                | ✅     |
 
 #### [PETG HF](./PETG/PETG%20HF)
