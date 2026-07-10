@@ -291,7 +291,7 @@ Status Icon Legend:
 | [Absolute Black](./PLA/PLA%20Pure/Absolute%20Black) | 17101         | ?          | ❌     |
 | [Milky Pink](./PLA/PLA%20Pure/Milky%20Pink)         | 17200         | A19-P00    | ✅     |
 | [Baby Blue](./PLA/PLA%20Pure/Baby%20Blue)           | 17600         | A19-B00    | ✅     |
-| [Apricot](./PLA/PLA%20Pure/Apricot)                 | 17300         | ?          | ❌     |
+| [Apricot](./PLA/PLA%20Pure/Apricot)                 | 17300         | A19-A00    | ✅     |
 
 ### [PETG](./PETG)
 
