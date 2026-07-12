@@ -390,7 +390,7 @@ Status Icon Legend:
 | [Gray](./ABS/ABS-GF/Gray)     | 41102         | ?          | ❌     |
 | [Green](./ABS/ABS-GF/Green)   | 41500         | ?          | ❌     |
 | [Black](./ABS/ABS-GF/Black)   | 41101         | B50-K0     | ✅     |
-| [Red](./ABS/ABS-GF/Red)       | 41200         | B50-R0     | ❌     |
+| [Red](./ABS/ABS-GF/Red)       | 41200         | B50-R0     | ✅     |
 | [White](./ABS/ABS-GF/White)   | 41100         | B50-W0     | ✅     |
 | [Yellow](./ABS/ABS-GF/Yellow) | 41400         | ?          | ❌     |
 
