@@ -82,7 +82,7 @@ Status Icon Legend:
 | [Blue](./PLA/PLA%20Lite/Blue)                           | 16601         | A18-B1     | ✅     |
 | [Sunflower Yellow](./PLA/PLA%20Lite/Sunflower%20Yellow) | 16401         | A18-Y1     | ✅     |
 | [Green](./PLA/PLA%20Lite/Green)                         | 16501         | ?          | ❌     |
-| [Orange](./PLA/PLA%20Lite/Orange)                       | 16301         | ?          | ❌     |
+| [Orange](./PLA/PLA%20Lite/Orange)                       | 16301         | A18-A1     | ✅     |
 | [Matte Beige](./PLA/PLA%20Lite/Matte%20Beige)           | 16700         | A18-P0     | ✅     |
 | [Cocoa Brown](./PLA/PLA%20Lite/Cocoa%20Brown)           | 16800         | ?          | ❌     |
 | [Dark Gray](./PLA/PLA%20Lite/Dark%20Gray)               | 16102         | ?          | ❌     |
