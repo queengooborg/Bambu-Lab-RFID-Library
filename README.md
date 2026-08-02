@@ -288,7 +288,7 @@ Status Icon Legend:
 | Color                                               | Filament Code | Variant ID | Status |
 | --------------------------------------------------- | ------------- | ---------- | ------ |
 | [Pure White](./PLA/PLA%20Pure/Pure%20White)         | 17100         | A19-W00    | ✅     |
-| [Absolute Black](./PLA/PLA%20Pure/Absolute%20Black) | 17101         | ?          | ❌     |
+| [Absolute Black](./PLA/PLA%20Pure/Absolute%20Black) | 17101         | A19-K00    | ✅     |
 | [Milky Pink](./PLA/PLA%20Pure/Milky%20Pink)         | 17200         | A19-P00    | ✅     |
 | [Baby Blue](./PLA/PLA%20Pure/Baby%20Blue)           | 17600         | A19-B00    | ✅     |
 | [Apricot](./PLA/PLA%20Pure/Apricot)                 | 17300         | A19-A00    | ✅     |
@@ -373,7 +373,7 @@ Status Icon Legend:
 | [Bambu Green](./ABS/ABS/Bambu%20Green)           | 40500         | B00-G6         | ✅     |
 | [Olive](./ABS/ABS/Olive)                         | 40502         | B00-G7         | ✅     |
 | [Black](./ABS/ABS/Black)                         | 40101         | B00-K0         | ✅     |
-| [Lavender](./ABS/ABS/Lavender)                   | 40701         | ?              | ❌     |
+| [Lavender](./ABS/ABS/Lavender)                   | 40701         | B00-P4         | ✅     |
 | [Purple](./ABS/ABS/Purple)                       | 40700         | ?              | ❌     |
 | [Red](./ABS/ABS/Red)                             | 40200         | B00-R0         | ✅     |
 | [White](./ABS/ABS/White)                         | 40100         | B00-W0/B00-W00 | ✅     |
@@ -450,7 +450,7 @@ Status Icon Legend:
 | [Black](./TPU/TPU%20for%20AMS/Black)             | 53101         | U02-K0     | ✅     |
 | [Red](./TPU/TPU%20for%20AMS/Red)                 | 53200         | U02-R0     | ✅     |
 | [White](./TPU/TPU%20for%20AMS/White)             | 53100         | U02-W0     | ✅     |
-| [Yellow](./TPU/TPU%20for%20AMS/Yellow)           | 53400         | ?          | ❌     |
+| [Yellow](./TPU/TPU%20for%20AMS/Yellow)           | 53400         | U02-Y0     | ✅     |
 
 ### [PA](./PA)
 
