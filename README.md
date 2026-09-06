@@ -187,7 +187,7 @@ Status Icon Legend:
 | [Light Jade](./PLA/PLA%20Translucent/Light%20Jade)       | 13510         | A17-G0     | ✅     |
 | [Ice Blue](./PLA/PLA%20Translucent/Ice%20Blue)           | 13610         | A17-B0     | ✅     |
 | [Blue](./PLA/PLA%20Translucent/Blue)                     | 13611         | A17-B1     | ✅     |
-| [Teal](./PLA/PLA%20Translucent/Teal)                     | 13612         | ?          | ❌     |
+| [Teal](./PLA/PLA%20Translucent/Teal)                     | 13612         | A17-B2     | ✅     |
 | [Purple](./PLA/PLA%20Translucent/Purple)                 | 13710         | A17-P0     | ✅     |
 | [Lavender](./PLA/PLA%20Translucent/Lavender)             | 13711         | A17-P1     | ✅     |
 
