@@ -9,16 +9,270 @@ This repository contains a collection of RFID tag scans from Bambu Lab filament 
 
 For more information about Bambu Lab RFID tags and their format, see https://github.com/queengooborg/Bambu-Lab-RFID-Tag-Guide.
 
-## Viewing Tag Data
+## Tools
 
-A script is included in this repository, `parse.py`, that will parse a tag dump and extract its information in an easy-to-read terminal output and easy-to-parse JSON format. To run it, simply run `python3 parse.py [/path/to/tag.bin-or-json]`.
+A collection of Python scripts is included in this repository to help scan, manage, and maintain the library. All scripts require **Python 3.6 or higher**.
 
 > [!NOTE]
-> Python 3.6 or higher is required to run scripts.
+> Scripts that communicate with a Proxmark3 (`scanTag.py`, `writeTag.py`, `menu.py`) also require a Proxmark3 running the [Iceman firmware](https://github.com/RfidResearchGroup/proxmark3) (v4.21128 or higher). Set the `PROXMARK3_DIR` environment variable to your Proxmark3 installation directory (e.g. `D:\Proxmark3` on Windows).
+
+---
+
+### `menu.py` — Interactive menu (recommended entry point)
+
+A text-based interactive menu that brings together all the common workflows in one place. No need to remember individual script names or arguments.
+
+```
+python menu.py
+```
+
+**Menu options:**
+
+| Option | Description |
+|--------|-------------|
+| **1 — Read tag** | Poll for a tag, display all parsed fields (material, colour hex + name, variant ID, UID) and show its library location if already scanned. |
+| **2 — Scan tag to database** | Full scan-and-add workflow: reads the tag, looks up the official colour name, prompts for confirmation, and saves to the library. |
+| **3 — Write tag from database** | Browse the library by category → material → colour → UID and write the selected dump to a blank writable tag. |
+| **4 — Fix database** | Check the library for misplaced entries, wrong colour folder names, and duplicate UIDs; review and apply fixes interactively; optionally update the README. |
+| **5 — Sync from upstream** | Fetch new tag UIDs from the upstream repository ([queengooborg/Bambu-Lab-RFID-Library](https://github.com/queengooborg/Bambu-Lab-RFID-Library)), preview what's new, import with one confirmation, then optionally run Fix Database and update the README. |
+| **6 — Contribute to upstream** | Find local UIDs not yet in upstream and create or update a single persistent PR (`contribute/pending`). The branch is rooted on `upstream/main` so no local naming changes bleed in. Re-run after each new scan to keep the PR current; a new PR is opened automatically once the previous one is merged or closed. |
+| **7 — Exit** | Quit. |
+
+The colour database is loaded once at startup and shared across all operations. The Proxmark3 is auto-detected on first use.
+
+---
+
+### `scanTag.py` — Scan a tag and add it to the library
+
+Reads a Bambu Lab RFID tag using a Proxmark3 and adds the data to the library in the correct location.
+
+```
+python scanTag.py
+```
+
+**What it does:**
+
+1. Waits for you to present a spool to the Proxmark3 (shows a spinner while searching).
+2. Checks whether the tag's UID is already in the library and shows where, if so.
+3. Derives the tag's sector keys from the UID (no sniffing required) and dumps all sectors.
+4. Parses the dump and displays the material, colour hex, colour count, and variant ID.
+5. Looks up the **official colour name** from Bambu Lab's colour database — fetched live from the [BambuStudio GitHub repository](https://github.com/bambulab/BambuStudio/blob/master/resources/profiles/BBL/filament/filaments_color_codes.json) if available, with a fallback to a locally installed Bambu Studio copy.
+6. Presents the official name as the default; warns if you type something different.
+7. Saves the dump to the correct `Category/Material/Colour/UID/` folder and generates additional file formats (JSON, NFC).
+8. Optionally updates the README status table.
+
+---
+
+### `writeTag.py` — Write a library dump to a blank tag
+
+Writes an existing dump from the library to a blank writable RFID tag, allowing third-party spools to be recognised by Bambu Lab printers just like genuine spools.
+
+```
+python writeTag.py [path/to/uid/directory | path/to/dump.bin] [path/to/key.bin]
+```
+
+If no arguments are given the script will prompt for the paths. It displays the filament data that will be written and requires explicit confirmation before permanently write-locking the tag.
+
+**Path arguments** are flexible — you can pass:
+- A **UID directory** (e.g. `PLA/PLA Basic/Pink/47D3072A`) — the script finds the dump and key files inside automatically.
+- A **dump file** path — the key file is found alongside it automatically.
+- Both a dump file and a key file explicitly.
+
+Both relative and absolute paths are accepted.
+
+**Compatible blank tags:** Gen 2 FUID, Gen 4 FUID, Gen 4 UFUID. The script detects which type is on the reader and uses the appropriate write command.
+
+---
+
+### `parse.py` — Parse and display tag data
+
+Parses a tag dump file (`.bin` or `.json`) and prints its contents in a human-readable format. Also writes a `.json` sidecar file alongside the dump.
+
+```
+python parse.py path/to/tag-dump.bin
+```
+
+---
+
+### `fix_library.py` — Find and fix library issues
+
+Scans all dump files and reports entries where the folder path doesn't match the material/category recorded in the tag data, colour folder names that don't match the official Bambu Lab name, and duplicate UIDs (the same physical tag filed in more than one location). With `--fix`, applies all approved changes automatically.
+
+```
+python fix_library.py [library_root] [--fix] [--quarantine] [--no-color-check]
+```
+
+| Flag | Effect |
+|------|--------|
+| *(none)* | Report all issues — nothing is moved. |
+| `--fix` | Move misplaced folders, rename wrong colour folders, and remove duplicate copies. Colour renames are presented interactively for approval before anything is changed. |
+| `--fix --quarantine` | Same as `--fix`, but entries with suspicious/corrupt tag data are moved to `_quarantine/` with a note instead of being placed in the main library. |
+| `--no-color-check` | Skip the colour folder name validation (location fixes only). |
+
+**What it checks:**
+
+- **Location mismatches** — tag filed under the wrong category or material folder (e.g. a PETG HF tag under PETG Translucent).
+- **Colour name mismatches** — colour folder name doesn't match the official Bambu Studio colour name for that hex code and material type. Cross-type tags (e.g. a "Silver" folder containing a PLA Silk+ tag when Silver is also valid for PLA Basic) are flagged with an explanatory note.
+- **Duplicate UIDs** — the same UID appears in more than one library location. The duplicate copy is reported (and removed with `--fix`).
+
+**One-pass location + colour fix:** when a tag needs both a location move *and* a colour rename, both changes are applied in a single `--fix` run. The colour rename destination is calculated relative to the post-move path, so the library is fully consistent after a single pass.
+
+---
+
+### `colordb.py` — Shared Bambu Studio colour database helper
+
+Internal module used by `menu.py`, `scanTag.py`, and `fix_library.py` to look up official colour names from the Bambu Lab filament colour database.
+
+Not normally run directly. The database is fetched live from the [BambuStudio GitHub repository](https://github.com/bambulab/BambuStudio/blob/master/resources/profiles/BBL/filament/filaments_color_codes.json) on each run (5-second timeout), with an automatic fallback to a locally installed Bambu Studio copy.
+
+**Key functions available to other scripts:**
+
+| Function | Description |
+|----------|-------------|
+| `load_color_database()` | Fetch/load the colour database; returns a list of entries. |
+| `lookup_color_name(tag_data, db)` | Return the official English colour name for a tag's hex colour + material type. Returns `(exact_name, candidates)` where `exact_name` is set only when both type and colour match precisely. |
+| `find_nearest_color(tag_data, db)` | Find the closest colour by Euclidean RGBA distance when no exact hex match exists. |
+| `distance_label(dist)` | Human-readable qualifier for a colour distance value. |
+
+---
+
+### `library_checker.py` — Check for errors and colour mismatches
+
+Scans the library and reports:
+
+- Tags that appear to be stored in the wrong category or material folder.
+- Colour directories that contain tags with more than one distinct hex colour code.
+
+```
+python library_checker.py [--color_list] [--dump_colors]
+```
+
+---
+
+### `sync_from_upstream.py` — Import new tags from the upstream repository
+
+Compares the upstream repository ([queengooborg/Bambu-Lab-RFID-Library](https://github.com/queengooborg/Bambu-Lab-RFID-Library)) against your local library and imports any UID directories that are present upstream but absent locally. UIDs are matched by their 8-character hex name regardless of which colour/material folder they sit in, so tags that have been moved or renamed in your library are correctly recognised as already present.
+
+```
+python sync_from_upstream.py              # fetch upstream + preview new UIDs
+python sync_from_upstream.py --apply      # fetch + import
+python sync_from_upstream.py --no-fetch   # preview without re-fetching
+python sync_from_upstream.py --no-fetch --apply   # import without re-fetching
+```
+
+The upstream remote is added automatically on first run. After importing, run the standard pipeline to normalise locations, names, and README status:
+
+```
+python fix_library.py --fix    # move imported files to correct location/name
+python update_readme.py        # update ✅/❌ status icons
+git add -A && git commit -m "Import N new tags from upstream" && git push
+```
+
+> [!NOTE]
+> Imported files land at the upstream folder paths, which may differ from your naming conventions (e.g. `Blue Grey` vs `Blue Gray`, `Green` vs `Glow Green`). `fix_library.py` handles the correction automatically. Suspicious or corrupt tags reported by `fix_library` should be reviewed before committing.
+
+---
+
+### `contribute_to_upstream.py` — Contribute new tag scans back to the upstream repository
+
+Finds UID directories that are in your local library but absent from the upstream repository ([queengooborg/Bambu-Lab-RFID-Library](https://github.com/queengooborg/Bambu-Lab-RFID-Library)), then creates or updates a single persistent pull-request branch containing all those new files. The branch is rooted on `upstream/main`, so none of your local naming convention changes are included in the PR.
+
+```
+python contribute_to_upstream.py              # fetch + preview what would be contributed
+python contribute_to_upstream.py --apply      # fetch + create/update PR branch
+python contribute_to_upstream.py --no-fetch   # preview without re-fetching
+python contribute_to_upstream.py --no-fetch --apply
+```
+
+**Prerequisites:**
+
+- [GitHub CLI (`gh`)](https://cli.github.com/) installed and authenticated (`gh auth login`)
+- Your fork pushed to `origin` on GitHub (standard setup)
+
+**What it does (with `--apply`):**
+
+1. Identifies all local UIDs not present in `upstream/main`.
+2. Rebuilds the fixed branch `contribute/pending` from `upstream/main` in a temporary git worktree, leaving your working tree untouched.
+3. Copies all new UID directories into the worktree and commits them.
+4. Force-pushes the branch to your `origin` fork (`--force-with-lease`).
+5. **If a PR is already open** from `contribute/pending`: updates its title and body to reflect the current UID count via `gh pr edit`.  
+   **If no PR is open**: creates one against `queengooborg/Bambu-Lab-RFID-Library` via `gh pr create`.
+
+Run it again after scanning more tags — the open PR accumulates everything until the upstream author merges or closes it, at which point the next run opens a fresh PR.
+
+```
+gh pr view --repo queengooborg/Bambu-Lab-RFID-Library
+```
+
+> [!NOTE]
+> UIDs that have been quarantined by `fix_library.py` are automatically excluded from contributions.
+
+---
+
+### `update_readme.py` — Sync README status from actual library data
+
+Scans the library and updates the ✅/❌ status icons and variant ID columns in this README to reflect what is actually on disk. Rows marked ⚠️ or ⏳ are left untouched (those statuses are set manually). Also warns if any ✅ row links to a colour folder that no longer exists on disk (e.g. after a rename).
+
+```
+python update_readme.py [library_root] [--dry-run]
+```
+
+---
+
+### `convert.py` — Convert dump files to additional formats
+
+Converts dumps in a UID directory to JSON and NFC formats, and normalises any non-standard filenames to the `hf-mf-<UID>-dump.bin` convention.
+
+```
+python convert.py path/to/uid/directory
+```
+
+---
+
+### `repair.py` — Restore missing sector-trailer keys in a dump
+
+Repairs dump files where the sector trailer keys have been zeroed out (which can happen when dumping with certain tools). Re-derives the correct keys from the UID using the Bambu KDF and writes them back in place.
+
+```
+python repair.py path/to/dump.bin
+```
+
+---
+
+### `deriveKeys.py` — Derive sector keys for a given UID
+
+Prints the 32 Bambu Lab sector keys (16 Key-A + 16 Key-B) for a tag UID. Useful for scripting or manual Proxmark3 operations.
+
+```
+python deriveKeys.py <UID in hex>
+```
+
+---
+
+### `scrape_filaments.py` — Discover new filaments from the Bambu store
+
+Scrapes the Bambu Lab online store to find filament types and colours not yet listed in this README, and generates the stub table rows ready for the next `update_readme.py` run.
+
+```
+python scrape_filaments.py
+```
+
+---
 
 ## Contributing
 
-The best way to contribute is to provide data for Bambu Lab RFID tags. Not sure how to obtain the data? Check out the [guide written in the Bambu Lab RFID Tag Guide repository](https://github.com/queengooborg/Bambu-Lab-RFID-Tag-Guide/blob/main/docs/ReadTags.md)!
+The best way to contribute is to scan tags and submit a Pull Request. The easiest workflow is:
+
+1. Clone this repository.
+2. Run `python menu.py` with a Proxmark3 attached and choose **2 — Scan tag to database**.
+   - Alternatively, run `python scanTag.py` directly for a non-interactive scan.
+3. Present each spool — the script scans the tag, looks up the official colour name, and saves the data in the right place automatically.
+4. Run `python menu.py` and choose **6 — Contribute to upstream** (or run `python contribute_to_upstream.py --apply` directly).
+   - This creates or updates a single persistent PR branch (`contribute/pending`) rooted on `upstream/main`, then opens or updates a pull request against this repository automatically via the GitHub CLI.
+   - Run it again after scanning more spools — the PR accumulates all your un-merged tags in one place. A new PR is opened automatically once the previous one is merged or closed.
+   - Requires the [GitHub CLI](https://cli.github.com/) (`gh auth login`).
+
+Not sure how to set up a Proxmark3? See the [Bambu Lab RFID Tag Guide](https://github.com/NickWaterton/Bambu-Lab-RFID-Tag-Guide/blob/main/docs/ReadTags.md) for detailed instructions.
 
 Tags are stored in the following folder structure: `Material Category` > `Material Name` > `Color Name` > `Tag UID` > `Tag Files`
 
