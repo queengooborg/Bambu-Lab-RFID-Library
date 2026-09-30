@@ -81,7 +81,7 @@ Status Icon Legend:
 | [Gray](./PLA/PLA%20Lite/Gray)                           | 16101         | A18-D0     | ✅     |
 | [Blue](./PLA/PLA%20Lite/Blue)                           | 16601         | A18-B1     | ✅     |
 | [Sunflower Yellow](./PLA/PLA%20Lite/Sunflower%20Yellow) | 16401         | A18-Y1     | ✅     |
-| [Green](./PLA/PLA%20Lite/Green)                         | 16501         | ?          | ❌     |
+| [Green](./PLA/PLA%20Lite/Green)                         | 16501         | A18-G1     | ✅     |
 | [Orange](./PLA/PLA%20Lite/Orange)                       | 16301         | A18-A1     | ✅     |
 | [Matte Beige](./PLA/PLA%20Lite/Matte%20Beige)           | 16700         | A18-P0     | ✅     |
 | [Cocoa Brown](./PLA/PLA%20Lite/Cocoa%20Brown)           | 16800         | ?          | ❌     |
@@ -332,6 +332,19 @@ Status Icon Legend:
 | [White](./PETG/PETG%20HF/White)                 | 33100         | G02-W0     | ✅     |
 | [Yellow](./PETG/PETG%20HF/Yellow)               | 33400         | G02-Y0     | ✅     |
 | [Cream](./PETG/PETG%20HF/Cream)                 | 33401         | G02-Y1     | ✅     |
+
+#### [PETG Matte](./PETG/PETG%20HF)
+
+| Color                                                | Filament Code | Variant ID | Status |
+| ---------------------------------------------------- | ------------- | ---------- | ------ |
+| [Black](./PETG/PETG%20Matte/Black)                   | 35101         | ?          | ❌     |
+| [White](./PETG/PETG%20Matte/White)                   | 35100         | ?          | ❌     |
+| [Pink](./PETG/PETG%20Matte/Pink)                     | 35700         | ?          | ❌     |
+| [Violet](./PETG/PETG%20Matte/Violet)                 | 35702         | ?          | ❌     |
+| [Baby Blue](./PETG/PETG%20Matte/Baby%20Blue)         | 35600         | ?          | ❌     |
+| [Avocado Green](./PETG/PETG%20Matte/Avocado%20Green) | 35501         | ?          | ❌     |
+| [Lime](./PETG/PETG%20Matte/Lime)                     | 35500         | ?          | ❌     |
+| [Gray](./PETG/PETG%20Matte/Gray)                     | 35102         | G03-D00    | ✅     |
 
 #### [PETG Translucent](./PETG/PETG%20Translucent)
 
