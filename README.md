@@ -278,7 +278,7 @@ Status Icon Legend:
 | [Gray](./PLA/PLA%20Tough/Gray)                     | 12102         | ?          | ❌     |
 | [Silver](./PLA/PLA%20Tough/Silver)                 | 12103         | A09-D1     | ✅     |
 | [Pine Green](./PLA/PLA%20Tough/Pine%20Green)       | 12500         | ?          | ❌     |
-| [Black](./PLA/PLA%20Tough/Black)                   | 12101         | ?          | ❌     |
+| [Black](./PLA/PLA%20Tough/Black)                   | 12101         | A09-K0     | ✅     |
 | [Vermilion Red](./PLA/PLA%20Tough/Vermilion%20Red) | 12200         | A09-R3     | ✅     |
 | [White](./PLA/PLA%20Tough/White)                   | 12100         | ?          | ❌     |
 | [Yellow](./PLA/PLA%20Tough/Yellow)                 | 12400         | A09-Y0     | ✅     |
@@ -313,6 +313,7 @@ Status Icon Legend:
 | [Misty Blue](./PETG/PETG%20Basic/Misty%20Blue)   | 30108         | G00-D01               | ✅     |
 | [Dark Beige](./PETG/PETG%20Basic/Dark%20Beige)   | 30403         | G00-Y01               | ✅     |
 | [Lime Green](./PETG/PETG%20Basic/Lime%20Green)   | 30404         | G00-G8                | ✅     |
+| [Clear](./PETG/PETG%20Basic/Clear)               | 30103         | G00-C1                | ✅     |
 
 #### [PETG HF](./PETG/PETG%20HF)
 
@@ -337,12 +338,12 @@ Status Icon Legend:
 
 | Color                                                | Filament Code | Variant ID | Status |
 | ---------------------------------------------------- | ------------- | ---------- | ------ |
-| [Black](./PETG/PETG%20Matte/Black)                   | 35101         | ?          | ❌     |
-| [White](./PETG/PETG%20Matte/White)                   | 35100         | ?          | ❌     |
+| [Black](./PETG/PETG%20Matte/Black)                   | 35101         | G03-K00    | ✅     |
+| [White](./PETG/PETG%20Matte/White)                   | 35100         | G03-W00    | ✅     |
 | [Pink](./PETG/PETG%20Matte/Pink)                     | 35700         | ?          | ❌     |
 | [Violet](./PETG/PETG%20Matte/Violet)                 | 35702         | ?          | ❌     |
 | [Baby Blue](./PETG/PETG%20Matte/Baby%20Blue)         | 35600         | ?          | ❌     |
-| [Avocado Green](./PETG/PETG%20Matte/Avocado%20Green) | 35501         | ?          | ❌     |
+| [Avocado Green](./PETG/PETG%20Matte/Avocado%20Green) | 35501         | G03-G01    | ✅     |
 | [Lime](./PETG/PETG%20Matte/Lime)                     | 35500         | ?          | ❌     |
 | [Gray](./PETG/PETG%20Matte/Gray)                     | 35102         | G03-D00    | ✅     |
 
