@@ -248,10 +248,10 @@ Status Icon Legend:
 
 | Color                                       | Filament Code | Variant ID | Status |
 | ------------------------------------------- | ------------- | ---------- | ------ |
-| [Royal Blue](./PLA/PLA-CF/Royal%20Blue)     | 14601         | A50-B6     | ❌     |
+| [Royal Blue](./PLA/PLA-CF/Royal%20Blue)     | 14601         | A50-B6     | ✅     |
 | [Jeans Blue](./PLA/PLA-CF/Jeans%20Blue)     | 14600         | A50-B9     | ✅     |
 | [Lava Gray](./PLA/PLA-CF/Lava%20Gray)       | 14101         | A50-D6     | ✅     |
-| [Matcha Green](./PLA/PLA-CF/Matcha%20Green) | 14500         | ?          | ❌     |
+| [Matcha Green](./PLA/PLA-CF/Matcha%20Green) | 14500         | A50-G7     | ✅     |
 | [Black](./PLA/PLA-CF/Black)                 | 14100         | A50-K0     | ✅     |
 | [Iris Purple](./PLA/PLA-CF/Iris%20Purple)   | 14700         | A50-P7     | ✅     |
 | [Burgundy Red](./PLA/PLA-CF/Burgundy%20Red) | 14200         | A50-R4     | ✅     |
@@ -340,9 +340,9 @@ Status Icon Legend:
 | ---------------------------------------------------- | ------------- | ---------- | ------ |
 | [Black](./PETG/PETG%20Matte/Black)                   | 35101         | G03-K00    | ✅     |
 | [White](./PETG/PETG%20Matte/White)                   | 35100         | G03-W00    | ✅     |
-| [Pink](./PETG/PETG%20Matte/Pink)                     | 35700         | ?          | ❌     |
+| [Pink](./PETG/PETG%20Matte/Pink)                     | 35700         | G03-P00    | ✅     |
 | [Violet](./PETG/PETG%20Matte/Violet)                 | 35702         | ?          | ❌     |
-| [Baby Blue](./PETG/PETG%20Matte/Baby%20Blue)         | 35600         | ?          | ❌     |
+| [Baby Blue](./PETG/PETG%20Matte/Baby%20Blue)         | 35600         | G03-B00    | ✅     |
 | [Avocado Green](./PETG/PETG%20Matte/Avocado%20Green) | 35501         | G03-G01    | ✅     |
 | [Lime](./PETG/PETG%20Matte/Lime)                     | 35500         | ?          | ❌     |
 | [Gray](./PETG/PETG%20Matte/Gray)                     | 35102         | G03-D00    | ✅     |
