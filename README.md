@@ -314,6 +314,7 @@ Status Icon Legend:
 | [Dark Beige](./PETG/PETG%20Basic/Dark%20Beige)   | 30403         | G00-Y01               | ✅     |
 | [Lime Green](./PETG/PETG%20Basic/Lime%20Green)   | 30404         | G00-G8                | ✅     |
 | [Clear](./PETG/PETG%20Basic/Clear)               | 30103         | G00-C1                | ✅     |
+| [Gold](./PETG/PETG%20Basic/Gold)                 | ?             | G00-Y4                | ✅     |
 
 #### [PETG HF](./PETG/PETG%20HF)
 
@@ -341,7 +342,7 @@ Status Icon Legend:
 | [Black](./PETG/PETG%20Matte/Black)                   | 35101         | G03-K00    | ✅     |
 | [White](./PETG/PETG%20Matte/White)                   | 35100         | G03-W00    | ✅     |
 | [Pink](./PETG/PETG%20Matte/Pink)                     | 35700         | G03-P00    | ✅     |
-| [Violet](./PETG/PETG%20Matte/Violet)                 | 35702         | ?          | ❌     |
+| [Violet](./PETG/PETG%20Matte/Violet)                 | 35702         | G03-P02    | ✅     |
 | [Baby Blue](./PETG/PETG%20Matte/Baby%20Blue)         | 35600         | G03-B00    | ✅     |
 | [Avocado Green](./PETG/PETG%20Matte/Avocado%20Green) | 35501         | G03-G01    | ✅     |
 | [Lime](./PETG/PETG%20Matte/Lime)                     | 35500         | ?          | ❌     |
